@@ -1,0 +1,4 @@
+*.zwc
+.z
+.zcompdump*
+.*_history
