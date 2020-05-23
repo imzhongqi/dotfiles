@@ -1,5 +1,7 @@
 [user]
 	email = imzhongqi@gmail.com
 	name = zhongqi
+[url "git@github.com:"]
+	insteadof = https://github.com/
 [url "git@gitlab.pxtos.com:"]
 	insteadof = https://gitlab.pxtos.com/
