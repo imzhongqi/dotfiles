@@ -46,10 +46,6 @@ zinit light-mode nocd for $plugins
 zinit light-mode nocd for $keybinds
 zinit as"completion" for $completions
 
-zinit light-mode nocd for zinit-zsh/z-a-bin-gem-node
-zinit light-mode as"program" from"gh-r" wait lucid nocd for $programs
-
 source $ZDOTDIR/.p10k.zsh
 zinit light-mode nocd for $themes
-
 

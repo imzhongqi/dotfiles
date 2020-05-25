@@ -7,7 +7,7 @@ EOF
 }
 
 update-aliyun-apt-source() {
-  version_codename=${1:-`lsb_release -c -s`}
+  version_codename=${1:-`lsb_release -cs`}
   pushd /etc/apt > /dev/null 2>&1
   ([[ ! -f sources.list.bak ]] && [[ -f sources.list ]]) && sudo cp sources.list sources.list.bak
   sudo tee sources.list > /dev/null <<EOF

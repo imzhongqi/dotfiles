@@ -53,18 +53,6 @@ plugins=(
     hlissner/zsh-autopair
 )
 
-# 一些好用的命令
-programs=(
-  sbin mv"exa* -> exa"
-    ogham/exa
-  sbin mv"*/rg -> rg"
-    BurntSushi/ripgrep
-  sbin"fd/fd" mv"fd* -> fd"
-    @sharkdp/fd
-  sbin"fzf"
-    junegunn/fzf-bin
-)
-
 themes=(
   depth"1"
     romkatv/powerlevel10k
