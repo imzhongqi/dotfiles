@@ -34,11 +34,11 @@ install-golang() {
   sudo tar xzf /tmp/$name -C /usr/local && rm /tmp/$name
 }
 
-install-nodejs() {
+install-node() {
   version=${1:-12.16.3}
   name=node-v${version}-${platform}-x64.tar.gz
   curl -L https://nodejs.org/dist/v${version}/${name} -o /tmp/$name
-  sudo mkdir /usr/local/nodejs && sudo tar xzf /tmp/$name -C ${2:-'/usr/local/nodejs'} --strip-components 1 && rm /tmp/$name
+  mkdir -p $HOME/.local/share/node && tar xzf /tmp/$name -C $HOME/.local/share/node --strip-components 1 && rm /tmp/$name
 }
 
 install-rust() {
@@ -105,8 +105,8 @@ main() {
     golang)
       install-golang $@
     ;;
-    nodejs)
-      install-nodejs $@
+    node)
+      install-node $@
     ;;
     rust)
       install-rust $@

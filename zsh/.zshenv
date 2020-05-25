@@ -13,7 +13,7 @@ export GOPATH="$HOME/.local/go"
     /usr/local/go/bin
     $HOME/.local/bin
     $HOME/.cargo/bin
-    $HOME/.local/node/bin
+    $HOME/.local/share/node/bin
     $HOME/.yarn/bin
     $GOPATH/bin
   )
