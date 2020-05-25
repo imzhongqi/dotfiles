@@ -49,7 +49,7 @@ install-protoc() {
   version=${1:-3.12.1}
   name=protoc-${version}-linux-$(uname -p).zip
   curl -L https://github.com/protocolbuffers/protobuf/releases/download/v${version}/$name -o /tmp/$name
-  sudo unzip -jq /tmp/$name bin/protoc -d /usr/local/bin && sudo chmod +x /usr/local/bin/protoc
+  sudo unzip -jq /tmp/$name bin/protoc -d /usr/local/bin && sudo chmod +rx /usr/local/bin/protoc
 }
 
 install-clang-format() {
