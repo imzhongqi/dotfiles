@@ -53,7 +53,6 @@ install-rust() {
 
 install-protoc() {
   echo "install protoc"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
   version=${1:-3.12.1}
   name=protoc-${version}-linux-$(uname -p).zip
   curl -L https://github.com/protocolbuffers/protobuf/releases/download/v${version}/$name -o /tmp/$name
