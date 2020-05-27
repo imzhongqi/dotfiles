@@ -16,17 +16,12 @@ install-docker-compose() {
 
 install-docker() {
   echo "install docker"
-  version=${1:-1.25.5}
-  sudo apt-get update
-  sudo apt-get -y install curl apt-transport-https ca-certificates software-properties-common
-  curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
-
-  deb_repo="deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
-  sudo add-apt-repository $deb_repo
-  sudo apt-get update
-  sudo apt-get -y install docker-ce
-  sudo add-apt-repository -r $deb_repo
-
+  sudo apt-get update && 
+  sudo apt-get -y install curl apt-transport-https ca-certificates software-properties-common &&
+  (curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -) &&
+  sudo add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable" &&
+  sudo apt-get update &&
+  sudo apt-get -y install docker-ce &&
   sudo usermod -aG docker $USER
 }
 
