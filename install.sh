@@ -37,8 +37,9 @@ install-node() {
   echo "install node"
   version=${1:-12.16.3}
   name=node-v${version}-${platform}-x64.tar.gz
+  install_dir=$HOME/.local/share/node 
   curl -L https://nodejs.org/dist/v${version}/${name} -o /tmp/$name
-  mkdir -p $HOME/.local/share/node && tar xzf /tmp/$name -C $HOME/.local/share/node --strip-components 1 && rm /tmp/$name
+  mkdir -p $install_dir && tar xzf /tmp/$name -C $install_dir --strip-components 1 && rm /tmp/$name
 }
 
 install-rust() {
