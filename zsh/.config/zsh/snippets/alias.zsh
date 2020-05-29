@@ -10,7 +10,7 @@ load_localhost_addr() {
   # wsl2 获取宿主机的ip地址并且映射为 localhosts
   if [[ ! -z $WSL_DISTRO_NAME ]]; then
     local hostname=${HOSTNAME:-localhosts}
-    local addr=$(sed -n 's/nameserver //p' /etc/resolv.conf)
+    local addr=$(awk 'END { print $2 }' /etc/resolv.conf)
     if [[ $(grep $hostname /etc/hosts) == '' ]]; then
       echo "$addr $hostname" | sudo tee -a /etc/hosts > /dev/null
     elif [[ $(grep $hostname /etc/hosts | awk '{print $1}') != $addr ]]; then
