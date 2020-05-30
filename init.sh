@@ -62,16 +62,16 @@ main() {
     preinstall)
       install-tools
       ;;
+    init)
+      init-submodule
+      ;;
     all)
       sudo-nopasswd
       update-aliyun-apt-source
       install-tools
       ;;
-    init)
-      init-submodule
-      ;;
     *)
-      echo "usage: sudo ./init.sh (sudo|apt)"
+      echo "usage: sudo ./init.sh (sudo|apt|preinstall|init|all)"
       ;;
   esac
 }

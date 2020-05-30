@@ -153,7 +153,7 @@ main() {
       install-clang-format $@
     ;;
     *)
-      echo "usage: $0 (docker|docker-compose|golang|nodejs|rust|protoc)"
+      echo "usage: $0 (docker|docker-compose|golang|nodejs|rust|protoc|clang-format)"
     ;;
   esac
 }
