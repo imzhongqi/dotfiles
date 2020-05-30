@@ -35,7 +35,6 @@ check-cmd() {
 }
 
 install-tools() {
-  git submodule update --init
   check-cmd zsh     ||  sudo apt-get -y install zsh
   check-cmd curl    ||  sudo apt-get -y install curl
   check-cmd wget    ||  sudo apt-get -y install wget
@@ -45,6 +44,10 @@ install-tools() {
   check-cmd unzip   ||  sudo apt-get -y install unzip
   check-cmd svn     ||  sudo apt-get -y install subversion
   check-cmd lua5.3  ||  sudo apt-get -y install lua5.3
+}
+
+init-submodule() {
+  git submodule update --init
 }
 
 main() {
@@ -63,6 +66,9 @@ main() {
       sudo-nopasswd
       update-aliyun-apt-source
       install-tools
+      ;;
+    init)
+      init-submodule
       ;;
     *)
       echo "usage: sudo ./init.sh (sudo|apt)"
