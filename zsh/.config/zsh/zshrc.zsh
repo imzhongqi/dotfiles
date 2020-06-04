@@ -42,7 +42,7 @@ done
 
 # zinit 配置
 zinit light-mode nocd for $snippets
-zinit light-mode nocd for $plugins
+zinit light-mode depth"1" nocd for $plugins
 zinit light-mode nocd for $keybinds
 zinit as"completion" for $completions
 
