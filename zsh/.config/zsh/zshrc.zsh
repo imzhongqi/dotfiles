@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-PROXY_ADDR='http://localhosts:1080'
+PROXY_ADDR="http://$(hostname).mshome.net:1080"
 
 # zsh 命令行提示符 % 问题
 PROMPT_EOL_MARK=''

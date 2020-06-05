@@ -6,25 +6,12 @@ alias reload="exec $SHELL -l -i"  grep="command grep --colour=auto --binary-file
 alias df='df -h'  du='du -h'  plast="last -20"
 alias cp='cp -v'   mv='mv -v'
 
-load_localhost_addr() {
-  # wsl2 获取宿主机的ip地址并且映射为 localhosts
-  if [[ ! -z $WSL_DISTRO_NAME ]]; then
-    local hostname=${HOSTNAME:-localhosts}
-    local addr=$(awk 'END { print $2 }' /etc/resolv.conf)
-    if [[ $(grep $hostname /etc/hosts) == '' ]]; then
-      echo "$addr $hostname" | sudo tee -a /etc/hosts > /dev/null
-    elif [[ $(grep $hostname /etc/hosts | awk '{print $1}') != $addr ]]; then
-      sudo sed "s/.*$hostname/$addr $hostname/" -i /etc/hosts
-    fi
-  fi
-}
 
 function _z() {
   _zlua "$@";
 }
 
 function proxy() {
-  load_localhost_addr
   export {http,https}_proxy="${PROXY_ADDR:-'http://127.0.0.1:1080'}"
 }
 
