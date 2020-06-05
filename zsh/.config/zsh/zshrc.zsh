@@ -41,11 +41,10 @@ for snp in $ZDOTDIR/snippets/*.zsh; do
 done
 
 # zinit 配置
-zinit light-mode nocd for $snippets
-zinit light-mode depth"1" nocd for $plugins
-zinit light-mode nocd for $keybinds
+zinit lucid nocd light-mode for $snippets
+zinit lucid nocd light-mode for $keybinds
 zinit as"completion" for $completions
+zinit wait lucid depth"1" nocd light-mode for $plugins
 
 source $ZDOTDIR/.p10k.zsh
-zinit light-mode nocd for $themes
-
+zinit depth"1" nocd light-mode for romkatv/powerlevel10k

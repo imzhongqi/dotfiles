@@ -36,24 +36,17 @@ keybinds=(
 
 # 插件
 plugins=(
-  zsh-users/zsh-autosuggestions
-  wait lucid atinit"zpcompinit; zpcdreplay"
+  atload"_zsh_autosuggest_start"
+    zsh-users/zsh-autosuggestions
+  atinit"zicompinit; zicdreplay"
     zdharma/fast-syntax-highlighting
-  wait lucid blockf
+  blockf atpull'zinit creinstall -q .'
     zsh-users/zsh-completions
-  wait lucid
-    skywind3000/z.lua
-  wait lucid
-    changyuheng/fz
-  wait lucid
-    Aloxaf/fzf-tab
-  wait lucid
+  skywind3000/z.lua
+  changyuheng/fz
+  Aloxaf/fzf-tab
+  wait"0c"
     wfxr/forgit
-  wait lucid 
-    hlissner/zsh-autopair
+  hlissner/zsh-autopair
 )
 
-themes=(
-  depth"1"
-    romkatv/powerlevel10k
-)
