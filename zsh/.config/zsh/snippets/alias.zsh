@@ -12,7 +12,7 @@ function _z() {
 }
 
 function proxy() {
-  export {http,https}_proxy="${PROXY_ADDR:-'http://127.0.0.1:1080'}"
+  export {http,https}_proxy="${PROXY_ADDR:-http://127.0.0.1:1080}"
 }
 
 function unproxy() {
