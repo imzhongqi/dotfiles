@@ -13,7 +13,7 @@
 - lua5.3
 
 ```
-./init.sh all
+./init.sh init && ./init.sh preinstall
 ```
 
 ## 安装
