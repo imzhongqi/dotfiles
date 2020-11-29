@@ -23,6 +23,8 @@ completions=(
   nocd
     OMZ::plugins/docker-compose/_docker-compose
   nocd
+    OMZ::plugins/docker/_docker
+  nocd
     OMZ::plugins/fd/_fd
   nocd
     OMZ::plugins/cargo/_cargo

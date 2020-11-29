@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 # zsh 命令行提示符 % 问题
 PROMPT_EOL_MARK=''
 
@@ -46,4 +45,4 @@ zinit as"completion" for $completions
 zinit wait lucid depth"1" nocd light-mode for $plugins
 
 source $ZDOTDIR/.p10k.zsh
-zinit depth"1" nocd light-mode for romkatv/powerlevel10k
+zinit depth"1 " nocd light-mode for romkatv/powerlevel10k
