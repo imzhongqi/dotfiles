@@ -1,5 +1,2 @@
-/snippets
-/services
-/plugins
-/completions
-/polaris
+*
+!/bin
