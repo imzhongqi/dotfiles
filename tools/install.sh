@@ -1,6 +1,14 @@
 #!/bin/bash
 
-platform=$(uname -s | awk '{ print tolower($1) }')
+PLATFORM=$(uname -s | awk '{ print tolower($1) }')
+
+check_platform() {
+	if [[ "$PLATFORM" != ${1:?PLATFORM must be set} ]]; then
+		echo "PLATFORM must be $1"
+		exit 1
+	fi
+}
+
 
 check_cmd() {
     command -v "$1" > /dev/null 2>&1
@@ -15,6 +23,7 @@ install-docker-compose() {
 }
 
 install-docker() {
+	check_platform linux
   echo "install docker"
   apt-get update && 
   apt-get -y install curl apt-transport-https ca-certificates software-properties-common &&
@@ -28,7 +37,7 @@ install-docker() {
 install-golang() {
   echo "install golang"
   version=${1:-1.14.3}
-  name="go${version}.${platform}-amd64.tar.gz"
+  name="go${version}.${PLATFORM}-amd64.tar.gz"
   curl -L https://dl.google.com/go/$name -o /tmp/$name &&
   tar xzf /tmp/$name -C /usr/local && rm /tmp/$name
 }
@@ -36,7 +45,7 @@ install-golang() {
 install-node() {
   echo "install node"
   version=${1:-12.16.3}
-  name=node-v${version}-${platform}-x64.tar.gz
+  name=node-v${version}-${PLATFORM}-x64.tar.gz
   install_dir=$HOME/.local/share/node 
   curl -L https://nodejs.org/dist/v${version}/${name} -o /tmp/$name &&
   mkdir -p $install_dir &&
@@ -82,10 +91,12 @@ install-fd() {
 
 install-fzf() {
   echo "install fzf"
-  version=${1:-0.21.1}
-  name=fzf-${version}-linux_amd64.tgz
-  curl -L https://github.com/junegunn/fzf-bin/releases/download/${version}/$name -o /tmp/$name &&
-  tar xzf /tmp/$name -C /usr/local/bin --no-same-owner
+  version=${1:-0.24.4}
+  name=fzf-${version}-${PLATFORM}_amd64.tar.gz
+	url=https://github.com/junegunn/fzf/releases/download/${version}/$name
+	echo "download_url: $url"
+  curl -L $url  -o /tmp/$name &&
+  tar xzf /tmp/$name -C /usr/local/bin
 }
 
 install-rg() {
@@ -99,16 +110,22 @@ install-rg() {
 install-exa() {
   echo "install exa"
   version=${1:-0.9.0}
-  name=exa-linux-x86_64-${version}.zip
-  curl -L https://github.com/ogham/exa/releases/download/v0.9.0/$name -o /tmp/$name &&
+	local platform="$PLATFORM"
+	if [[ $platform == "darwin" ]]; then
+		platform="macos"
+	fi
+	name=exa-${platform}-$(uname -m)-${version}.zip
+	url=https://github.com/ogham/exa/releases/download/v0.9.0/$name
+	echo "download_url: $url"
+  curl -L $url -o /tmp/$name &&
   unzip -q /tmp/$name -d /tmp &&
   mv /tmp/${name%-$version*} /usr/local/bin/exa
 }
 
 main() {
-  name=$1
+  subcommand=$1
   shift
-  case "$name" in
+  case "$subcommand" in
     docker)
       install-docker $@
     ;;

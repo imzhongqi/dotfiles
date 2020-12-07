@@ -41,7 +41,7 @@ done
 # zinit 配置
 zinit lucid nocd light-mode for $snippets
 zinit lucid nocd light-mode for $keybinds
-zinit as"completion" for $completions
+zinit lucid as"completion" for $completions
 zinit wait lucid depth"1" nocd light-mode for $plugins
 
 source $ZDOTDIR/.p10k.zsh

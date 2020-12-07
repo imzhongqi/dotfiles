@@ -4,14 +4,14 @@ snippets=(
   OMZ::lib/directories.zsh
   OMZ::lib/history.zsh
   OMZ::lib/key-bindings.zsh
-  wait"0" lucid
-    OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-  wait"0" lucid
-    OMZ::plugins/sudo/sudo.plugin.zsh
-  wait"2" lucid svn
-    OMZ::plugins/extract
-  wait"2" lucid
+  wait"2"
     OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+  wait"0"
+    OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+  wait"0"
+    OMZ::plugins/sudo/sudo.plugin.zsh
+  wait"2" svn
+    OMZ::plugins/extract
 )
 
 # 补全
