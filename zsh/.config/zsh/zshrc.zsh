@@ -26,6 +26,17 @@ zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=alw
 
 bindkey '\ef' fzf-cd-widget # fzf alt-c 重新绑定为 alt-f
 
+
+command -v nvim >/dev/null && EDITOR=nvim
+
+# 加强版通配符
+setopt EXTENDED_GLOB
+
+# 用 vim 编辑命令行
+autoload -U       edit-command-line
+zle -N            edit-command-line
+bindkey '^o'      edit-command-line     # C-o 打开 vim 编辑命令行
+
 typeset -A ZINIT=(
   BIN_DIR         $ZDOTDIR/zinit/bin
   HOME_DIR        $ZDOTDIR/zinit
