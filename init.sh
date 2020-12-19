@@ -2,7 +2,7 @@
 
 sudo-nopasswd() {
   [[ -f /etc/sudoers.d/NOPASSWD ]] || tee /etc/sudoers.d/NOPASSWD > /dev/null <<EOF
-%ALL=(ALL:ALL) NOPASSWD:ALL
+%sudo ALL=(ALL:ALL) NOPASSWD:ALL
 EOF
 }
 
