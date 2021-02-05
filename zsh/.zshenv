@@ -15,6 +15,7 @@ export GOPATH=$HOME/.local/go
     $HOME/.yarn/bin
     $GOPATH/bin
     /usr/local/go/bin
+    /usr/local/Cellar/mysql-client/8.0.22/bin
   )
 
   if [[ ! $PATH =~ $USER_PATH ]]; then

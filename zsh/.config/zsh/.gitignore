@@ -1,0 +1,8 @@
+*
+!.gitignore
+!.p10k.zsh
+!.zprofile
+!.zshrc
+!snippets
+!zinit
+!zshrc.zsh

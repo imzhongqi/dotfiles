@@ -10,24 +10,11 @@ function _z() {
   _zlua "$@";
 }
 
-function proxy() {
-  export {http,https}_proxy=${proxy_addr:-${proxy_protocol:-http}://${proxy_host:-127.0.0.1}:${proxy_port:-1080}}
-}
-
-function unproxy() {
+function ap() {
+  if [[ "$http_proxy" == "" || "$https_proxy" == "" ]]; then
+    export {http,https}_proxy=${proxy_addr:-${proxy_protocol:-http}://${proxy_host:-127.0.0.1}:${proxy_port:-1080}}
+    return
+  fi
   unset {http,https}_proxy
 }
 
-function fk() {
-  proxy
-  "$@"
-  unproxy
-}
-
-function start() {
-  sudo service $1 start
-}
-
-function stop() {
-  sudo service $1 stop
-}
