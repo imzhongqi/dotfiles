@@ -15,6 +15,7 @@ HIST_STAMPS='yyyy-mm-dd'
 
 setopt autocd
 autoload -Uz zcalc zmv
+autoload -U colors && colors
 
 local extract="
 # trim input
