@@ -3,3 +3,5 @@
 	name = zhongqi
 [url "git@github.com:"]
 	insteadof = https://github.com/
+[init]
+	defaultBranch = master
