@@ -10,13 +10,27 @@ function _z() {
   _zlua "$@";
 }
 
-function ap() {
-  if [[ "$http_proxy" == "" || "$https_proxy" == "" ]]; then
-    export {http,https}_proxy=${proxy_addr:-${proxy_protocol:-http}://${proxy_host:-127.0.0.1}:${proxy_port:-1080}}
-    echo "proxy on: $http_proxy"
+ap() {
+  if (( $# > 0 )); then
+    proxy_addr=$1 proxy 
     return
   fi
+  is_proxy && unproxy || proxy
+}
+
+proxy() {
+  export {http,https}_proxy=${proxy_addr:-http://localhost:${proxy_port:-1080}}
+  echo "proxy on: $http_proxy"
+}
+
+unproxy() {
   unset {http,https}_proxy
   echo "proxy off"
 }
 
+is_proxy() {
+  if [[ "$http_proxy" != "" || "$https_proxy" != "" ]]; then
+    return 0
+  fi
+  return 1
+}
