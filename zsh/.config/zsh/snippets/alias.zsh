@@ -29,8 +29,7 @@ unproxy() {
 }
 
 is_proxy() {
-  if [[ "$http_proxy" != "" || "$https_proxy" != "" ]]; then
-    return 0
+  if [[ "$http_proxy" == "" || "$https_proxy" == "" ]]; then
+    return 1
   fi
-  return 1
 }
