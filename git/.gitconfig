@@ -1,9 +1,8 @@
 [user]
 	email = imzhongqi@gmail.com
 	name = zhongqi
-#[url "git@github.com:"]
-	#insteadof = https://github.com/
-[url "git@gitlab.hoogeek.com:"]
-	insteadof = https://gitlab.hoogeek.com/
+[url "git@github.com:"]
+	insteadof = https://github.com/
+
 [init]
 	defaultBranch = master
