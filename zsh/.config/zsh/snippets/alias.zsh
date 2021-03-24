@@ -11,11 +11,31 @@ function _z() {
 }
 
 ap() {
-  if (( $# > 0 )); then
-    proxy_addr=$1 proxy 
-    return
-  fi
-  is_proxy && unproxy || proxy
+  case $1 in
+    status | s)
+      is_proxy
+      if (( $? == 0 )) then
+        echo "status: on, proxy address $http_proxy"
+      else
+        echo "status: off"
+      fi
+      ;; 
+
+    on)
+      if [[ "$2" != "" ]] then
+         local proxy_addr="$2"
+      fi
+      proxy 
+      ;;
+
+    off)
+      unproxy
+      ;;
+
+    *)
+      is_proxy && unproxy || proxy
+      ;;
+  esac
 }
 
 proxy() {
