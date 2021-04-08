@@ -13,8 +13,7 @@ function _z() {
 ap() {
   case $1 in
     status | s)
-      is_proxy
-      if (( $? == 0 )) then
+      if is_proxy; then
         echo "status: on, proxy address $http_proxy"
       else
         echo "status: off"
@@ -22,24 +21,28 @@ ap() {
       ;; 
 
     on)
-      if [[ "$2" != "" ]] then
-         local proxy_addr="$2"
-      fi
-      proxy 
+      proxy "$2"
       ;;
 
     off)
       unproxy
       ;;
 
+    "")
+      (is_proxy && unproxy) || proxy
+      ;;
+
     *)
-      is_proxy && unproxy || proxy
+      echo "error: unknown arguments"
       ;;
   esac
 }
 
 proxy() {
-  export {http,https}_proxy=${proxy_addr:-http://localhost:${proxy_port:-1080}}
+  if [[ "$1" != "" ]]; then
+    local proxy_addr="$1"
+  fi
+  export {http,https}_proxy="${proxy_addr:-http://localhost:"${proxy_port:-1080}"}"
   echo "proxy on: $http_proxy"
 }
 
