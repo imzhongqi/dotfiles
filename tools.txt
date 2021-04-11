@@ -1,9 +1,0 @@
-protoc
-protoc-gen-go
-protoc-gen-micro
-protoc-gen-validate                       https://github.com/envoyproxy/protoc-gen-validate
-clang-format-9                            sudo apt install clang-format-9
-fd                                        https://github.com/sharkdp/fd
-rg                                        https://github.com/BurntSushi/ripgrep
-bat                                       https://github.com/sharkdp/bat
-fzf                                       https://github.com/junegunn/fzf
