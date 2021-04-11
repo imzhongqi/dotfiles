@@ -12,16 +12,13 @@
 - subversion
 - lua5.3
 
-```
-./init.sh init && ./init.sh preinstall
-```
-
-## 安装
+## Install
 ```shell
+make init # check the command installed
 make install
 ```
 
-## 卸载
+## Uninstall
 ```shell
 make uninstall
 ```
