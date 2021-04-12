@@ -16,3 +16,4 @@ install:
 .PHONY: uninstall
 uninstall:
 	@$(PACKS) stow -D %
+
