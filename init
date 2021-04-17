@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMANDS=(zsh stow git svn lua curl wget unzip)
+COMMANDS=(zsh stow git svn lua curl wget unzip fzf fd exa)
 
 check_cmd() {
   command -v "$1" > /dev/null 2>&1
@@ -9,9 +9,10 @@ check_cmd() {
 main() {
   for cmd in "${COMMANDS[@]}"; do
       if ! check_cmd $cmd; then
-        printf 'check failed, command `%s` not found.' $cmd
+        printf 'check failed, command `%s` not found.\n' $cmd
       fi
   done
 }
 
 main
+
