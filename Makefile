@@ -1,5 +1,5 @@
 EXCLUDE = ssh
-PACKS = ls -F | grep "/" | grep -v '$(EXCLUDE)' | sed 's|/||g' | xargs -I %
+PACKS = ls -F | grep "/" | grep -v '$(EXCLUDE)' | sed 's|/||g' | xargs
 
 .PHONY: all
 all: init install
@@ -11,9 +11,9 @@ init:
 
 .PHONY: install
 install:
-	@$(PACKS) stow %
+	$(PACKS) stow 
 
 .PHONY: uninstall
 uninstall:
-	@$(PACKS) stow -D %
+	@$(PACKS) stow -D
 
