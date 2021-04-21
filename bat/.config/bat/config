@@ -1,3 +1,5 @@
 --theme='OneHalfDark'
 
 --style='numbers,header,grid'
+
+--paging='never'
