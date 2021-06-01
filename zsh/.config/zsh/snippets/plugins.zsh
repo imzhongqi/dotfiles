@@ -10,6 +10,8 @@ snippets=(
     OMZ::plugins/docker-compose/docker-compose.plugin.zsh
   wait"0"
     OMZ::plugins/sudo/sudo.plugin.zsh
+  wait"0"
+    OMZ::plugins/kubectl/kubectl.plugin.zsh
   wait"2" svn
     OMZ::plugins/extract
 )
