@@ -12,8 +12,8 @@ snippets=(
     OMZ::plugins/sudo/sudo.plugin.zsh
   wait"0"
     OMZ::plugins/kubectl/kubectl.plugin.zsh
-  wait"2" svn
-    OMZ::plugins/extract
+  wait"2" 
+    OMZ::plugins/extract/extract.plugin.zsh
 )
 
 # 补全
