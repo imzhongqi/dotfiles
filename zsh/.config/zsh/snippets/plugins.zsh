@@ -20,8 +20,7 @@ snippets=(
 completions=(
   mv"*.zsh -> _fzf" atload'source _fzf'
     'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
-  mv"*.zsh -> _exa" nocd
-    'https://github.com/ogham/exa/blob/master/completions/completions.zsh'
+  'https://github.com/ogham/exa/blob/master/completions/zsh/_exa'
   nocd
     OMZ::plugins/docker-compose/_docker-compose
   nocd
