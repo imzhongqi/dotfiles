@@ -51,6 +51,7 @@ for snp in $ZDOTDIR/snippets/*.zsh; do
 done
 
 # zinit 配置
+#zinit lucid nocd light-mode for $libs
 zinit lucid nocd light-mode for $snippets
 zinit lucid nocd light-mode for $keybinds
 zinit lucid as"completion" for $completions

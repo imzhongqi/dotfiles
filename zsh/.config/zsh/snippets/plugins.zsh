@@ -1,3 +1,9 @@
+libs=(
+  OMZL::theme-and-appearance.zsh
+  OMZL::git.zsh
+  OMZL::prompt_info_functions.zsh
+)
+
 # ohmyzsh 相关
 snippets=(
   OMZ::lib/completion.zsh
