@@ -27,10 +27,6 @@ completions=(
     OMZ::plugins/docker/_docker
   nocd
     OMZ::plugins/fd/_fd
-  nocd
-    OMZ::plugins/cargo/_cargo
-  nocd
-    OMZ::plugins/rust/_rust
 )
 
 keybinds=(
@@ -42,7 +38,7 @@ plugins=(
   atload"_zsh_autosuggest_start"
     zsh-users/zsh-autosuggestions
   atinit"zicompinit; zicdreplay"
-    zdharma/fast-syntax-highlighting
+    zdharma-continuum/fast-syntax-highlighting
   blockf atpull'zinit creinstall -q .'
     zsh-users/zsh-completions
   skywind3000/z.lua

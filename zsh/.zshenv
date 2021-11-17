@@ -10,6 +10,7 @@ export GOPATH=$HOME/.local/go
 () {
   local USER_PATH=(
     $HOME/.local/bin
+    /usr/local/sbin
     $HOME/.cargo/bin
     $HOME/.local/share/node/bin
     $HOME/.yarn/bin
