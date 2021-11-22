@@ -6,6 +6,10 @@ command_check() {
 	command -v $1 &>/dev/null
 }
 
+if command_check minikube && minikube status &>/dev/null ; then
+	eval $(minikube docker-env)
+fi
+
 command_check exa && alias ls='exa -bh'
 command_check bat && alias cat='bat --plain'
 

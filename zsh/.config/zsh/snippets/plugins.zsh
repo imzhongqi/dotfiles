@@ -1,25 +1,27 @@
 libs=(
-  OMZL::theme-and-appearance.zsh
-  OMZL::git.zsh
-  OMZL::prompt_info_functions.zsh
+  # OMZL::theme-and-appearance.zsh
+  # OMZL::git.zsh
+  # OMZL::prompt_info_functions.zsh
+
+  OMZL::clipboard.zsh
+  OMZL::completion.zsh
+  OMZL::directories.zsh
+  OMZL::history.zsh
+  OMZL::key-bindings.zsh
 )
 
 # ohmyzsh 相关
 snippets=(
-  OMZ::lib/completion.zsh
-  OMZ::lib/directories.zsh
-  OMZ::lib/history.zsh
-  OMZ::lib/key-bindings.zsh
   wait"2"
-    OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+    OMZP::colored-man-pages/colored-man-pages.plugin.zsh
   wait"0"
-    OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+    OMZP::docker-compose/docker-compose.plugin.zsh
   wait"0"
-    OMZ::plugins/sudo/sudo.plugin.zsh
-  wait"0"
-    OMZ::plugins/kubectl/kubectl.plugin.zsh
+    OMZP::sudo/sudo.plugin.zsh
+  # wait"0"
+    # OMZP::kubectl/kubectl.plugin.zsh
   wait"2" 
-    OMZ::plugins/extract/extract.plugin.zsh
+    OMZP::extract/extract.plugin.zsh
 )
 
 # 补全
@@ -28,11 +30,11 @@ completions=(
     'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
   'https://github.com/ogham/exa/blob/master/completions/zsh/_exa'
   nocd
-    OMZ::plugins/docker-compose/_docker-compose
+    OMZP::docker-compose/_docker-compose
   nocd
-    OMZ::plugins/docker/_docker
+    OMZP::docker/_docker
   nocd
-    OMZ::plugins/fd/_fd
+    OMZP::fd/_fd
 )
 
 keybinds=(
@@ -41,17 +43,20 @@ keybinds=(
 
 # 插件
 plugins=(
-  atload"_zsh_autosuggest_start"
-    zsh-users/zsh-autosuggestions
-  atinit"zicompinit; zicdreplay"
+  atload="set_fast_theme" atinit"zicompinit; zicdreplay"
     zdharma-continuum/fast-syntax-highlighting
   blockf atpull'zinit creinstall -q .'
     zsh-users/zsh-completions
-  skywind3000/z.lua
-  changyuheng/fz
+  atload"_zsh_autosuggest_start"
+    zsh-users/zsh-autosuggestions
   Aloxaf/fzf-tab
-  wait"0c"
-    wfxr/forgit
+  changyuheng/fz
   hlissner/zsh-autopair
+  Aloxaf/zsh-histdb
+  wait"0c"
+    skywind3000/z.lua
+
+  # wait"0c"
+  #   wfxr/forgit
 )
 

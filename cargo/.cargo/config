@@ -1,5 +1,5 @@
 [source.crates-io]
-replace-with = "rustcc"
+replace-with = 'tuna'
 
-[source.rustcc]
-registry = "git://crates.rustcc.cn/crates.io-index"
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
