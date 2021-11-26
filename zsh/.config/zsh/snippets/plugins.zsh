@@ -52,7 +52,7 @@ plugins=(
   Aloxaf/fzf-tab
   changyuheng/fz
   hlissner/zsh-autopair
-  Aloxaf/zsh-histdb
+  #Aloxaf/zsh-histdb
   wait"0c"
     skywind3000/z.lua
 
