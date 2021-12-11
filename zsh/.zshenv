@@ -10,13 +10,15 @@ export GOPATH=$HOME/.local/go
 () {
   local USER_PATH=(
     $HOME/.local/bin
-    /usr/local/sbin
     $HOME/.cargo/bin
     $HOME/.local/share/node/bin
     $HOME/.yarn/bin
+
     $GOPATH/bin
+
+    /usr/local/sbin
     /usr/local/go/bin
-    /usr/local/Cellar/mysql-client/8.0.22/bin
+    /opt/homebrew/bin
   )
 
   if [[ ! $PATH =~ $USER_PATH ]]; then
@@ -24,3 +26,4 @@ export GOPATH=$HOME/.local/go
   fi
 }
 
+# vim:ft=zsh:sw=4:sts=4:et:foldmarker=[[[,]]]:foldmethod=marker

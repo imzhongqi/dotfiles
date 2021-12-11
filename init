@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMANDS=(zsh stow git svn lua curl wget unzip fzf fd exa)
+COMMANDS=(zsh stow git lua curl wget unzip fzf fd exa)
 
 check_cmd() {
   command -v "$1" > /dev/null 2>&1
