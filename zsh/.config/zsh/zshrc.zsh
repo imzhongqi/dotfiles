@@ -8,8 +8,6 @@ fi
 # zsh 命令行提示符 % 问题
 PROMPT_EOL_MARK=''
 
-# fzf-tab 颜色小问题
-FZF_TAB_NO_GROUP_COLOR=$'\033[0m'
 FZF_DEFAULT_COMMAND='fd --type f'
 HIST_STAMPS='yyyy-mm-dd'
 

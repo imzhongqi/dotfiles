@@ -5,4 +5,8 @@
 	insteadof = https://github.com/
 
 [init]
-	defaultBranch = master
+	defaultBranch = main
+[pull]
+	ff = only
+[core]
+	excludesfile = ~/.config/git/gitignore
