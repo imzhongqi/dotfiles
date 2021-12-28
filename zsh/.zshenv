@@ -26,4 +26,3 @@ export GOPATH=$HOME/.local/go
   fi
 }
 
-# vim:ft=zsh:sw=4:sts=4:et:foldmarker=[[[,]]]:foldmethod=marker
