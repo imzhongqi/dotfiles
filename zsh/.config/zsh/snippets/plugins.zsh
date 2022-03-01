@@ -18,8 +18,8 @@ snippets=(
     OMZP::docker-compose/docker-compose.plugin.zsh
   wait"0"
     OMZP::sudo/sudo.plugin.zsh
-  # wait"0"
-    # OMZP::kubectl/kubectl.plugin.zsh
+  wait"0"
+    OMZP::kubectl/kubectl.plugin.zsh
   wait"2" 
     OMZP::extract/extract.plugin.zsh
 )

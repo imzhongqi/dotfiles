@@ -47,34 +47,6 @@ typeset -A ZINIT=(
 
 source $ZDOTDIR/zinit/bin/zinit.zsh
 
-HISTDB_FILE=$ZDOTDIR/.zsh-history.db
-# return the latest used command in the current directory
-_zsh_autosuggest_strategy_histdb_top_here() {
-    (( $+functions[_histdb_query] )) || return
-    local query="
-SELECT commands.argv
-FROM   history
-    LEFT JOIN commands
-        ON history.command_id = commands.rowid
-    LEFT JOIN places
-        ON history.place_id = places.rowid
-WHERE commands.argv LIKE '${1//'/''}%'
--- GROUP BY 会导致旧命令的新记录不生效
--- GROUP BY commands.argv
-ORDER BY places.dir != '${PWD//'/''}',
-	history.start_time DESC
-LIMIT 1  
-"
-    typeset -g suggestion=$(_histdb_query "$query")
-}
-
-ZSH_AUTOSUGGEST_STRATEGY=(histdb_top_here match_prev_cmd completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_USE_ASYNC=1
-ZSH_AUTOSUGGEST_MANUAL_REBIND=1
-ZSH_AUTOSUGGEST_COMPLETION_IGNORE='( |man |pikaur -S )*'
-ZSH_AUTOSUGGEST_HISTORY_IGNORE='?(#c50,)'
-
 export _ZL_DATA=$ZDOTDIR/.z
 
 set_fast_theme() {
