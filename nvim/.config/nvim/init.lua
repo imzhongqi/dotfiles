@@ -1,4 +1,11 @@
+-- user defined options
 require("options")
+
+-- plugins
 require("plugins")
-require("keymaps")
+
+-- auto commands
 require("autocmd")
+
+-- key mappings
+require("keymaps")
