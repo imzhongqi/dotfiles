@@ -52,7 +52,7 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons") --icon
 	use("moll/vim-bbye")
 	use("akinsho/bufferline.nvim") -- buffer line
-	use("romgrk/barbar.nvim") -- buffer line bar
+	-- use("romgrk/barbar.nvim") -- buffer line bar
 	use("nvim-lualine/lualine.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("goolord/alpha-nvim")
@@ -85,6 +85,7 @@ return packer.startup(function(use)
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
 	use("Pocco81/DAPInstall.nvim")
+  use 'leoluz/nvim-dap-go'
 	-- use("theHamsta/nvim-dap-virtual-text")
 
 	-- Treesitter

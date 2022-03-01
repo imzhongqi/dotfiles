@@ -6,6 +6,7 @@ vim.cmd([[
 		colorscheme default
 		set background = dark
 	endtry
-  highlight debugPC guibg=#1c5187
-  highlight breakpoint guifg=#fa0000
+
+  highlight debugPC guibg=#1c5187 " debug current line
+  highlight breakpoint guifg=#fa0000 " breakpoint color
 ]])

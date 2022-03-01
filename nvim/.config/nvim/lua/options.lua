@@ -41,7 +41,7 @@ local options = {
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
 	tabstop = 2, -- insert 2 spaces for a tab
-	signcolumn = "number", -- always show the sign column, otherwise it would shift the text each time, example: "yes:<column-number>"
+	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time, example: "yes:<column-number>"
 
 	showmode = false,
 

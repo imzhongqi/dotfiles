@@ -20,28 +20,19 @@ local nmap = function(key, cmd)
 	return keymap("n", key, cmd, opts)
 end
 
-nmap("<M-j>", "<cmd>resize +2<cr>")
-nmap("<M-k>", "<cmd>resize -2<cr>")
-nmap("<M-h>", "<cmd>vertical resize -2 <cr>")
-nmap("<M-l>", "<cmd>vertical resize +2 <cr>")
+nmap("<M-S-j>", "<cmd>resize +2<cr>")
+nmap("<M-S-k>", "<cmd>resize -2<cr>")
+nmap("<M-S-h>", "<cmd>vertical resize -2 <cr>")
+nmap("<M-S-l>", "<cmd>vertical resize +2 <cr>")
 
 -- tab switch 1-9
 for i = 1, 9 do
-	nmap("<leader>" .. i, "<cmd>BufferGoto " .. i .. "<cr>")
+	nmap("<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<cr>")
 end
 
--- Debugger key map
--- nmap("", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
-nmap("<C-e>", "<cmd>lua require('dapui').eval()<cr>")
-
-vim.cmd([[
-  nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
-  nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
-  nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
-  nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
-  nnoremap <silent> <C-b> :lua require'dap'.toggle_breakpoint()<CR>
-  nnoremap <silent> <C-B> :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-  nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-  nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
-  nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
-]])
+nmap("<leader><S-K>", "<cmd>lua require('dapui').eval()<cr>")
+nmap("<leader><C-c>", "<cmd>lua require('dap').continue()<cr>")
+nmap("<C-o>", "<cmd>lua require('dap').step_over()<cr>")
+nmap("<Tab>", "<cmd>lua require('dap').step_into()<cr>")
+nmap("<S-Tab>", "<cmd>lua require('dap').step_out()<cr>")
+nmap("<C-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
