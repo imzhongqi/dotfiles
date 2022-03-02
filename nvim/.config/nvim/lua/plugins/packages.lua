@@ -85,8 +85,8 @@ return packer.startup(function(use)
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
 	use("Pocco81/DAPInstall.nvim")
-  use 'leoluz/nvim-dap-go'
-	-- use("theHamsta/nvim-dap-virtual-text")
+	use("leoluz/nvim-dap-go")
+	use("theHamsta/nvim-dap-virtual-text")
 
 	-- Treesitter
 	use("nvim-treesitter/nvim-treesitter")

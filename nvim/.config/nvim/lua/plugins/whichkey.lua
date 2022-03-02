@@ -37,7 +37,7 @@ which_key.setup({
 
 	icons = {
 		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "➜", -- symbol used between a key and it's label
+		separator = "", -- symbol used between a key and it's label
 		group = "+", -- symbol prepended to a group
 	},
 
@@ -55,10 +55,10 @@ which_key.setup({
 	},
 
 	layout = {
-		height = { min = 4, max = 25 }, -- min and max height of the columns
+		height = { min = 4, max = 40 }, -- min and max height of the columns
 		width = { min = 20, max = 50 }, -- min and max width of the columns
-		spacing = 3, -- spacing between columns
-		align = "left", -- align columns left, center or right
+		spacing = 4, -- spacing between columns
+		align = "center", -- align columns left, center or right
 	},
 
 	ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
@@ -74,15 +74,6 @@ which_key.setup({
 		v = { "j", "k" },
 	},
 })
-
-local opts = {
-	mode = "n", -- NORMAL mode
-	prefix = "<leader>",
-	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-	silent = true, -- use `silent` when creating keymaps
-	noremap = true, -- use `noremap` when creating keymaps
-	nowait = true, -- use `nowait` when creating keymaps
-}
 
 which_key.register({
 	["b"] = {
@@ -101,38 +92,7 @@ which_key.register({
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
 
-	d = {
-		name = "Debugger",
-		["<C-t>"] = { "<cmd>lua require('dapui').toggle('tray')<cr>", "Dap UI Tray" },
-
-		b = {
-			name = "Breakpoint",
-			b = {
-				"<cmd>lua require('dap').toggle_breakpoint()<cr>",
-				"Toggle Breakpoint",
-			},
-			c = {
-				"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
-				"Set Conditon Breakpoint",
-			},
-			l = {
-				"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
-				"Set Log Breakpoint",
-			},
-		},
-
-		c = {
-			"<cmd>lua require('dap').continue()<cr>",
-			"Continue Dap",
-		},
-
-		t = {
-			"<cmd>lua require('dap-go').debug_test()<cr>",
-			"Run Test",
-		},
-
-		d = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect Dap" },
-	},
+	["<C-t>"] = { "<cmd>lua require('dapui').toggle('tray')<cr>", "Dap UI Tray" },
 
 	p = {
 		name = "Packer",
@@ -163,8 +123,8 @@ which_key.register({
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
-		w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+		d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
+		w = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
@@ -196,4 +156,43 @@ which_key.register({
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
 	},
-}, opts)
+}, {
+	mode = "n", -- NORMAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+})
+
+which_key.register({
+	c = {
+		"<cmd>lua require('dap').continue()<cr>",
+		"Continue",
+	},
+
+	d = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect Dap" },
+
+	b = {
+		name = "Breakpoint",
+		b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+		c = {
+			"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+			"Set Conditon Breakpoint",
+		},
+		l = {
+			"<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
+			"Set Log Breakpoint",
+		},
+	},
+
+	t = { "<cmd>lua require('dap-go').debug_test()<cr>", "Run Test" },
+	s = { "<cmd>syntax sync fromstart<cr>", "Syntax fromstart" },
+}, {
+	mode = "n", -- NORMAL mode
+	prefix = "<C-x>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+})

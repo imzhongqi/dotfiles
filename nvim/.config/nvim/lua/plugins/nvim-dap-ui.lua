@@ -59,10 +59,6 @@ dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open("sidebar")
 end
 
-dap.listeners.before.event_stopped["dapui_config"] = function()
-	dapui.close('sidebar')
-end
-
 dap.listeners.before.event_terminated["dapui_config"] = function()
 	dapui.close("sidebar")
 end

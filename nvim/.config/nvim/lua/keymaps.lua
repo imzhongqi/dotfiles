@@ -30,9 +30,9 @@ for i = 1, 9 do
 	nmap("<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<cr>")
 end
 
-nmap("<leader><S-K>", "<cmd>lua require('dapui').eval()<cr>")
-nmap("<leader><C-c>", "<cmd>lua require('dap').continue()<cr>")
-nmap("<C-o>", "<cmd>lua require('dap').step_over()<cr>")
-nmap("<Tab>", "<cmd>lua require('dap').step_into()<cr>")
-nmap("<S-Tab>", "<cmd>lua require('dap').step_out()<cr>")
-nmap("<C-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
+nmap("<M-K>", "<cmd>lua require('dapui').eval()<cr>")
+nmap("<M-c>", "<cmd>lua require('dap').continue()<cr>")
+nmap("<Tab>", "<cmd>lua require('dap').step_over()<cr>")
+nmap("<M-i>", "<cmd>lua require('dap').step_into()<cr>")
+nmap("<M-o>", "<cmd>lua require('dap').step_out()<cr>")
+nmap("<M-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")

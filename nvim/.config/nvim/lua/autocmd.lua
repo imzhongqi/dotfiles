@@ -48,9 +48,11 @@ vim.cmd([[
   augroup end
 
   "Autoformat
-  augroup _lsp
-    autocmd!
-    "autocmd! FileType go
-    autocmd BufWritePre * lua vim.lsp.buf.formatting()
-  augroup end
+  " augroup _lsp
+  "   autocmd!
+  "   "autocmd! FileType go
+  "   autocmd BufWritePre * lua vim.lsp.buf.formatting()
+  " augroup end
 ]])
+
+-- autocmd BufEnter * :syntax sync fromstart

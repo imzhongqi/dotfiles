@@ -21,8 +21,9 @@ local options = {
 	splitright = true, -- force all vertical splits to go to the right of current window
 	swapfile = false,
 
-	timeoutlen = 100, -- time to wait for a mapped sequence to complete (in milliseconds)
+	timeoutlen = 250, -- time to wait for a mapped sequence to complete (in milliseconds)
 	updatetime = 300,
+  colorcolumn = "80",
 
 	termguicolors = true,
 	numberwidth = 4,
