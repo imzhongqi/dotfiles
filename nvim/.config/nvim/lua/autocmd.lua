@@ -1,22 +1,22 @@
 function filetype_go_settings()
-	local opts = {
-		expandtab = false,
-		tabstop = 4,
-		shiftwidth = 4,
-	}
-	for k, v in pairs(opts) do
-		vim.bo[k] = v
-	end
+  local opts = {
+    expandtab = false,
+    tabstop = 4,
+    shiftwidth = 4,
+  }
+  for k, v in pairs(opts) do
+    vim.bo[k] = v
+  end
 end
 
-vim.cmd([[
+vim.cmd [[
   augroup _filetype_go
     autocmd!
     autocmd FileType go lua filetype_go_settings()
   augroup end
-]])
+]]
 
-vim.cmd([[
+vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
@@ -53,6 +53,6 @@ vim.cmd([[
   "   "autocmd! FileType go
   "   autocmd BufWritePre * lua vim.lsp.buf.formatting()
   " augroup end
-]])
+]]
 
 -- autocmd BufEnter * :syntax sync fromstart

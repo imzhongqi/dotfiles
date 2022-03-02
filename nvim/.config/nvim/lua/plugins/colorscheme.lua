@@ -1,4 +1,4 @@
-vim.cmd([[
+vim.cmd [[
 	try
     "colorscheme darkplus
 		colorscheme gruvbox-baby
@@ -6,4 +6,4 @@ vim.cmd([[
 		colorscheme default
 		set background = dark
 	endtry
-]])
+]]
