@@ -143,7 +143,7 @@ nvim_tree.setup {
     relativenumber = false,
   },
   trash = {
-    cmd = "trash",
+    cmd = [[() {mv -fv "$@" ~/.Trash/}]],
     require_confirm = true,
   },
   quit_on_open = 0,

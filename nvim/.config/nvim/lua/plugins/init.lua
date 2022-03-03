@@ -57,3 +57,5 @@ require "plugins.neoscroll"
 
 -- 高亮当前光标内容
 require "plugins.illuminate"
+
+require "plugins.project"
