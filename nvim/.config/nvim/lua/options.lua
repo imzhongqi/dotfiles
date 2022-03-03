@@ -31,7 +31,7 @@ local options = {
   relativenumber = true,
   cursorline = true, -- highlight the current line
   pumheight = 10, -- pop up menu height
-  cmdheight = 2, -- more space in neovim command line for displaying messages
+  cmdheight = 1, -- more space in neovim command line for displaying messages
   hlsearch = true,
   -- titlestring = "%<%F%=%l/%L - neovim", -- what the title of the window will be set to
   title = true, -- set the title of window to the value of the titlestring
