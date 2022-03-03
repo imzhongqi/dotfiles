@@ -24,8 +24,11 @@ function org_imports(wait_ms)
   end
 end
 
+
 vim.cmd [[
   "autocmd BufWritePre *.go lua org_imports(1000)
+
+  "autocmd FileType dap-repl lua 
 
   augroup _filetype_go
     autocmd!

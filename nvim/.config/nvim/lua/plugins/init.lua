@@ -1,4 +1,4 @@
-require "plugins.packages"
+require("plugins.plugin-loader").init()
 
 require "plugins.nvim-notify"
 
@@ -17,6 +17,8 @@ require "plugins.gitsigns"
 require "plugins.nvim-tree"
 
 require "plugins.alpha"
+
+require "plugins.telescope"
 
 require "plugins.lualine"
 

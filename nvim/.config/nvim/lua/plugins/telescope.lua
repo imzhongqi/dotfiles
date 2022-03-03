@@ -12,6 +12,10 @@ telescope.setup {
     selection_caret = " ",
     path_display = { "smart" },
 
+    history = {
+      path = vim.fn.stdpath "cache" .. "/telescope-history",
+    },
+
     mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,
