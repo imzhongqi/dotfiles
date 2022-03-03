@@ -38,6 +38,10 @@ return packer.startup(function(use)
 
   use "nvim-telescope/telescope.nvim"
 
+  use "karb94/neoscroll.nvim"
+
+  use "RRethy/vim-illuminate"
+
   -- Comment
   use "numToStr/Comment.nvim"
 
@@ -80,6 +84,7 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use "folke/trouble.nvim"
 
   -- Debugger
   use "mfussenegger/nvim-dap"

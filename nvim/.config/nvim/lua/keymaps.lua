@@ -22,8 +22,8 @@ end
 
 nmap("<M-S-j>", "<cmd>resize +2<cr>")
 nmap("<M-S-k>", "<cmd>resize -2<cr>")
-nmap("<M-S-h>", "<cmd>vertical resize -2 <cr>")
-nmap("<M-S-l>", "<cmd>vertical resize +2 <cr>")
+nmap("<M-S-h>", "<cmd>vertical resize -2<cr>")
+nmap("<M-S-l>", "<cmd>vertical resize +2<cr>")
 
 -- tab switch 1-9
 for i = 1, 9 do
@@ -36,3 +36,4 @@ nmap("<Tab>", "<cmd>lua require('dap').step_over()<cr>")
 nmap("<M-i>", "<cmd>lua require('dap').step_into()<cr>")
 nmap("<M-o>", "<cmd>lua require('dap').step_out()<cr>")
 nmap("<M-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
+nmap("gR", "<cmd>Trouble lsp_references<cr>")

@@ -39,3 +39,9 @@ require "plugins.nvim-dap"
 require "plugins.nvim-dap-ui"
 
 require "plugins.nvim-dap-virtual-text"
+
+require "plugins.trouble"
+
+require "plugins.neoscroll"
+
+require "plugins.illuminate"

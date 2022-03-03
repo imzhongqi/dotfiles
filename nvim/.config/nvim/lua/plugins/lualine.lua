@@ -54,7 +54,7 @@ local config = {
       "neogitstatus",
       "NvimTree",
       "Trouble",
-      "toggleterm",
+      --      "toggleterm",
     },
   },
   sections = {
@@ -158,16 +158,15 @@ ins_left {
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
-ins_left {
-  function()
-    return "%="
-  end,
-}
+-- ins_left {
+--   function()
+--     return "%="
+--   end,
+-- }
 
-ins_left {
-  -- Lsp server name .
+ins_right {
   function()
-    local msg = "No Active Lsp"
+    local msg = "No Actived LSP"
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
     local clients = vim.lsp.get_active_clients()
     if next(clients) == nil then
@@ -181,7 +180,11 @@ ins_left {
     end
     return msg
   end,
-  icon = " LSP:",
+  -- Lsp server name .
+  icon = "",
+  cond = function()
+    return #vim.lsp.get_active_clients() > 0
+  end,
   color = { fg = "#ffffff", gui = "bold" },
 }
 
@@ -209,7 +212,7 @@ ins_right {
 ins_right {
   "diff",
   -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "柳 ", removed = " " },
+  symbols = { added = " ", removed = " ", modified = "柳" },
   diff_color = {
     added = { fg = colors.green },
     modified = { fg = colors.orange },

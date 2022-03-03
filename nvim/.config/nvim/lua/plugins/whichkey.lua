@@ -131,7 +131,8 @@ which_key.register({
     j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Next Diagnostic" },
     k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+    q = { "<cmd>lua vim.lsp.diagnostic.set_qflist()<cr>", "Quickfix" },
+    --q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
@@ -156,6 +157,15 @@ which_key.register({
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
   },
+
+  x = {
+    name = "Trouble",
+    x = {"<cmd>TroubleToggle<cr>", "TroubleToggle"},
+    w = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace diagnostics"},
+    d = {"<cmd>TroubleToggle document_diagnostics<cr>", "document diagnostics"},
+    q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
+    l = {"<cmd>TroubleToggle loclist<cr>", "location list"},
+  }
 }, {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",

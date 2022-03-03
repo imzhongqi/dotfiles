@@ -9,14 +9,29 @@ function filetype_go_settings()
   end
 end
 
+function org_imports(wait_ms)
+  local params = vim.lsp.util.make_range_params()
+  params.context = { only = { "source.organizeImports" } }
+  local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+  for _, res in pairs(result or {}) do
+    for _, r in pairs(res.result or {}) do
+      if r.edit then
+        vim.lsp.util.apply_workspace_edit(r.edit)
+      else
+        vim.lsp.buf.execute_command(r.command)
+      end
+    end
+  end
+end
+
 vim.cmd [[
+  "autocmd BufWritePre *.go lua org_imports(1000)
+
   augroup _filetype_go
     autocmd!
     autocmd FileType go lua filetype_go_settings()
   augroup end
-]]
 
-vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
@@ -46,13 +61,6 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
-
-  "Autoformat
-  " augroup _lsp
-  "   autocmd!
-  "   "autocmd! FileType go
-  "   autocmd BufWritePre * lua vim.lsp.buf.formatting()
-  " augroup end
 ]]
 
 -- autocmd BufEnter * :syntax sync fromstart
