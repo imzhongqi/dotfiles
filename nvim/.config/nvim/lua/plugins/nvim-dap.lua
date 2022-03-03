@@ -5,14 +5,15 @@ end
 
 vim.cmd [[
   highlight debugPC guibg=#1c5187 " debug current line
-  highlight Breakpoint guifg=#fa0000 " breakpoint color
-  highlight ConditionBreakpoint guifg=#5c6bc0 " breakpoint color
-  highlight LogPoint guifg=#f78c6c " breakpoint color
+  highlight Breakpoint guifg=#fa0000 
+  highlight ConditionBreakpoint guifg=#5c6bc0 
+  highlight RejectedBreakpoint guifg=#fced2c 
+  highlight LogPoint guifg=#f78c6c 
 ]]
 
 vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "Breakpoint", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointCondition", { text = " ﴕ", texthl = "ConditionBreakpoint", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "RejectedBreakpoint", linehl = "", numhl = "" })
 vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "LogPoint", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "debugPC", numhl = "" })
 

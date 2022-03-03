@@ -42,7 +42,14 @@ end
 vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 
 local Terminal = require("toggleterm.terminal").Terminal
-local lazygit = Terminal:new { cmd = "lazygit", hidden = true }
+local lazygit = Terminal:new {
+  on_open = function(term)
+    vim.api.nvim_buf_del_keymap(term.bufnr, "t", "<esc>")
+  end,
+  direction = "float",
+  cmd = "lazygit",
+  hidden = true,
+}
 
 function _LAZYGIT_TOGGLE()
   lazygit:toggle()

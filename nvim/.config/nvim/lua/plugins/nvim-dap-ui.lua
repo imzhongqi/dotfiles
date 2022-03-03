@@ -26,7 +26,7 @@ dapui.setup {
       { id = "stacks", size = 0.1 },
     },
     size = 40,
-    position = "right", -- Can be "left", "right", "top", "bottom"
+    position = "left", -- Can be "left", "right", "top", "bottom"
   },
 
   tray = {

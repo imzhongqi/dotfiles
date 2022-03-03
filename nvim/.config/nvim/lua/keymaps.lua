@@ -20,15 +20,17 @@ local nmap = function(key, cmd)
   return keymap("n", key, cmd, opts)
 end
 
-nmap("<M-S-j>", "<cmd>resize +2<cr>")
-nmap("<M-S-k>", "<cmd>resize -2<cr>")
-nmap("<M-S-h>", "<cmd>vertical resize -2<cr>")
-nmap("<M-S-l>", "<cmd>vertical resize +2<cr>")
+nmap("<M-+>", "<cmd>resize +2<cr>")
+nmap("<M-_>", "<cmd>resize -2<cr>")
+nmap("<M-=>", "<cmd>vertical resize +2<cr>")
+nmap("<M-->", "<cmd>vertical resize -2<cr>")
 
 -- tab switch 1-9
 for i = 1, 9 do
   nmap("<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<cr>")
 end
+nmap("<M-[>", "<cmd>bp<cr>")
+nmap("<M-]>", "<cmd>bn<cr>")
 
 nmap("<M-k>", "<cmd>lua require('dapui').eval()<cr>")
 nmap("<M-c>", "<cmd>lua require('dap').continue()<cr>")

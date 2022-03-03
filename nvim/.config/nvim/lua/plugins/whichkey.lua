@@ -30,9 +30,9 @@ which_key.setup {
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
-    -- ["<space>"] = "SPC",
-    -- ["<cr>"] = "RET",
-    -- ["<tab>"] = "TAB",
+    ["<space>"] = "SPC",
+    ["<cr>"] = "RET",
+    ["<tab>"] = "TAB",
   },
 
   icons = {
@@ -91,8 +91,6 @@ which_key.register({
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
-
-  ["<C-t>"] = { "<cmd>lua require('dapui').toggle('tray')<cr>", "Dap UI Tray" },
 
   p = {
     name = "Packer",
@@ -159,12 +157,12 @@ which_key.register({
 
   x = {
     name = "Trouble",
-    x = {"<cmd>TroubleToggle<cr>", "TroubleToggle"},
-    w = {"<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace diagnostics"},
-    d = {"<cmd>TroubleToggle document_diagnostics<cr>", "document diagnostics"},
-    q = {"<cmd>TroubleToggle quickfix<cr>", "quickfix"},
-    l = {"<cmd>TroubleToggle loclist<cr>", "location list"},
-  }
+    x = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace diagnostics" },
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document diagnostics" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "location list" },
+  },
 }, {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
@@ -175,28 +173,36 @@ which_key.register({
 })
 
 which_key.register({
-  c = {
-    "<cmd>lua require('dap').continue()<cr>",
-    "Continue",
-  },
+  ["<C-t>"] = { "<cmd>lua require('dapui').toggle('tray')<cr>", "Toggle Dap UI Tray" },
+  ["<C-s>"] = { "<cmd>lua require('dapui').toggle('sidebar')<cr>", "Toggle Dap UI Sidebar" },
 
-  d = { "<cmd>lua require('dap').disconnect()<cr>", "Disconnect Dap" },
+  c = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+
+  d = { "<cmd>lua require('dap').close()<cr>", "Disconnect Dap" },
+
+  r = { "<cmd>lua require('dap').run_to_cursor()<cr>", "Run To Cursor" },
+
+  t = { "<cmd>lua require('dap-go').debug_test()<cr>", "Run Test" },
+
+  s = { "<cmd>syntax sync fromstart<cr>", "Syntax Sync fromstart" },
 
   b = {
     name = "Breakpoint",
+
     b = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+
+    r = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Remove All Breakpoint" },
+
     c = {
       "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
       "Set Conditon Breakpoint",
     },
+
     l = {
       "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>",
       "Set Log Breakpoint",
     },
   },
-
-  t = { "<cmd>lua require('dap-go').debug_test()<cr>", "Run Test" },
-  s = { "<cmd>syntax sync fromstart<cr>", "Syntax fromstart" },
 }, {
   mode = "n", -- NORMAL mode
   prefix = "<C-x>",
