@@ -13,7 +13,6 @@ function M.init()
       "https://github.com/wbthomason/packer.nvim",
       install_path,
     }
-    print "Installed packer.nvim, please reopen the Neovim"
     vim.cmd "packadd packer.nvim"
   end
 
