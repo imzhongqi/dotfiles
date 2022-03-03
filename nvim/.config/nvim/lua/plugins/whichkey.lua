@@ -155,7 +155,6 @@ which_key.register({
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
   },
 
   x = {
