@@ -1,5 +1,7 @@
 require("plugins.plugin-loader").init()
 
+require "plugins.impatient"
+
 require "plugins.colorscheme"
 
 require "plugins.nvim-notify"
