@@ -204,6 +204,8 @@ which_key.register({
       "Set Log Breakpoint",
     },
   },
+
+  p = {"<cmd>lua toggle_proxy()<cr>", "Toggle Proxy"}
 }, {
   mode = "n", -- NORMAL mode
   prefix = "<C-x>",

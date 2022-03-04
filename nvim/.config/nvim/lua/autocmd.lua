@@ -26,9 +26,7 @@ end
 
 
 vim.cmd [[
-  "autocmd BufWritePre *.go lua org_imports(1000)
-
-  "autocmd FileType dap-repl lua 
+  autocmd BufWritePre *.go lua org_imports(1000)
 
   augroup _filetype_go
     autocmd!

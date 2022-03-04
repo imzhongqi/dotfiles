@@ -4,6 +4,8 @@ require "plugins.nvim-notify"
 
 require "plugins.lsp"
 
+require "plugins.dap"
+
 require "plugins.colorscheme"
 
 require "plugins.nvim-tree"
@@ -46,3 +48,5 @@ require "plugins.neoscroll"
 require "plugins.illuminate"
 
 require "plugins.project"
+
+require "plugins.toggle-proxy"
