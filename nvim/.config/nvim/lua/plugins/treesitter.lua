@@ -21,7 +21,6 @@ configs.setup {
     enable = true,
     disable = {
       "yaml",
-      "go",
     },
   },
   incremental_selection = {
