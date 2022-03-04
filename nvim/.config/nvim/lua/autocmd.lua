@@ -1,14 +1,3 @@
-function filetype_go_settings()
-  local opts = {
-    expandtab = false,
-    tabstop = 4,
-    shiftwidth = 4,
-  }
-  for k, v in pairs(opts) do
-    vim.bo[k] = v
-  end
-end
-
 function org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
   params.context = { only = { "source.organizeImports" } }
@@ -27,11 +16,6 @@ end
 
 vim.cmd [[
   autocmd BufWritePre *.go lua org_imports(1000)
-
-  augroup _filetype_go
-    autocmd!
-    autocmd FileType go lua filetype_go_settings()
-  augroup end
 
   augroup _general_settings
     autocmd!

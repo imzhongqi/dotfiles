@@ -78,4 +78,6 @@ return {
   "lewis6991/gitsigns.nvim",
 
   "lewis6991/impatient.nvim",
+
+  "editorconfig/editorconfig-vim",
 }
