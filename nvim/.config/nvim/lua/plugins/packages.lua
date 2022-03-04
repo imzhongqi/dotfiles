@@ -76,4 +76,6 @@ return {
 
   -- Git
   "lewis6991/gitsigns.nvim",
+
+  "lewis6991/impatient.nvim",
 }

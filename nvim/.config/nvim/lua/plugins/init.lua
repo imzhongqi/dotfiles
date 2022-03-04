@@ -36,19 +36,6 @@ require "plugins.completion"
 -- 缩进线
 require "plugins.indentline"
 
--- 安装 debugger 
-require "plugins.nvim-dap-install"
-
--- debugger
-require "plugins.nvim-dap"
-
--- debug 的时候的 ui
-require "plugins.nvim-dap-ui"
-
-
--- debug 的时候代码旁边显示的虚拟文字
-require "plugins.nvim-dap-virtual-text"
-
 -- 诊断
 require "plugins.trouble"
 

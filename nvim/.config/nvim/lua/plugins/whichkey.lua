@@ -120,6 +120,7 @@ which_key.register({
 
   l = {
     name = "LSP",
+    ["<c-r>"] = { "<cmd>LspRestart<cr>", "Restart Lsp Server" },
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
     w = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
