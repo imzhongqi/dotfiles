@@ -1,12 +1,12 @@
 [user]
 	email = imzhongqi@gmail.com
 	name = zhongqi
+
 [url "git@github.com:"]
 	insteadof = https://github.com/
 
 [init]
 	defaultBranch = main
-[pull]
-	ff = only
+
 [core]
 	excludesfile = ~/.config/git/gitignore
