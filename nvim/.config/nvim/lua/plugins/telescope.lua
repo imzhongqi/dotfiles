@@ -3,15 +3,8 @@ if not status_ok then
   return
 end
 
-local extensions = {
-  "dap", 
-  "packer", 
-}
-for _, ext_name in ipairs(extensions) do
-  telescope.load_extension(ext_name) 
-end
-
 local actions = require "telescope.actions"
+local themes = require "telescope.themes"
 
 telescope.setup {
   defaults = {
@@ -109,5 +102,25 @@ telescope.setup {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    dap = themes.get_dropdown {
+      previewer = false,
+      layout_config = {
+        width = 50,
+        height = 9,
+      },
+    },
+    ["ui-select"] = {
+      themes.get_cursor {},
+    },
   },
 }
+
+local extensions = {
+  "dap",
+  "packer",
+  "ui-select",
+}
+
+for _, extension in ipairs(extensions) do
+  telescope.load_extension(extension)
+end
