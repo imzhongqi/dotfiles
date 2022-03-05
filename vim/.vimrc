@@ -13,6 +13,8 @@ set nobackup
 set nowritebackup
 set undofile noswapfile
 
+set viminfofile=NONE
+
 " Tabs and Indents {{{
 " ----------------
 set textwidth=80    " Text width maximum chars before wrapping

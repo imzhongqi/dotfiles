@@ -3,6 +3,14 @@ if not status_ok then
   return
 end
 
+local extensions = {
+  "dap", 
+  "packer", 
+}
+for _, ext_name in ipairs(extensions) do
+  telescope.load_extension(ext_name) 
+end
+
 local actions = require "telescope.actions"
 
 telescope.setup {

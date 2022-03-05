@@ -9,12 +9,12 @@ export GOPATH=$HOME/.local/go
 
 () {
   local USER_PATH=(
+    $GOPATH/bin
+
     $HOME/.local/bin
     $HOME/.cargo/bin
     $HOME/.local/share/node/bin
     $HOME/.yarn/bin
-
-    $GOPATH/bin
 
     /usr/local/sbin
     /usr/local/go/bin
@@ -26,3 +26,5 @@ export GOPATH=$HOME/.local/go
   fi
 }
 
+export LESSHISTFILE=/dev/null
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
