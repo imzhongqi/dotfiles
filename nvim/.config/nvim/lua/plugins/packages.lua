@@ -88,4 +88,6 @@ return {
 
   "chrisbra/Colorizer",
   "norcalli/nvim-colorizer.lua",
+
+  "nvim-lua/lsp-status.nvim",
 }

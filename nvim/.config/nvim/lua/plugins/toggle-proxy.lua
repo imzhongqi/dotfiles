@@ -1,5 +1,4 @@
-
-function toggle_proxy()
+function _G.toggle_proxy()
   local proxies = {
     http_proxy = vim.g.http_proxy or "http://localhost:1080",
     https_proxy = vim.g.https_proxy or "http://localhost:1080",
