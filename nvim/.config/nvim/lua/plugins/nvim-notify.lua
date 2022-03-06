@@ -4,8 +4,8 @@ if not status_ok then
 end
 vim.notify = notify
 
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
+local ok, telescope = pcall(require, "telescope")
+if not ok then
   return
 end
 telescope.load_extension "notify"

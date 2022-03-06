@@ -37,7 +37,7 @@ return {
 
   "antoinemadec/FixCursorHold.nvim",
 
-  "ahmedkhalf/project.nvim",
+  -- "ahmedkhalf/project.nvim",
 
   -- Completion Plugin
   "hrsh7th/nvim-cmp", -- The completion plugin

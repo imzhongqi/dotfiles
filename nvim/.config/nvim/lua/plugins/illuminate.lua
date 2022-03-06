@@ -1,8 +1,3 @@
-local status_ok, lsp = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
 vim.cmd [[hi illuminatedWord guibg=#4b4b4b]]
 
 vim.g.Illuminate_ftwhitelist = {

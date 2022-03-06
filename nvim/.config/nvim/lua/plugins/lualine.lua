@@ -1,6 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
   return
@@ -132,20 +129,15 @@ ins_left {
 }
 
 ins_left {
-  -- filesize component
-  "filesize",
-  cond = conditions.buffer_not_empty,
-}
-
-ins_left {
   "filename",
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = "bold" },
 }
 
-ins_left { "location" }
-
-ins_left { "progress", color = { fg = colors.fg, gui = "bold" } }
+ins_left {
+  "filesize",
+  cond = conditions.buffer_not_empty,
+}
 
 ins_left {
   "diagnostics",
@@ -158,37 +150,38 @@ ins_left {
   },
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
--- ins_left {
+-- ins_right {
 --   function()
---     return "%="
+--     local msg = "No Actived LSP"
+--     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+--     local clients = vim.lsp.get_active_clients()
+--     if next(clients) == nil then
+--       return msg
+--     end
+--
+--     local name = nil
+--
+--     for _, client in ipairs(clients) do
+--       local filetypes = client.config.filetypes
+--       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--         name = client.name
+--         break
+--       end
+--     end
+--
+--     return name
 --   end,
+--   -- Lsp server name .
+--   icon = "",
+--   cond = function()
+--     return #vim.lsp.get_active_clients() > 0
+--   end,
+--   color = { fg = "#ffffff", gui = "bold" },
 -- }
 
-ins_right {
-  function()
-    local msg = "No Actived LSP"
-    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    local clients = vim.lsp.get_active_clients()
-    if next(clients) == nil then
-      return msg
-    end
-    for _, client in ipairs(clients) do
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
-      end
-    end
-    return msg
-  end,
-  -- Lsp server name .
-  icon = "",
-  cond = function()
-    return #vim.lsp.get_active_clients() > 0
-  end,
-  color = { fg = "#ffffff", gui = "bold" },
-}
+-- ins_right{}
+
+ins_right { "location" }
 
 -- Add components to right sections
 ins_right {
@@ -214,7 +207,7 @@ ins_right {
 ins_right {
   "diff",
   -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", removed = " ", modified = "柳" },
+  symbols = { added = " ", modified = "柳", removed = " " },
   diff_color = {
     added = { fg = colors.green },
     modified = { fg = colors.orange },
