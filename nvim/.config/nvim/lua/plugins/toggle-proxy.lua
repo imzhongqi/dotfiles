@@ -8,10 +8,11 @@ function _G.toggle_proxy()
 
   if not os.getenv "http_proxy" then
     enable = true
-    vim.notify("enable proxy: \n"
-        .. "http_proxy=" .. proxies["http_proxy"] .. "\n"
-        .. "https_proxy=" .. proxies["https_proxy"]
-      , "info", { title = "Toggle Proxy" })
+    vim.notify(
+      "enable proxy: \n" .. "http_proxy=" .. proxies["http_proxy"] .. "\n" .. "https_proxy=" .. proxies["https_proxy"],
+      "info",
+      { title = "Toggle Proxy" }
+    )
   else
     vim.notify("disable proxy", "info", { title = "Toggle Proxy" })
   end
@@ -24,4 +25,3 @@ function _G.toggle_proxy()
     end
   end
 end
-

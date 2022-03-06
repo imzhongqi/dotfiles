@@ -2,7 +2,7 @@
 require "options"
 
 -- plugins
-require "plugins"
+-- require "plugins"
 
 -- auto commands
 require "autocmd"

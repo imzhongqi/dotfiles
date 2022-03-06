@@ -3,6 +3,17 @@ if not status_ok then
   return
 end
 
+lsp_installer.settings {
+  install_root_dir = require("nvim-lsp-installer.path").concat { vim.fn.stdpath "data", "lsp-servers" },
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗",
+    },
+  },
+}
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)

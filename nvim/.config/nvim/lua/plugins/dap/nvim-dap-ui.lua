@@ -67,7 +67,7 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close "sidebar"
 end
 
-vim.cmd[[
+vim.cmd [[
   hi link DapUIVariable Normal
   hi DapUIScope guifg=#ffffff
   hi DapUIType guifg=#60878b

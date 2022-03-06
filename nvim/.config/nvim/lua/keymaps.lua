@@ -26,7 +26,7 @@ nmap("<M-=>", "<cmd>vertical resize +2<cr>")
 nmap("<M-->", "<cmd>vertical resize -2<cr>")
 
 -- tab switch 1-9
-vim.cmd[[ command! -nargs=1 G BufferLineGoTo <args>]]
+vim.cmd [[ command! -nargs=1 G BufferLineGoTo <args>]]
 for i = 1, 9 do
   nmap("<leader>" .. i, "<cmd>G " .. i .. "<cr>")
 end
@@ -40,4 +40,3 @@ nmap("<M-i>", "<cmd>lua require('dap').step_into()<cr>")
 nmap("<M-o>", "<cmd>lua require('dap').step_out()<cr>")
 nmap("<M-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
 nmap("gR", "<cmd>Trouble lsp_references<cr>")
-

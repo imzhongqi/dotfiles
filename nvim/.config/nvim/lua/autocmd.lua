@@ -13,7 +13,6 @@ function _G.org_imports(wait_ms)
   end
 end
 
-
 vim.cmd [[
   autocmd BufWritePre *.go lua org_imports(1000)
 

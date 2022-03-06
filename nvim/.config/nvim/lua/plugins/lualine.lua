@@ -150,6 +150,13 @@ ins_left {
   },
 }
 
+ins_left {
+  function()
+    return require("lsp-status").status()
+  end,
+  icon = "",
+}
+
 -- ins_right {
 --   function()
 --     local msg = "No Actived LSP"

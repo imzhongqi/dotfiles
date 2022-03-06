@@ -52,4 +52,3 @@ require "plugins.illuminate"
 -- require "plugins.project"
 
 require "plugins.toggle-proxy"
-
