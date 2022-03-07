@@ -154,7 +154,9 @@ ins_left {
   function()
     return require("lsp-status").status()
   end,
-  icon = "",
+  cond = function()
+    return #vim.lsp.buf_get_clients() > 0 
+  end,
 }
 
 -- ins_right {
