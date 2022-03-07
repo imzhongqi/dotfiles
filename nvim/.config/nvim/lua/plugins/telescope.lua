@@ -122,5 +122,8 @@ local extensions = {
 }
 
 for _, extension in ipairs(extensions) do
-  telescope.load_extension(extension)
+  local ok, _ = pcall(telescope.load_extension, extension)
+  if not ok then
+    vim.notify("load extension " .. extension .." failed", "Telescope Load Extension", {level="error"})
+  end
 end
