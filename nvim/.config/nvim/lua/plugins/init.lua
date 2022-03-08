@@ -4,6 +4,8 @@ require "plugins.impatient"
 
 require "plugins.colorscheme"
 
+require "plugins.nvim-web-devicons"
+
 require "plugins.nvim-notify"
 
 require "plugins.lsp"

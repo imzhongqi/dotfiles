@@ -90,4 +90,12 @@ return {
   "norcalli/nvim-colorizer.lua",
 
   "nvim-lua/lsp-status.nvim",
+
+  {
+    "phaazon/hop.nvim",
+    branch = "v1", -- optional but strongly recommended
+    config = function()
+      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
+    end,
+  },
 }

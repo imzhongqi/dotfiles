@@ -91,6 +91,7 @@ which_key.register({
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
+  ["S"] = {"<cmd>HopChar1<CR>", "Jump To Char"},
 
   p = {
     name = "Packer",

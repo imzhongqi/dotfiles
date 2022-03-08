@@ -37,10 +37,14 @@
 --   { key = "S",                            action = "search_node" }
 -- }
 
+vim.g.nvim_tree_special_files = {
+  ["Makefile"] = false
+}
+
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 vim.g.nvim_tree_icons = {
-  default = "",
+  default = "",
   symlink = "",
   git = {
     unstaged = "",
@@ -52,8 +56,8 @@ vim.g.nvim_tree_icons = {
     ignored = "◌",
   },
   folder = {
-    default = "",
-    open = "",
+    default = "",
+    open = "",
     empty = "",
     empty_open = "",
     symlink = "",
