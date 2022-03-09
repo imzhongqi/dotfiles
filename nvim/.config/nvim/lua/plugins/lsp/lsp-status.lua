@@ -1,13 +1,11 @@
 local M = {
-  on_attach = function() end,
+  on_attach = function(_) end,
 }
 
 local status_ok, lsp_status = pcall(require, "lsp-status")
 if status_ok then
   M.on_attach = lsp_status.on_attach
-
   lsp_status.register_progress()
-
   lsp_status.config {
     show_file_line = false,
     current_function = false,
