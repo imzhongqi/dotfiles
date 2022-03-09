@@ -98,4 +98,6 @@ return {
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
   },
+
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 }

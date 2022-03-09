@@ -119,6 +119,7 @@ local extensions = {
   "dap",
   "packer",
   "ui-select",
+  "fzf",
 }
 
 for _, extension in ipairs(extensions) do

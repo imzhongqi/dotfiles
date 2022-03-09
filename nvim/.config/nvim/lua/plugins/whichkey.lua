@@ -100,6 +100,7 @@ which_key.register({
     s = { "<cmd>PackerSync<cr>", "Sync" },
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
+    l = {"<cmd>Telescope packer<cr>", "List Installed Plugins"}
   },
 
   g = {
