@@ -45,6 +45,9 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
-]]
 
--- autocmd BufEnter * :syntax sync fromstart
+  augroup _ssh_config_filetype
+    autocmd!
+    autocmd BufEnter *ssh/*.conf set filetype=sshconfig
+  augroup end
+]]

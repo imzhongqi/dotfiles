@@ -28,3 +28,4 @@ export GOPATH=$HOME/.local/go
 
 export LESSHISTFILE=/dev/null
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
+export SSH_PROXY=127.0.0.1:1081
