@@ -10,17 +10,17 @@
 - tmux
 - unzip
 - subversion
-- lua5.3
+- lua
+- neovim
 
 ## Install
 ```shell
-make init # check the command installed
-make install
+stow vim zsh # etc...
 ```
 
 ## Uninstall
 ```shell
-make uninstall
+stow -D vim
 ```
 
 ## 参考
