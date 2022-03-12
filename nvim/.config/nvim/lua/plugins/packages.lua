@@ -18,6 +18,7 @@ return {
   -- Treesitter
   "nvim-treesitter/nvim-treesitter",
   "JoosepAlviste/nvim-ts-context-commentstring",
+  "nvim-treesitter/nvim-treesitter-textobjects",
 
   "RRethy/vim-illuminate",
 
@@ -100,6 +101,4 @@ return {
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
   },
-
-  "fatih/vim-go",
 }

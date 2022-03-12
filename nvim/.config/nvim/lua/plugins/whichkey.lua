@@ -210,7 +210,7 @@ which_key.register({
   p = { "<cmd>lua toggle_proxy()<cr>", "Toggle Proxy" },
 }, {
   mode = "n", -- NORMAL mode
-  prefix = "<S-X>",
+  prefix = "<C-X>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
