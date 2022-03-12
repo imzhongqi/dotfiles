@@ -101,4 +101,6 @@ return {
       require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
     end,
   },
+
+  "ray-x/go.nvim"
 }

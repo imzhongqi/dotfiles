@@ -37,7 +37,7 @@ function M.init()
   }
 
   packer.startup(function(use)
-    local packages = require "plugins.packages"
+    local packages = require "packages"
     for _, package in ipairs(packages) do
       use(package)
     end
