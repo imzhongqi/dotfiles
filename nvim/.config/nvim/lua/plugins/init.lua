@@ -1,58 +1,63 @@
-require("plugins.plugin-loader").init()
+local default_install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
-require "plugins.impatient"
+local function check_packer()
+  local install_path = vim.g.packer_install_path or default_install_path
 
-require "plugins.colorscheme"
+  if vim.fn.empty(vim.fn.glob(install_path)) == 0 then
+    return true
+  end
 
-require "plugins.nvim-web-devicons"
+  print(string.format("Installing packer to `%s`, may take a few minutes, please wait...", install_path))
 
-require "plugins.nvim-notify"
+  vim.fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
 
-require "plugins.lsp"
+  vim.cmd "packadd packer.nvim"
 
-require "plugins.dap"
+  return false
+end
 
-require "plugins.nvim-tree"
+local function init()
+  local installed = check_packer()
 
-require "plugins.telescope"
+  local packer = require "packer"
 
-require "plugins.treesitter"
+  packer.init {
+    git = {
+      clone_timeout = 300,
+      subcommands = {
+        -- this is more efficient than what Packer is using
+        fetch = "fetch --no-tags --no-recurse-submodules --update-shallow --progress",
+      },
+    },
+    max_jobs = 50,
+    display = {
+      open_fn = function()
+        return require("packer.util").float {
+          border = "rounded",
+        }
+      end,
+    },
+  }
 
-require "plugins.comment"
+  packer.startup(function(use)
+    local packages = require "plugins.packages"
+    for _, package in ipairs(packages) do
+      use(package)
+    end
+  end)
 
-require "plugins.autopairs"
+  if not installed then
+    packer.sync()
+  end
 
-require "plugins.gitsigns"
+  require("plugins.settings")
+end
 
-require "plugins.alpha"
-
-require "plugins.lualine"
-
-require "plugins.whichkey"
-
--- 上方的类似 tab 的选项卡
-require "plugins.bufferline"
-
--- terminal
-require "plugins.toggleterm"
-
--- 补全
-require "plugins.completion"
-
--- 缩进线
-require "plugins.indentline"
-
--- 诊断
-require "plugins.trouble"
-
--- 滚动条
-require "plugins.neoscroll"
-
--- 高亮当前光标内容
-require "plugins.illuminate"
-
--- require "plugins.project"
-
-require "plugins.toggle-proxy"
-
-require "plugins.languages"
+init()

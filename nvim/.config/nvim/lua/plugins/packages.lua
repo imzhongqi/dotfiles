@@ -49,6 +49,7 @@ return {
   "hrsh7th/cmp-cmdline", -- cmdline completions
   "saadparwaiz1/cmp_luasnip", -- snippet completions
   "hrsh7th/cmp-nvim-lsp",
+  "lukas-reineke/cmp-rg",
 
   -- Snippets
   "L3MON4D3/LuaSnip", --snippet engine
@@ -94,13 +95,7 @@ return {
 
   "nvim-lua/lsp-status.nvim",
 
-  {
-    "phaazon/hop.nvim",
-    branch = "v1", -- optional but strongly recommended
-    config = function()
-      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
-    end,
-  },
+  { "phaazon/hop.nvim", branch = "v1" },
 
   "ray-x/go.nvim"
 }

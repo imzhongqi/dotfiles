@@ -68,3 +68,11 @@ vim.opt.whichwrap:append "<,>,[,],h,l"
 
 -- vim.g.http_proxy = "http://localhost"
 -- vim.g.https_proxy = "http://localhost"
+
+vim.cmd [[
+	try
+		colorscheme gruvbox-baby
+  catch /.*/
+		colorscheme default
+	endtry
+]]

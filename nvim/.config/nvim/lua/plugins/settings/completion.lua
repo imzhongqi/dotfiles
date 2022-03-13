@@ -68,10 +68,10 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      -- elseif luasnip.expandable() then
-      --   luasnip.expand()
-      -- elseif luasnip.expand_or_jumpable() then
-      --   luasnip.expand_or_jump()
+        -- elseif luasnip.expandable() then
+        --   luasnip.expand()
+        -- elseif luasnip.expand_or_jumpable() then
+        --   luasnip.expand_or_jump()
       elseif check_backspace() then
         fallback()
       else
@@ -105,6 +105,7 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        ["cmp-rg"] = "[Rg]",
       })[entry.source.name]
       return vim_item
     end,
@@ -135,9 +136,11 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-  sources = {
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
     { name = "cmdline" },
-  },
+  }),
 })
 
 cmp.setup.filetype("gitcommit", {
