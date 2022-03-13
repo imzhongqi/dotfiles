@@ -38,7 +38,7 @@
 -- }
 
 vim.g.nvim_tree_special_files = {
-  ["Makefile"] = false
+  ["Makefile"] = false,
 }
 
 -- following options are the default
@@ -76,6 +76,12 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
+local function open_in_terminal(node)
+  require("toggleterm.terminal").Terminal:new({
+    dir = node.absolute_path,
+  }):open()
+end
+
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
@@ -112,8 +118,8 @@ nvim_tree.setup {
     args = {},
   },
   filters = {
-  	dotfiles = false,
-  	custom = {
+    dotfiles = false,
+    custom = {
       ".git",
     },
   },
@@ -142,6 +148,11 @@ nvim_tree.setup {
         {
           key = "v",
           cb = tree_cb "vsplit",
+        },
+        {
+          key = "o",
+          action = "open_in_terminal",
+          action_cb = open_in_terminal,
         },
       },
     },
