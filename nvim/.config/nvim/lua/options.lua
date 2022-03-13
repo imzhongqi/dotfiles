@@ -23,7 +23,7 @@ local options = {
 
   timeoutlen = 250, -- time to wait for a mapped sequence to complete (in milliseconds)
   updatetime = 300,
-  colorcolumn = "80",
+  colorcolumn = "120",
 
   termguicolors = true,
   numberwidth = 4,
