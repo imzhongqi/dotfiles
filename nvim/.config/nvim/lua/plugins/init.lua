@@ -57,7 +57,8 @@ local function init()
     packer.sync()
   end
 
-  require("plugins.settings")
+  require "plugins.colorscheme"
+  require "plugins.settings"
 end
 
 init()

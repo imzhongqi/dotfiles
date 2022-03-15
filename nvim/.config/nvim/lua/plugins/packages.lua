@@ -19,6 +19,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   "JoosepAlviste/nvim-ts-context-commentstring",
   "nvim-treesitter/nvim-treesitter-textobjects",
+  -- "nvim-treesitter/playground", -- for get the tree sitter parsed tree
 
   "RRethy/vim-illuminate",
 
@@ -83,8 +84,8 @@ return {
 
   -- Color Scheme
   "lunarvim/darkplus.nvim",
-  --  "morhetz/gruvbox"
   "luisiacc/gruvbox-baby",
+  "folke/tokyonight.nvim",
 
   "lewis6991/impatient.nvim",
 
@@ -97,5 +98,5 @@ return {
 
   { "phaazon/hop.nvim", branch = "v1" },
 
-  "ray-x/go.nvim"
+  "ray-x/go.nvim",
 }

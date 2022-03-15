@@ -1,4 +1,4 @@
-vim.cmd [[hi illuminatedWord guibg=#4b4b4b]]
+-- vim.cmd [[hi illuminatedWord guibg=#4b4b4b]]
 
 vim.g.Illuminate_ftwhitelist = {
   "vim",
