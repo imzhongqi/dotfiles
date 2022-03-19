@@ -63,6 +63,10 @@ return {
   "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
   "folke/trouble.nvim",
 
+  "ray-x/go.nvim",
+  "ray-x/lsp_signature.nvim",
+  "glepnir/lspsaga.nvim",
+
   -- Debugger
   "mfussenegger/nvim-dap",
   "rcarriga/nvim-dap-ui",
@@ -97,6 +101,4 @@ return {
   "nvim-lua/lsp-status.nvim",
 
   { "phaazon/hop.nvim", branch = "v1" },
-
-  "ray-x/go.nvim",
 }

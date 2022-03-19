@@ -1,58 +1,62 @@
 local modules = {
-"impatient",
+  "impatient",
 
-"nvim-web-devicons",
+  "nvim-web-devicons",
 
-"nvim-notify",
+  "nvim-notify",
 
-"lsp",
+  "lsp",
 
-"dap",
+  "dap",
 
-"nvim-tree",
+  "nvim-tree",
 
-"telescope",
+  "telescope",
 
-"treesitter",
+  "treesitter",
 
-"comment",
+  "comment",
 
-"autopairs",
+  "autopairs",
 
-"gitsigns",
+  "gitsigns",
 
-"alpha",
+  "alpha",
 
-"lualine",
+  "lualine",
 
-"whichkey",
+  "whichkey",
 
--- 上方的类似 tab 的选项卡
-"bufferline",
+  -- 上方的类似 tab 的选项卡
+  "bufferline",
 
--- terminal
-"toggleterm",
+  -- terminal
+  "toggleterm",
 
--- 补全
-"completion",
+  -- 补全
+  "completion",
 
--- 缩进线
-"indentline",
+  -- 缩进线
+  "indentline",
 
--- 诊断
-"trouble",
+  -- 诊断
+  "trouble",
 
--- 滚动条
-"neoscroll",
+  -- 滚动条
+  "neoscroll",
 
--- 高亮当前光标内容
-"illuminate",
+  -- 高亮当前光标内容
+  "illuminate",
 
--- "project",
+  -- "project",
 
-"toggle-proxy",
+  "toggle-proxy",
 
-"languages",
+  "languages",
+
+  "nvim-hop",
+
+  "nvim-lsp-signature",
 }
 
 for _, module_name in ipairs(modules) do
@@ -63,4 +67,3 @@ for _, module_name in ipairs(modules) do
     vim.notify(string.format("load `%s` module setting failed", module), "warn")
   end
 end
-
