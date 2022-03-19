@@ -9,7 +9,6 @@
 - stow
 - tmux
 - unzip
-- subversion
 - lua
 - neovim
 
