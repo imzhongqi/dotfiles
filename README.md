@@ -2,15 +2,16 @@
 
 ## Requirements
 
+- stow
 - zsh
 - curl
-- wget
 - git
-- stow
-- tmux
 - unzip
-- lua
-- neovim
+
+## Init Submodule
+```
+git submodule update --init
+```
 
 ## Install
 ```shell
