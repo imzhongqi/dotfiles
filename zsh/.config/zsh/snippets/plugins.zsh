@@ -7,7 +7,7 @@ libs=(
   OMZL::completion.zsh
   OMZL::directories.zsh
   OMZL::history.zsh
-  #OMZL::key-bindings.zsh
+  OMZL::key-bindings.zsh
 )
 
 # ohmyzsh 相关
@@ -79,6 +79,7 @@ plugins=(
 
   hchbaw/zce.zsh
 
+  Aloxaf/gencomp
 )
 
 programs=(

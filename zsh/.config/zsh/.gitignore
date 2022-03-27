@@ -3,7 +3,9 @@
 !.p10k.zsh
 !.zprofile
 !.zshrc
-!snippets
+!snippets/
 !snippets/*.zsh
+!functions/
+!functions/*
 !zinit/
 !zshrc.zsh

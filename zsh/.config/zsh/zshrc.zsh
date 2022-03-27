@@ -46,6 +46,8 @@ source $ZDOTDIR/zinit/bin/zinit.zsh
 FPATH=$XDG_CONFIG_HOME/zsh/functions:$FPATH
 autoload -Uz $XDG_CONFIG_HOME/zsh/functions/*(:t)
 
+GENCOMP_DIR=$XDG_CONFIG_HOME/zsh/zinit/completions
+
 # export _ZL_DATA=$ZDOTDIR/.z
 ZSHZ_DATA=$ZDOTDIR/.z
 
