@@ -49,8 +49,8 @@ keybinds=(
 )
 
 set_fast_theme() {
-    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}alias]='fg=blue'
-    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}function]='fg=blue'
+    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}alias]='fg=cyan'
+    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}function]='fg=cyan'
 }
 
 # 插件
