@@ -11,10 +11,6 @@ PROMPT_EOL_MARK=''
 FZF_DEFAULT_COMMAND='fd --type f'
 HIST_STAMPS='yyyy-mm-dd'
 
-setopt autocd
-autoload -Uz zcalc zmv
-autoload -U colors && colors
-
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
 zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
@@ -47,16 +43,17 @@ typeset -A ZINIT=(
 
 source $ZDOTDIR/zinit/bin/zinit.zsh
 
-export _ZL_DATA=$ZDOTDIR/.z
+FPATH=$XDG_CONFIG_HOME/zsh/functions:$FPATH
+autoload -Uz $XDG_CONFIG_HOME/zsh/functions/*(:t)
 
-set_fast_theme() {
-    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}alias]='fg=blue'
-    FAST_HIGHLIGHT_STYLES[${FAST_THEME_NAME}function]='fg=blue'
-}
+# export _ZL_DATA=$ZDOTDIR/.z
+ZSHZ_DATA=$ZDOTDIR/.z
 
 for snp in $ZDOTDIR/snippets/*.zsh; do
   source $snp
 done
+
+zstyle ':zce:*' keys 'asdghklqwertyuiopzxcvbnmfj;23456789'
 
 # zinit 配置
 zinit lucid nocd light-mode for $libs
@@ -64,6 +61,7 @@ zinit lucid nocd light-mode for $snippets
 zinit lucid nocd light-mode for $keybinds
 zinit lucid as"completion" for $completions
 zinit wait lucid depth"1" nocd light-mode for $plugins
+zinit lucid light-mode for $programs
 
 # source $ZDOTDIR/.p10k.zsh
 zinit depth"1 " nocd light-mode for romkatv/powerlevel10k

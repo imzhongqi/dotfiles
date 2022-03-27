@@ -4,5 +4,6 @@
 !.zprofile
 !.zshrc
 !snippets
-!zinit
+!snippets/*.zsh
+!zinit/
 !zshrc.zsh

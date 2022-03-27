@@ -1,7 +1,7 @@
-function _z() {
-  _zlua "$@";
-}
-
+# function _z() {
+#   _zlua "$@";
+# }
+#
 command_check() {
 	command -v $1 &>/dev/null
 }
