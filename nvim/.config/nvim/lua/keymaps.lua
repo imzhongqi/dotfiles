@@ -18,9 +18,9 @@ end
 
 local opts = { noremap = true, silent = true }
 
-local vmap = function(key, cmd)
-  return keymap("x", key, cmd, opts)
-end
+-- local vmap = function(key, cmd)
+--   return keymap("x", key, cmd, opts)
+-- end
 
 local map = function(key, cmd)
   return keymap("", key, cmd, opts)
@@ -34,48 +34,50 @@ local omap = function(key, cmd)
   return keymap("o", key, cmd, opts)
 end
 
-nmap("<M-+>", "<cmd>resize +2<cr>")
-nmap("<M-_>", "<cmd>resize -2<cr>")
-nmap("<M-=>", "<cmd>vertical resize +2<cr>")
-nmap("<M-->", "<cmd>vertical resize -2<cr>")
+nmap("<M-+>", "<cmd>resize +2<CR>")
+nmap("<M-_>", "<cmd>resize -2<CR>")
+nmap("<M-=>", "<cmd>vertical resize +2<CR>")
+nmap("<M-->", "<cmd>vertical resize -2<CR>")
 
 -- tab switch 1-9
 vim.cmd [[ command! -nargs=1 G BufferLineGoTo <args>]]
 for i = 1, 9 do
-  nmap("<leader>" .. i, "<cmd>G " .. i .. "<cr>")
+  nmap("<leader>" .. i, "<cmd>G " .. i .. "<CR>")
 end
-nmap("<M-[>", "<cmd>bp<cr>")
-nmap("<M-]>", "<cmd>bn<cr>")
+nmap("<M-[>", "<cmd>bp<CR>")
+nmap("<M-]>", "<cmd>bn<CR>")
 
-nmap("<M-k>", "<cmd>lua require('dapui').eval()<cr>")
-nmap("<M-c>", "<cmd>lua require('dap').continue()<cr>")
-nmap("<Tab>", "<cmd>lua require('dap').step_over()<cr>")
-nmap("<M-i>", "<cmd>lua require('dap').step_into()<cr>")
-nmap("<M-o>", "<cmd>lua require('dap').step_out()<cr>")
-nmap("<M-b>", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
-nmap("gR", "<cmd>Trouble lsp_references<cr>")
+nmap("<M-k>", "<cmd>lua require('dapui').eval()<CR>")
+nmap("<M-c>", "<cmd>lua require('dap').continue()<CR>")
+nmap("<M-n>", "<cmd>lua require('dap').step_over()<CR>")
+nmap("<M-i>", "<cmd>lua require('dap').step_into()<CR>")
+nmap("<M-o>", "<cmd>lua require('dap').step_out()<CR>")
+nmap("<M-b>", "<cmd>lua require('dap').toggle_breakpoint()<CR>")
+nmap("gR", "<cmd>Trouble lsp_references<CR>")
 
 nmap(
   "f",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<CR>"
 )
 nmap(
   "F",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<CR>"
 )
 omap(
   "f",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<CR>"
 )
 omap(
   "F",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<CR>"
 )
 map(
   "t",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<CR>"
 )
 map(
   "T",
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<CR>"
 )
+
+nmap("gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")

@@ -57,6 +57,8 @@ local modules = {
   "nvim-hop",
 
   "nvim-lsp-signature",
+
+  "nvim-lspsaga"
 }
 
 for _, module_name in ipairs(modules) do

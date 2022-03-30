@@ -50,4 +50,6 @@ vim.cmd [[
     autocmd!
     autocmd BufEnter *ssh/*.conf set filetype=sshconfig
   augroup end
+
+  autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]]
