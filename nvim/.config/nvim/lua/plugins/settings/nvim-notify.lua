@@ -3,9 +3,17 @@ if not status_ok then
   return
 end
 
-vim.notify = notify
-
 notify.setup {}
+
+vim.notify = function (...)
+  local level = select(2, ...)
+  local level_type = type(level)
+
+  local log_level = (level_type == "number" and level) or (level_type == "string" and vim.lsp.log_levels[string.upper(level)])
+  if log_level >= vim.g.log_level then
+    notify(...)
+  end
+end
 
 local ok, telescope = pcall(require, "telescope")
 if not ok then

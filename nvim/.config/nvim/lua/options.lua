@@ -68,11 +68,13 @@ vim.opt.whichwrap:append "<,>,[,],h,l"
 
 -- vim.g.http_proxy = "http://localhost"
 -- vim.g.https_proxy = "http://localhost"
+vim.g.log_level = vim.lsp.log_levels.INFO
 
 vim.g.tokyonight_colors = {
   hint = "orange",
   error = "#ff0000",
 }
+
 vim.cmd [[
 	try
 		colorscheme tokyonight

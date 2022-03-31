@@ -4,12 +4,13 @@ if not status_ok then
 end
 
 lsp_signature.setup {
-  floating_window = true,
-  hint_enable = false,
+  floating_window = false,
+  hint_enable = true,
   hint_prefix = "",
   -- fix_pos = true,
   transparency = 40,
   max_width = 120,
   padding = " ",
-  toggle_key = "<C-P>"
+  toggle_key = "<M-p>",
+  always_trigger = false,
 }

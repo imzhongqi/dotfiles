@@ -55,17 +55,12 @@ local modules = {
   "languages",
 
   "nvim-hop",
-
-  "nvim-lsp-signature",
-
-  "nvim-lspsaga"
 }
 
 for _, module_name in ipairs(modules) do
   local module = "plugins.settings." .. module_name
   local ok, v = pcall(require, module)
   if not ok then
-    print(vim.inspect(v))
-    vim.notify(string.format("load `%s` module setting failed", module), "warn")
+    vim.notify(string.format("load `%s` module setting failed, error: %s", module, v), "warn")
   end
 end

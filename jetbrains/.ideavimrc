@@ -1,8 +1,10 @@
 " Find more examples here: https://jb.gg/share-ideavimrc
 
-source ~/.vimrc
+""" Source ------------------------------------------
+source ~/.config/vim/general.vim
+source ~/.config/vim/key-bindings.vim
 
-""" Plugins  --------------------------------
+""" Plugins  ----------------------------------------
 set surround
 set multiple-cursors
 set commentary
@@ -16,7 +18,7 @@ set NERDTree
 
 """ Ideavim specific settings ------------------------
 set ideajoin
-set ideaput
+set ideaputdd
 set ideamarks
 set idearefactormode=keep
 
@@ -41,7 +43,7 @@ nnoremap <leader>rn :action RenameElement<CR>
 
 nnoremap <leader>s :action SelectInProjectView<CR>
 nnoremap <leader>a :action Annotate<CR>
-nnoremap <leader>h :action Vcs.ShowTabbedFileHistory<CR>
+"nnoremap <leader>h :action Vcs.ShowTabbedFileHistory<CR>
 
 nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 

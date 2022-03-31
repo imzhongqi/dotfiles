@@ -3,7 +3,16 @@ if not status_ok then
   return
 end
 
-require "plugins.settings.lsp.lsp-installer"
 require("plugins.settings.lsp.handlers").setup()
-require "plugins.settings.lsp.null-ls"
-require "plugins.settings.lsp.lsp-status"
+
+local modules = {
+  "lsp-installer",
+  "null-ls",
+  "status",
+  "signature",
+}
+
+for _, module in ipairs(modules) do
+  require("plugins.settings.lsp." .. module)
+end
+

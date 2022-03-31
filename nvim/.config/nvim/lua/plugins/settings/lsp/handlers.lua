@@ -90,11 +90,8 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-  end
-
-  require("plugins.settings.lsp.lsp-status").on_attach(client)
+  require("plugins.settings.lsp.lspsaga")
+  require("plugins.settings.lsp.status").on_attach(client)
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
