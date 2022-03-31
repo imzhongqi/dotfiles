@@ -57,6 +57,8 @@ done
 
 zstyle ':zce:*' keys 'asdghklqwertyuiopzxcvbnmfj;23456789'
 
+zicompinit; zicdreplay
+
 # zinit 配置
 zinit lucid nocd light-mode for $libs
 zinit lucid nocd light-mode for $snippets

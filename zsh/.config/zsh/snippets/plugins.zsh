@@ -55,7 +55,7 @@ set_fast_theme() {
 
 # 插件
 plugins=(
-  atload="set_fast_theme" atinit"zicompinit; zicdreplay"
+  atload="set_fast_theme"
     zdharma-continuum/fast-syntax-highlighting
 
   blockf atpull'zinit creinstall -q .'
