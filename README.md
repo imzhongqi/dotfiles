@@ -9,8 +9,9 @@
 - unzip
 
 ## Init Submodule
-```
-git submodule update --init
+```shell
+git submodule init # init the submodule
+git submodule update
 ```
 
 ## Install

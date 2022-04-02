@@ -80,4 +80,3 @@ set laststatus=2        " Always show a status line
 set display=lastline
 " }}}
 
-
