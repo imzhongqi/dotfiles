@@ -13,12 +13,8 @@ export GOBIN=$GOPATH/bin
     $GOBIN
 
     $HOME/.local/bin
-    $HOME/.cargo/bin
-    $HOME/.local/share/node/bin
-    $HOME/.yarn/bin
 
     /usr/local/sbin
-    /usr/local/go/bin
     /opt/homebrew/bin
   )
 

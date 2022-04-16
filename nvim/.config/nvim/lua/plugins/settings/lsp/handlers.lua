@@ -90,7 +90,6 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  require("plugins.settings.lsp.lspsaga")
   require("plugins.settings.lsp.status").on_attach(client)
 
   lsp_keymaps(bufnr)

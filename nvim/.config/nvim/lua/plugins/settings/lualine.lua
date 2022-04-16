@@ -33,6 +33,20 @@ local conditions = {
   end,
 }
 
+local disabled_filetypes = {
+  "help",
+  "startify",
+  "dashboard",
+  "packer",
+  "neogitstatus",
+  "Trouble",
+  --      "toggleterm",
+}
+
+if vim.fn.has("nvim-0.7.0") ~= 1 then
+  table:insert(disabled_filetypes, "NvimTree")
+end
+
 -- Config
 local config = {
   options = {
@@ -46,16 +60,7 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
-    disabled_filetypes = {
-      "help",
-      "startify",
-      "dashboard",
-      "packer",
-      "neogitstatus",
-      "NvimTree",
-      "Trouble",
-      --      "toggleterm",
-    },
+    disabled_filetypes = disabled_filetypes,
   },
   sections = {
     -- these are to remove the defaults
@@ -155,7 +160,7 @@ ins_left {
     return require("lsp-status").status()
   end,
   cond = function()
-    return #vim.lsp.buf_get_clients() > 0 
+    return #vim.lsp.buf_get_clients() > 0
   end,
 }
 

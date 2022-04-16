@@ -82,3 +82,10 @@ vim.cmd [[
 		colorscheme default
 	endtry
 ]]
+
+if vim.fn.has("nvim-0.7.0") == 1 then
+  vim.defer_fn(function ()
+    vim.opt["laststatus"] = 3
+  end, 0)
+end
+

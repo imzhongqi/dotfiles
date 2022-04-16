@@ -50,7 +50,6 @@ return {
   "hrsh7th/cmp-cmdline", -- cmdline completions
   "saadparwaiz1/cmp_luasnip", -- snippet completions
   "hrsh7th/cmp-nvim-lsp",
-  "lukas-reineke/cmp-rg",
 
   -- Snippets
   "L3MON4D3/LuaSnip", --snippet engine

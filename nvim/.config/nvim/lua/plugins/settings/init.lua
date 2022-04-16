@@ -21,8 +21,6 @@ local modules = {
 
   "gitsigns",
 
-  "alpha",
-
   "lualine",
 
   "whichkey",
@@ -34,7 +32,7 @@ local modules = {
   "toggleterm",
 
   -- 补全
-  "completion",
+  "cmp",
 
   -- 缩进线
   "indentline",

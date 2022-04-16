@@ -10,6 +10,7 @@ local modules = {
   "null-ls",
   "status",
   "signature",
+  "lspsaga"
 }
 
 for _, module in ipairs(modules) do

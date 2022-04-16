@@ -81,3 +81,14 @@ map(
 )
 
 nmap("gr", "<cmd>lua require('lspsaga.rename').rename()<CR>")
+
+nmap("gb", "<cmd>BufferLinePick<CR>" )
+
+vim.cmd [[
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+]]
