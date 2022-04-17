@@ -55,6 +55,7 @@ local function init()
 
   if not installed then
     packer.sync()
+    return
   end
 
   require "plugins.colorscheme"

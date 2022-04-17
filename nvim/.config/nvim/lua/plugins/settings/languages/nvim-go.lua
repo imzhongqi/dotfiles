@@ -9,10 +9,6 @@ go.setup {
   dap_debug_keymap = false,
 }
 
-vim.cmd[[
-  delcommand Gofmt
-]]
-
 local lsp_installer_servers = require "nvim-lsp-installer.servers"
 
 local server_available, requested_server = lsp_installer_servers.get_server "gopls"

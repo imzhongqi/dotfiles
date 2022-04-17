@@ -9,7 +9,7 @@ vim.notify = function (...)
   local level = select(2, ...)
   local level_type = type(level)
 
-  local log_level = (level_type == "number" and level) or (level_type == "string" and vim.lsp.log_levels[string.upper(level)])
+  local log_level = (level_type == "number" and level) or (level_type == "string" and vim.lsp.log_levels[string.upper(level)]) or vim.lsp.log_levels["INFO"]
   if log_level >= vim.g.log_level then
     notify(...)
   end
