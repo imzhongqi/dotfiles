@@ -1,7 +1,7 @@
 return {
-  settings = {
-    gopls = {
-      gofumpt = true,
-    },
-  },
+	settings = {
+		gopls = {
+			gofumpt = true,
+		},
+	},
 }

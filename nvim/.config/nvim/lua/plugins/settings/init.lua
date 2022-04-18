@@ -1,64 +1,64 @@
 local modules = {
-  "impatient",
+	"impatient",
 
-  "nvim-web-devicons",
+	"nvim-web-devicons",
 
-  "nvim-notify",
+	"nvim-notify",
 
-  "lsp",
+	"lsp",
 
-  "dap",
+	"dap",
 
-  "nvim-tree",
+	"nvim-tree",
 
-  "telescope",
+	"telescope",
 
-  "treesitter",
+	"treesitter",
 
-  "comment",
+	"comment",
 
-  "autopairs",
+	"autopairs",
 
-  "gitsigns",
+	"gitsigns",
 
-  "lualine",
+	"lualine",
 
-  "whichkey",
+	"whichkey",
 
-  -- 上方的类似 tab 的选项卡
-  "bufferline",
+	-- 上方的类似 tab 的选项卡
+	"bufferline",
 
-  -- terminal
-  "toggleterm",
+	-- terminal
+	"toggleterm",
 
-  -- 补全
-  "cmp",
+	-- 补全
+	"cmp",
 
-  -- 缩进线
-  "indentline",
+	-- 缩进线
+	"indentline",
 
-  -- 诊断
-  "trouble",
+	-- 诊断
+	"trouble",
 
-  -- 滚动条
-  "neoscroll",
+	-- 滚动条
+	"neoscroll",
 
-  -- 高亮当前光标内容
-  "illuminate",
+	-- 高亮当前光标内容
+	"illuminate",
 
-  -- "project",
+	-- "project",
 
-  "toggle-proxy",
+	"toggle-proxy",
 
-  "languages",
+	"languages",
 
-  "nvim-hop",
+	"nvim-hop",
 }
 
 for _, module_name in ipairs(modules) do
-  local module = "plugins.settings." .. module_name
-  local ok, v = pcall(require, module)
-  if not ok then
-    vim.notify(string.format("load `%s` module setting failed, error: %s", module, v), "warn")
-  end
+	local module = "plugins.settings." .. module_name
+	local ok, v = pcall(require, module)
+	if not ok then
+		vim.notify(string.format("load `%s` module setting failed, error: %s", module, v), "warn")
+	end
 end

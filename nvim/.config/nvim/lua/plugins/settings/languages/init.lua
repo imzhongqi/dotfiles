@@ -1,1 +1,1 @@
-require "plugins.settings.languages.nvim-go"
+require("plugins.settings.languages.nvim-go")
