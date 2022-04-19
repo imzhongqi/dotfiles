@@ -1,6 +1,6 @@
 vim.g.tokyonight_colors = {
-	hint = "orange",
-	error = "#ff0000",
+    hint = "orange",
+    error = "#ff0000",
 }
 
 vim.cmd([[

@@ -1,13 +1,13 @@
 pcall(require, "impatient")
 
 -- user defined options
-require "options"
+require("options")
 
 -- plugins
-require "plugins"
+require("plugins")
 
 -- auto commands
-require "autocmd"
+require("autocmd")
 
 -- key mappings
-require "keymaps"
+require("keymaps")

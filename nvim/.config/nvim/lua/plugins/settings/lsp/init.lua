@@ -1,18 +1,18 @@
 local status_ok, _ = pcall(require, "lspconfig")
 if not status_ok then
-	return
+    return
 end
 
 require("plugins.settings.lsp.handlers").setup()
 
 local modules = {
-	"lsp-installer",
-	"null-ls",
-	"status",
-	"signature",
-	"lspsaga",
+    "lsp-installer",
+    "null-ls",
+    "status",
+    "signature",
+    "lspsaga",
 }
 
 for _, module in ipairs(modules) do
-	require("plugins.settings.lsp." .. module)
+    require("plugins.settings.lsp." .. module)
 end
