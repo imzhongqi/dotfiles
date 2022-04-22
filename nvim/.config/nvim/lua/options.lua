@@ -39,9 +39,9 @@ local options = {
 
     conceallevel = 0, -- so that `` is visible in markdown files
 
-    expandtab = true, -- convert tabs to spaces
-    shiftwidth = 2, -- the number of spaces inserted for each indentation
-    tabstop = 2, -- insert 2 spaces for a tab
+    shiftwidth = 4, -- the number of spaces inserted for each indentation
+    -- expandtab = true, -- convert tabs to spaces
+    -- tabstop = 4, -- insert 2 spaces for a tab
     signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time, example: "yes:<column-number>"
 
     showmode = false,
@@ -61,27 +61,16 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- set the leader key as "<Space>"
-vim.g.mapleader = " "
+vim.wo.colorcolumn = "99999"
 
 vim.opt.whichwrap:append("<,>,[,],h,l")
 
+-- set the toggle-proxy
 -- vim.g.http_proxy = "http://localhost"
 -- vim.g.https_proxy = "http://localhost"
+
+-- set the log level for notify
 vim.g.log_level = vim.lsp.log_levels.INFO
-
-vim.g.tokyonight_colors = {
-    hint = "orange",
-    error = "#ff0000",
-}
-
-vim.cmd([[
-	try
-		colorscheme tokyonight
-  catch /.*/
-		colorscheme default
-	endtry
-]])
 
 if vim.fn.has("nvim-0.7.0") == 1 then
     vim.defer_fn(function()

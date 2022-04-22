@@ -100,4 +100,10 @@ return {
     "nvim-lua/lsp-status.nvim",
 
     { "phaazon/hop.nvim", branch = "v1" },
+
+    "mrjones2014/smart-splits.nvim",
+
+    "Darazaki/indent-o-matic",
+
+    "simrat39/symbols-outline.nvim",
 }

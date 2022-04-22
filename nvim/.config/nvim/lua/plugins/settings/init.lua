@@ -53,6 +53,12 @@ local modules = {
     "languages",
 
     "nvim-hop",
+
+    "smart-splits",
+
+    "indent-o-matic",
+
+    "symbols-outline"
 }
 
 for _, module_name in ipairs(modules) do
