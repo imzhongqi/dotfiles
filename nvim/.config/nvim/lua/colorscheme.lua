@@ -1,8 +1,8 @@
-require("colorscheme.tokyonight")
+require("colorscheme.onedark")
 
 vim.cmd([[
 	try
-		colorscheme tokyonight
+		colorscheme onedark
 	catch /.*/
 		colorscheme default
 	endtry

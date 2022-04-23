@@ -89,7 +89,7 @@ return {
     { "lunarvim/darkplus.nvim" },
     { "luisiacc/gruvbox-baby" },
     { "folke/tokyonight.nvim" },
-    { "navarasu/onedark.nvim" },
+    { "ful1e5/onedark.nvim" },
 
     { "lewis6991/impatient.nvim" },
 
