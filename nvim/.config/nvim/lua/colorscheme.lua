@@ -7,3 +7,7 @@ vim.cmd([[
 		colorscheme default
 	endtry
 ]])
+
+vim.cmd([[
+    hi! Pmenu blend=10 
+]])

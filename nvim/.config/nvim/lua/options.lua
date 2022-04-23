@@ -55,6 +55,8 @@ local options = {
     -- endofline = false,
     -- fixendofline = false,
     -- binary = true,
+
+    pumblend = 30,
 }
 
 for k, v in pairs(options) do
