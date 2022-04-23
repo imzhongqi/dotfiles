@@ -11,7 +11,6 @@ function _G.org_imports(wait_ms)
             end
         end
     end
-    vim.lsp.buf.formatting()
 end
 
 vim.cmd([[

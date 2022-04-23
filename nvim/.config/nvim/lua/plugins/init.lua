@@ -58,7 +58,6 @@ local function init()
         return
     end
 
-    require("plugins.colorscheme")
     require("plugins.settings")
 end
 

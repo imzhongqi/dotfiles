@@ -39,23 +39,23 @@ end
 map("<Space>", "<Nop>")
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
-vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
-vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up)
-vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right)
-vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
-vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
-vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
-vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
+vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
+vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
+vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
+vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
 
 -- tab switch 1-9
-vim.cmd([[ command! -nargs=1 G BufferLineGoTo <args>]])
 for i = 1, 9 do
-    nmap("<leader>" .. i, "<cmd>G " .. i .. "<CR>")
+    nmap("<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<CR>")
 end
 nmap("<M-[>", "<cmd>bp<CR>")
 nmap("<M-]>", "<cmd>bn<CR>")
 
+-- debugger
 nmap("<M-k>", "<cmd>lua require('dapui').eval()<CR>")
 nmap("<M-c>", "<cmd>lua require('dap').continue()<CR>")
 nmap("<M-n>", "<cmd>lua require('dap').step_over()<CR>")

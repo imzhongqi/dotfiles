@@ -1,5 +1,7 @@
 pcall(require, "impatient")
 
+require("colorscheme")
+
 -- user defined options
 require("options")
 

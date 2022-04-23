@@ -1,3 +1,5 @@
+require("colorscheme.tokyonight")
+
 vim.cmd([[
 	try
 		colorscheme tokyonight
@@ -5,5 +7,3 @@ vim.cmd([[
 		colorscheme default
 	endtry
 ]])
-
-require("plugins.colorscheme.tokyonight")
