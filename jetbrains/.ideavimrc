@@ -22,10 +22,12 @@ set ideaputdd
 set ideamarks
 set idearefactormode=keep
 
+""" Settings
+set vb
+
 """ Mappings -----------------------------------------
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
-
 
 " go to tab
 nnoremap <leader>1 :action GoToTab1<CR>
