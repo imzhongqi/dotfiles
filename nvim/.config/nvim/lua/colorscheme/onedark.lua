@@ -18,12 +18,9 @@ onedark.setup({
             TSConditional = {
                 style = "bold",
             },
-            illuminatedWord = {
-                bg = "#3b4261",
-            },
-            illuminatedCurWord = {
-                bg = "#3b4261",
-            },
+            LspReferenceText = {
+                bg = "#41464f",
+            }
         }
     end,
 })

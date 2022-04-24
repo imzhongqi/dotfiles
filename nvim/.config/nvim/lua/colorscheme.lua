@@ -9,5 +9,7 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-    hi! Pmenu blend=10 
+    hi Pmenu blend=10 
+	hi NormalFloat blend=10
+	hi FloatBorder blend=10
 ]])

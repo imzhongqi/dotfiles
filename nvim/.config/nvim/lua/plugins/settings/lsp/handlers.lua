@@ -61,7 +61,10 @@ end
 
 M.on_attach = function(client, bufnr)
     require("plugins.settings.lsp.status").on_attach(client)
-    require("illuminate").on_attach(client)
+    local ok, illuminate = pcall(require, "illuminate")
+    if ok then
+        illuminate.on_attach(client)
+    end
 
     lsp_keymaps(bufnr)
 end

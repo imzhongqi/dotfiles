@@ -57,6 +57,7 @@ local options = {
     -- binary = true,
 
     pumblend = 30,
+    winblend = 30,
 }
 
 for k, v in pairs(options) do
