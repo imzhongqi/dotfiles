@@ -9,18 +9,13 @@ export GOPATH=$HOME/.local/go
 export GOBIN=$GOPATH/bin
 
 () {
-  local USER_PATH=(
-    $GOBIN
-
+  local PATHS=(
     $HOME/.local/bin
-
+    $GOBIN
     /usr/local/sbin
     /opt/homebrew/bin
   )
-
-  if [[ ! $PATH =~ $USER_PATH ]]; then
-    export PATH=$(IFS=':'; echo "${USER_PATH[*]}"):$PATH
-  fi
+  export PATH=${(j.:.)PATHS}:$PATH
 }
 
 export LESSHISTFILE=/dev/null
