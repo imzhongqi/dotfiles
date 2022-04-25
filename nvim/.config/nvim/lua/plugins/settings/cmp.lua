@@ -15,6 +15,10 @@ require("luasnip.loaders.from_vscode").lazy_load()
 --     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 -- end
 
+local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 --   פּ ﯟ   some other good icons
 local kind_icons = {
     Text = "",
@@ -105,8 +109,16 @@ cmp.setup({
         }),
         ["<C-y>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
         ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
-        -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
-        -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+        -- ["<Tab>"] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --     elseif luasnip.expand_or_jumpable() then
+        --         luasnip.expand_or_jump()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
     },
 })
 

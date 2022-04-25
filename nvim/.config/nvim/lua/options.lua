@@ -1,3 +1,5 @@
+-- https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
+
 local options = {
     backup = false, -- creates a backup file
     writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -23,17 +25,22 @@ local options = {
 
     timeoutlen = 250, -- time to wait for a mapped sequence to complete (in milliseconds)
     updatetime = 300,
-    colorcolumn = "120",
+    colorcolumn = "99999", -- fixes indentline for now
 
     termguicolors = true,
     numberwidth = 4,
     number = true,
     relativenumber = true,
     cursorline = true, -- highlight the current line
+    laststatus = 3,
+
+    pumblend = 30,
+    winblend = 30,
     pumheight = 10, -- pop up menu height
     cmdheight = 1, -- more space in neovim command line for displaying messages
     hlsearch = true,
-    -- titlestring = "%<%F%=%l/%L - neovim", -- what the title of the window will be set to
+
+    titlestring = "%F", -- what the title of the window will be set to
     title = true, -- set the title of window to the value of the titlestring
     showtabline = 2, -- always show tabs
 
@@ -56,18 +63,15 @@ local options = {
     -- endofline = false,
     -- fixendofline = false,
     -- binary = true,
-
-    pumblend = 30,
-    winblend = 30,
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.wo.colorcolumn = "99999"
-
-vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
+vim.opt.shortmess:append("I") -- don't show the default intro message
+vim.opt.whichwrap:append("<,>,[,],h,l") -- help whichwrap learn more
 
 -- set the toggle-proxy
 -- vim.g.http_proxy = "http://localhost"
@@ -76,8 +80,5 @@ vim.opt.whichwrap:append("<,>,[,],h,l")
 -- set the log level for notify
 vim.g.log_level = vim.lsp.log_levels.INFO
 
-if vim.fn.has("nvim-0.7.0") == 1 then
-    vim.defer_fn(function()
-        vim.opt["laststatus"] = 3
-    end, 0)
-end
+-- disable the copilot tab map
+-- vim.g.copilot_no_tab_map = true

@@ -97,5 +97,5 @@ return {
     -- { "chrisbra/Colorizer" },
     -- { "norcalli/nvim-colorizer.lua" },
 
-    { "github/copilot.vim" },
+    -- { "github/copilot.vim" },
 }
