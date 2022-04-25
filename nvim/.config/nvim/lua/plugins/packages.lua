@@ -6,14 +6,31 @@ return {
     -- An implementation of the Popup API from vim in Neovim
     { "nvim-lua/popup.nvim" },
 
-    { "folke/which-key.nvim" },
+    { "lewis6991/impatient.nvim" },
 
     -- Autopairs; integrates with both cmp and treesitter
     { "windwp/nvim-autopairs" },
-
     { "rcarriga/nvim-notify" },
-
     { "karb94/neoscroll.nvim" },
+    { "mrjones2014/smart-splits.nvim" },
+    { "folke/which-key.nvim" },
+
+    -- UI
+    { "kyazdani42/nvim-web-devicons" }, --icon
+    { "moll/vim-bbye" },
+    { "akinsho/bufferline.nvim" }, -- buffer line
+    -- ("romgrk/barbar.nvim"}) -- buffer line bar
+    { "nvim-lualine/lualine.nvim" },
+    { "lukas-reineke/indent-blankline.nvim" },
+    -- { "goolord/alpha-nvim" },
+    { "simrat39/symbols-outline.nvim" },
+    { "kyazdani42/nvim-tree.lua" },
+
+    -- Color Scheme
+    { "lunarvim/darkplus.nvim" },
+    { "luisiacc/gruvbox-baby" },
+    { "folke/tokyonight.nvim" },
+    { "ful1e5/onedark.nvim" },
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter" },
@@ -23,18 +40,20 @@ return {
 
     { "RRethy/vim-illuminate" },
 
-    { "kyazdani42/nvim-tree.lua" },
+    { "editorconfig/editorconfig-vim" },
+    { "Darazaki/indent-o-matic" },
 
-    -- Very powerful plugin
+    -- Comment
+    { "numToStr/Comment.nvim" },
+
+    { "phaazon/hop.nvim", branch = "v1" },
+
+    -- -- Very powerful plugin
     { "nvim-telescope/telescope.nvim" },
     { "nvim-telescope/telescope-packer.nvim" },
     { "imzhongqi/telescope-dap.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" },
-    { "nvim-telescope/telescope-file-browser.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-
-    -- Comment
-    { "numToStr/Comment.nvim" },
 
     -- Terminal
     { "akinsho/toggleterm.nvim" },
@@ -76,33 +95,8 @@ return {
     -- Git
     { "lewis6991/gitsigns.nvim" },
 
-    -- UI
-    { "kyazdani42/nvim-web-devicons" }, --icon
-    { "moll/vim-bbye" },
-    { "akinsho/bufferline.nvim" }, -- buffer line
-    -- ("romgrk/barbar.nvim"}) -- buffer line bar
-    { "nvim-lualine/lualine.nvim" },
-    { "lukas-reineke/indent-blankline.nvim" },
-    -- { "goolord/alpha-nvim" },
+    -- { "chrisbra/Colorizer" },
+    -- { "norcalli/nvim-colorizer.lua" },
 
-    -- Color Scheme
-    { "lunarvim/darkplus.nvim" },
-    { "luisiacc/gruvbox-baby" },
-    { "folke/tokyonight.nvim" },
-    { "ful1e5/onedark.nvim" },
-
-    { "lewis6991/impatient.nvim" },
-
-    { "editorconfig/editorconfig-vim" },
-
-    { "chrisbra/Colorizer" },
-    { "norcalli/nvim-colorizer.lua" },
-
-    { "phaazon/hop.nvim", branch = "v1" },
-
-    { "mrjones2014/smart-splits.nvim" },
-
-    { "Darazaki/indent-o-matic" },
-
-    { "simrat39/symbols-outline.nvim" },
+    { "github/copilot.vim" },
 }

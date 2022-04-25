@@ -58,7 +58,9 @@ local modules = {
 
     "indent-o-matic",
 
-    "symbols-outline"
+    "symbols-outline",
+
+    "copilot",
 }
 
 for _, module_name in ipairs(modules) do

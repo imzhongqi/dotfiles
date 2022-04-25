@@ -40,8 +40,9 @@ local options = {
     conceallevel = 0, -- so that `` is visible in markdown files
 
     shiftwidth = 4, -- the number of spaces inserted for each indentation
-    -- expandtab = true, -- convert tabs to spaces
-    -- tabstop = 4, -- insert 2 spaces for a tab
+    expandtab = true, -- convert tabs to spaces
+    tabstop = 4, -- insert 2 spaces for a tab
+    softtabstop = 4,
     signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time, example: "yes:<column-number>"
 
     showmode = false,

@@ -8,17 +8,17 @@ skip_global_compinit=1
 export GOPATH=$HOME/.local/go 
 export GOBIN=$GOPATH/bin
 
+export LESSHISTFILE=/dev/null
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
+export SSH_PROXY=127.0.0.1:1081
+export CHTSH=~/.config/cht.sh
+
 () {
-  local PATHS=(
+  local paths=(
     $HOME/.local/bin
     $GOBIN
     /usr/local/sbin
     /opt/homebrew/bin
   )
-  export PATH=${(j.:.)PATHS}:$PATH
+  export PATH=${(j.:.)paths}:$PATH
 }
-
-export LESSHISTFILE=/dev/null
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
-export SSH_PROXY=127.0.0.1:1081
-export CHTSH=~/.config/cht.sh

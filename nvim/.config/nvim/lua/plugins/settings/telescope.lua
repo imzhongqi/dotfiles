@@ -120,7 +120,6 @@ local extensions = {
     "packer",
     "ui-select",
     "fzf",
-    "file_browser",
 }
 
 for _, extension in ipairs(extensions) do

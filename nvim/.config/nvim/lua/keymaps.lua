@@ -1,17 +1,17 @@
 -- https://github.com/glepnir/nvim-lua-guide-zh#%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84
 --
--- String     value	Help page	      Affected modes	                                                Vimscript equivalent
--- ''         (an empty string)	    mapmode-nvo	Normal, Visual, Select, Operator-pending	          :map
--- 'n'	      mapmode-n	            Normal	                                                        :nmap
--- 'v'	      mapmode-v	            Visual and Select	                                              :vmap
--- 's'	      mapmode-s	            Select	                                                        :smap
--- 'x'	      mapmode-x	            Visual	                                                        :xmap
--- 'o'	      mapmode-o	            Operator-pending	                                              :omap
--- '!'	      mapmode-ic	          Insert and Command-line	                                        :map!
--- 'i'	      mapmode-i	            Insert	                                                        :imap
--- 'l'	      mapmode-l	            Insert, Command-line, Lang-Arg	                                :lmap
--- 'c'	      mapmode-c	            Command-line	                                                  :cmap
--- 't'	      mapmode-t	            Terminal	                                                      :tmap
+-- String     value	Help page       Affected modes                                           Vimscript equivalent
+-- ''         (an empty string)	    mapmode-nvo	Normal, Visual, Select, Operator-pending     :map
+-- 'n'	      mapmode-n	            Normal	                                                 :nmap
+-- 'v'	      mapmode-v	            Visual and Select	                                     :vmap
+-- 's'	      mapmode-s	            Select	                                                 :smap
+-- 'x'	      mapmode-x	            Visual	                                                 :xmap
+-- 'o'	      mapmode-o	            Operator-pending	                                     :omap
+-- '!'	      mapmode-ic	        Insert and Command-line	                                 :map!
+-- 'i'	      mapmode-i	            Insert	                                                 :imap
+-- 'l'	      mapmode-l	            Insert, Command-line, Lang-Arg	                         :lmap
+-- 'c'	      mapmode-c	            Command-line	                                         :cmap
+-- 't'	      mapmode-t	            Terminal	                                             :tmap
 
 local keymap = function(type, key, cmd, opts)
     return vim.api.nvim_set_keymap(type, key, cmd, opts)
@@ -39,14 +39,17 @@ end
 map("<Space>", "<Nop>")
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
-vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
-vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
-vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
-vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+local ok = pcall("smart_splits")
+if ok then
+    vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
+    vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
+    vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
+    vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
+    vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+    vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+    vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+    vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+end
 
 -- tab switch 1-9
 for i = 1, 9 do
