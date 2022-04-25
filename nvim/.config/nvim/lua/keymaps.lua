@@ -34,6 +34,13 @@ local keymaps = {
         ["@"] = [[:<C-u>execute "'<,'>normal @".nr2char(getchar())<CR>]],
     },
 
+    i = {
+        -- ["<C-X>"] = {
+        --     callback = [[copilot#Accept("<CR>")]],
+        --     opts = { silent = true, expr = true, script = true }
+        -- },
+    },
+
     n = {
         ["<A-h>"] = require("smart-splits").resize_left,
         ["<A-j>"] = require("smart-splits").resize_down,
@@ -102,8 +109,12 @@ vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
 
 for mode, maps in pairs(keymaps) do
-    for key, cmd in pairs(maps) do
-        map(mode, key, cmd, opts)
+    for lhs, rhs in pairs(maps) do
+        if type(rhs) == "table" then
+            map(mode, lhs, rhs["callback"], rhs["opts"])
+        else
+            map(mode, lhs, rhs, opts)
+        end
     end
 end
 
@@ -111,6 +122,3 @@ end
 for i = 1, 9 do
     map("n", "<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<CR>", opts)
 end
-
--- NOTE: copilot will not work if your keys are conflicting
--- keymap("i", "<C-X>", [[copilot#Accept("<CR>")]], { silent = true, expr = true, script = true })

@@ -15,10 +15,6 @@ require("luasnip.loaders.from_vscode").lazy_load()
 --     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 -- end
 
-local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 --   פּ ﯟ   some other good icons
 local kind_icons = {
     Text = "",
@@ -118,7 +114,7 @@ cmp.setup({
         --         fallback()
         --     end
         -- end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "c" }),
+        -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
     },
 })
 
