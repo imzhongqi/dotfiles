@@ -80,5 +80,12 @@ vim.opt.whichwrap:append("<,>,[,],h,l") -- help whichwrap learn more
 -- set the log level for notify
 vim.g.log_level = vim.lsp.log_levels.INFO
 
+vim.g.find_files_exclude_patterns = {
+    ".git",
+    "venv",
+    ".idea",
+    ".vscode",
+}
+
 -- disable the copilot tab map
 -- vim.g.copilot_no_tab_map = true

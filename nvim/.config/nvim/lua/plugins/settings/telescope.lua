@@ -8,7 +8,6 @@ local themes = require("telescope.themes")
 
 telescope.setup({
     defaults = {
-
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "smart" },
@@ -53,6 +52,7 @@ telescope.setup({
 
             n = {
                 ["<esc>"] = actions.close,
+                ["q"] = actions.close,
                 ["<CR>"] = actions.select_default,
                 ["<C-x>"] = actions.select_horizontal,
                 ["<C-v>"] = actions.select_vertical,

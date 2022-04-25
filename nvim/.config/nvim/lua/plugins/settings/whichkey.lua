@@ -75,6 +75,14 @@ which_key.setup({
     },
 })
 
+-- for telescope find files
+local exclude_patterns = {}
+for i = 1, #vim.g.find_files_exclude_patterns do
+    table.insert(exclude_patterns, i*2-1, "-E")
+    table.insert(exclude_patterns, i*2, vim.g.find_files_exclude_patterns[i])
+end
+local find_command = vim.list_extend({ "fd", "-H", "-I" }, exclude_patterns) -- use fd command
+
 which_key.register({
     ["b"] = {
         "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -85,7 +93,15 @@ which_key.register({
     ["w"] = { "<cmd>w!<CR>", "Save" },
     ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
     ["f"] = {
-        "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+        function()
+            require("telescope.builtin").find_files(
+                vim.tbl_deep_extend(
+                    "force",
+                    { find_command = find_command },
+                    require("telescope.themes").get_dropdown({ previewer = false })
+                )
+            )
+        end,
         "Find files",
     },
     ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
