@@ -80,11 +80,14 @@ vim.opt.whichwrap:append("<,>,[,],h,l") -- help whichwrap learn more
 -- set the log level for notify
 vim.g.log_level = vim.lsp.log_levels.INFO
 
-vim.g.find_files_exclude_patterns = {
+vim.g.search_exclude_patterns = {
+    "**/venv",
+    "**/node_modules",
     ".git",
-    "venv",
     ".idea",
     ".vscode",
+    "Thumbs.db",
+    ".DS_Store",
 }
 
 -- disable the copilot tab map

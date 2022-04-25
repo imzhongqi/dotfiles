@@ -77,9 +77,9 @@ which_key.setup({
 
 -- for telescope find files
 local exclude_patterns = {}
-for i = 1, #vim.g.find_files_exclude_patterns do
+for i = 1, #vim.g.search_exclude_patterns do
     table.insert(exclude_patterns, i*2-1, "-E")
-    table.insert(exclude_patterns, i*2, vim.g.find_files_exclude_patterns[i])
+    table.insert(exclude_patterns, i*2, vim.g.search_exclude_patterns[i])
 end
 local find_command = vim.list_extend({ "fd", "-H", "-I" }, exclude_patterns) -- use fd command
 

@@ -12,7 +12,7 @@ telescope.setup({
         selection_caret = " ",
         path_display = { "smart" },
         winblend = 20,
-        cache_picker = false,
+        -- cache_picker = false,
 
         history = {
             path = vim.fn.stdpath("cache") .. "/telescope-history",
