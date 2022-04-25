@@ -39,7 +39,7 @@ end
 map("<Space>", "<Nop>")
 vim.g.mapleader = " "
 
-local ok = pcall("smart_splits")
+local ok = pcall(require, "smart-splits")
 if ok then
     vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
     vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
