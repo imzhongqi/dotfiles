@@ -1,17 +1,17 @@
 -- https://github.com/glepnir/nvim-lua-guide-zh#%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84
 --
--- String     value	Help page       Affected modes                                           Vimscript equivalent
--- ''         (an empty string)	    mapmode-nvo	Normal, Visual, Select, Operator-pending     :map
--- 'n'	      mapmode-n	            Normal	                                                 :nmap
--- 'v'	      mapmode-v	            Visual and Select	                                     :vmap
--- 's'	      mapmode-s	            Select	                                                 :smap
--- 'x'	      mapmode-x	            Visual	                                                 :xmap
--- 'o'	      mapmode-o	            Operator-pending	                                     :omap
--- '!'	      mapmode-ic	        Insert and Command-line	                                 :map!
--- 'i'	      mapmode-i	            Insert	                                                 :imap
--- 'l'	      mapmode-l	            Insert, Command-line, Lang-Arg	                         :lmap
--- 'c'	      mapmode-c	            Command-line	                                         :cmap
--- 't'	      mapmode-t	            Terminal	                                             :tmap
+-- String value        Help page                Affected modes                                            Vimscript equivalent
+-- ''                  (an empty string)        mapmode-nvoormal, Visual, Select, Operator-pending        :map
+-- 'n'                 mapmode-n                Normal                                                    :nmap
+-- 'v'                 mapmode-v                Visual and Select                                         :vmap
+-- 's'                 mapmode-s                Select                                                    :smap
+-- 'x'                 mapmode-x                Visual                                                    :xmap
+-- 'o'                 mapmode-o                Operator-pending                                          :omap
+-- '!'                 mapmode-ic               Insert and Command-line                                   :map!
+-- 'i'                 mapmode-i                Insert                                                    :imap
+-- 'l'                 mapmode-l                Insert, Command-line, Lang-Arg                            :lmap
+-- 'c'                 mapmode-c                Command-line                                              :cmap
+-- 't'                 mapmode-t                Terminal                                                  :tmap
 
 local keymaps = {
     [""] = {
@@ -53,11 +53,11 @@ local keymaps = {
 
         -- debugger
         ["<M-k>"] = "<cmd>lua require('dapui').eval()<CR>",
-        ["<M-c>"] = "<cmd>lua require('dapui').eval()<CR>",
-        ["<M-n>"] = "<cmd>lua require('dapui').step_over()<CR>",
-        ["<M-i>"] = "<cmd>lua require('dapui').step_into()<CR>",
-        ["<M-o>"] = "<cmd>lua require('dapui').step_out()<CR>",
-        ["<M-b>"] = "<cmd>lua require('dapui').toggle_breakpoint()<CR>",
+        ["<M-c>"] = "<cmd>lua require('dap').continue()<CR>",
+        ["<M-n>"] = "<cmd>lua require('dap').step_over()<CR>",
+        ["<M-i>"] = "<cmd>lua require('dap').step_into()<CR>",
+        ["<M-o>"] = "<cmd>lua require('dap').step_out()<CR>",
+        ["<M-b>"] = "<cmd>lua require('dap').toggle_breakpoint()<CR>",
 
         ["<M-[>"] = "<cmd>bp<CR>",
         ["<M-]>"] = "<cmd>bn<CR>",
@@ -105,6 +105,9 @@ end
 -- set the leader key as "<Space>"
 map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
+
+-- set local leader
+vim.g.maplocalleader = ";"
 
 local opts = { noremap = true, silent = true }
 

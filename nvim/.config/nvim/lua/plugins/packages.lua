@@ -21,7 +21,7 @@ return {
     { "akinsho/bufferline.nvim" }, -- buffer line
     -- ("romgrk/barbar.nvim"}) -- buffer line bar
     { "nvim-lualine/lualine.nvim" },
-    { "lukas-reineke/indent-blankline.nvim" },
+    -- { "lukas-reineke/indent-blankline.nvim" },
     -- { "goolord/alpha-nvim" },
     { "simrat39/symbols-outline.nvim" },
     { "kyazdani42/nvim-tree.lua" },
@@ -98,4 +98,6 @@ return {
     -- { "norcalli/nvim-colorizer.lua" },
 
     -- { "github/copilot.vim" },
+
+    -- { "f3fora/cmp-spell" },
 }

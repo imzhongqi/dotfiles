@@ -64,12 +64,6 @@ cmp.setup({
         end,
     },
 
-    -- window = {
-    --     documentation = {
-    --         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    --     },
-    -- },
-
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(_, vim_item)
@@ -97,13 +91,13 @@ cmp.setup({
         ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
         ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ["<C-y>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+        ["<C-y>"] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
         ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
         -- ["<Tab>"] = cmp.mapping(function(fallback)
         --     if cmp.visible() then
@@ -119,12 +113,14 @@ cmp.setup({
 })
 
 cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = "buffer" },
     },
 })
 
 cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "cmdline" },
     }, {

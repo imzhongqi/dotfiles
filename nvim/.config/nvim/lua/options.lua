@@ -55,7 +55,8 @@ local options = {
     showmode = false,
 
     -- list = true,
-    -- listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,space:·",
+    listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,space:·",
+    fillchars = "eob: ", -- remove `~` symbol
 
     scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor.
     sidescrolloff = 8, -- minimal number of screen lines to keep left and right of the cursor.
@@ -63,6 +64,9 @@ local options = {
     -- endofline = false,
     -- fixendofline = false,
     -- binary = true,
+
+    -- spell = true,
+    -- spelllang = { "en_us" },
 }
 
 for k, v in pairs(options) do

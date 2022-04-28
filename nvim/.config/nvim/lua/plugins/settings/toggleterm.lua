@@ -5,14 +5,22 @@ end
 
 toggleterm.setup({
     size = 20,
-    open_mapping = [[<C-\>]],
+    open_mapping = [[<C-t>]],
+    on_open = function()
+        local opts = { noremap = true }
+        vim.api.nvim_buf_set_keymap(0, "t", "<localleader><localleader>", [[<C-\><C-n>]], opts)
+        vim.api.nvim_buf_set_keymap(0, "t", "<localleader><C-h>", [[<C-\><C-n><C-W>h]], opts)
+        vim.api.nvim_buf_set_keymap(0, "t", "<localleader><C-j>", [[<C-\><C-n><C-W>j]], opts)
+        vim.api.nvim_buf_set_keymap(0, "t", "<localleader><C-k>", [[<C-\><C-n><C-W>k]], opts)
+        vim.api.nvim_buf_set_keymap(0, "t", "<localleader><C-l>", [[<C-\><C-n><C-W>l]], opts)
+    end,
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
     shading_factor = 2,
     start_in_insert = true,
     insert_mappings = true,
-    persist_size = true,
+    persist_size = false,
     direction = "horizontal",
     close_on_exit = true,
     shell = vim.o.shell,
@@ -28,18 +36,16 @@ toggleterm.setup({
     },
 })
 
-function _G.set_terminal_keymaps()
-    local opts = { noremap = true }
-    vim.api.nvim_buf_set_keymap(0, "t", [[<C-\><C-n>]], [[<C-\><C-n>]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "<C-c>", [[2<C-\>]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-    -- vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
-end
-
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+-- function _G.set_terminal_keymaps()
+-- vim.api.nvim_buf_set_keymap(0, "t", "<C-c>", [[2<C-\>]], opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+-- vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+-- end
+--
+-- vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
@@ -54,4 +60,3 @@ local lazygit = Terminal:new({
 function _LAZYGIT_TOGGLE()
     lazygit:toggle()
 end
-

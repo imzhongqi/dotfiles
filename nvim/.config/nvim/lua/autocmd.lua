@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
         for _, res in pairs(result or {}) do
             for _, r in pairs(res.result or {}) do
                 if r.edit then
-                    vim.lsp.util.apply_workspace_edit(r.edit, "utf-8")
+                    vim.lsp.util.apply_workspace_edit(r.edit, "utf-16")
                 else
                     vim.lsp.buf.execute_command(r.command)
                 end
@@ -48,18 +48,4 @@ vim.cmd([[
   augroup end
 
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-]])
-
-vim.cmd([[
-    " set
-    let g:toggleterm_terminal_mapping = '<C-t>'
-    " or manually...
-    autocmd TermEnter term://*toggleterm#*
-          \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-
-    " By applying the mappings this way you can pass a count to your
-    " mapping to open a specific window.
-    " For example: 2<C-t> will open terminal 2
-    nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
-    inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 ]])

@@ -25,7 +25,7 @@ zstyle ':completion:*:exa' sort false
 zstyle ':completion:files' sort false
 zstyle ':fzf-tab:*:*argument-rest*' popup-pad 100 0
 
-command -v nvim >/dev/null && EDITOR=nvim
+command -v nvim >/dev/null && export EDITOR=nvim || export EDITOR=vim
 
 # 加强版通配符
 setopt EXTENDED_GLOB
