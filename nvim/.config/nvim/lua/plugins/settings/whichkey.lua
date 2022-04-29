@@ -112,6 +112,7 @@ which_key.register({
     p = {
         name = "Packer",
         c = { "<cmd>PackerCompile<cr>", "Compile" },
+        C = { "<cmd>Packerclean<cr>", "Clean" },
         i = { "<cmd>PackerInstall<cr>", "Install" },
         s = { "<cmd>PackerSync<cr>", "Sync" },
         S = { "<cmd>PackerStatus<cr>", "Status" },
@@ -158,7 +159,7 @@ which_key.register({
     s = {
         name = "Search",
         b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+        c = { "<cmd>FzfLua colorschemes<cr>", "Colorscheme" },
         h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
         M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },

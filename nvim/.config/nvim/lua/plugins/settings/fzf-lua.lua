@@ -18,7 +18,7 @@ fzflua.setup({
     row = 0.35, -- window row position (0=top, 1=bottom)
     col = 0.50, -- window col position (0=left, 1=right)
     files = {
-        prompt = "Files  ",
+        prompt = "Search Files  ",
         multiprocess = true, -- run command in a separate process
         git_icons = true, -- show git icons?
         file_icons = true, -- show file icons?
