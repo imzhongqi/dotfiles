@@ -3,7 +3,7 @@ if not status_ok then
     return
 end
 
-lsp_installer.settings({
+lsp_installer.setup({
     install_root_dir = require("nvim-lsp-installer.path").concat({ vim.fn.stdpath("data"), "lsp-servers" }),
     ui = {
         icons = {
@@ -14,25 +14,28 @@ lsp_installer.settings({
     },
 })
 
-local function load_lsp_config(server_name, options)
-    local loaded, opts = pcall(require, "plugins.settings.lsp.settings." .. server_name)
+local lspconfig = require("lspconfig")
+local handlers = require("plugins.settings.lsp.handlers")
+
+local function load_lsp_settings(server_name)
+    local opts = {
+        on_attach = handlers.on_attach,
+        capabilities = handlers.capabilities,
+    }
+    local loaded, lsp_settings = pcall(require, "plugins.settings.lsp.settings." .. server_name)
     if not loaded then
-        return options
+        return opts
     end
-    return vim.tbl_deep_extend("force", opts, options)
+    return vim.tbl_deep_extend("force", opts, lsp_settings)
 end
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-    local opts = {
-        on_attach = require("plugins.settings.lsp.handlers").on_attach,
-        capabilities = require("plugins.settings.lsp.handlers").capabilities,
-    }
+local servers = {
+    "gopls",
+    "sumneko_lua",
+    "jsonls",
+}
 
-    opts = load_lsp_config(server.name, opts)
-
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-end)
+for _, server_name in pairs(servers) do
+    local settings = load_lsp_settings(server_name)
+    lspconfig[server_name].setup(settings)
+end

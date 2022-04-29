@@ -79,6 +79,8 @@ cmp.setup({
         { name = "path" },
     }, {
         { name = "buffer" },
+    }, {
+        { name = "nvim_lua" },
     }),
 
     experimental = {

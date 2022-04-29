@@ -59,6 +59,8 @@ local modules = {
     "indent-o-matic",
 
     "symbols-outline",
+
+    "fzf-lua",
 }
 
 for _, module_name in ipairs(modules) do

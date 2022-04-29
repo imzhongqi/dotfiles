@@ -35,6 +35,10 @@ local keymaps = {
     },
 
     i = {
+        [";;"] = {
+            callback = "<ESC>",
+            opts = { remap = true },
+        },
         -- ["<C-X>"] = {
         --     callback = [[copilot#Accept("<CR>")]],
         --     opts = { silent = true, expr = true, script = true }
@@ -61,6 +65,10 @@ local keymaps = {
 
         ["<M-[>"] = "<cmd>bp<CR>",
         ["<M-]>"] = "<cmd>bn<CR>",
+
+        ["<localleader>f"] = function()
+            require("fzf-lua").files()
+        end,
 
         f = function()
             require("hop").hint_char1({
