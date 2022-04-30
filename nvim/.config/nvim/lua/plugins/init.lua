@@ -30,6 +30,7 @@ local function init()
 
     packer.init({
         git = {
+            depth = 1,
             clone_timeout = 300,
             subcommands = {
                 -- this is more efficient than what Packer is using

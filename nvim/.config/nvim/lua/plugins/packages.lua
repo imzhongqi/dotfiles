@@ -36,7 +36,7 @@ return {
     { "nvim-treesitter/nvim-treesitter" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-    { "nvim-treesitter/playground" }, -- for get the tree sitter parsed tree
+    { "nvim-treesitter/playground", disable = true }, -- for get the tree sitter parsed tree
 
     { "RRethy/vim-illuminate" },
 

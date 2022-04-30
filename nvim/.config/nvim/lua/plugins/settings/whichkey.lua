@@ -112,7 +112,7 @@ which_key.register({
     p = {
         name = "Packer",
         c = { "<cmd>PackerCompile<cr>", "Compile" },
-        C = { "<cmd>Packerclean<cr>", "Clean" },
+        C = { "<cmd>PackerClean<cr>", "Clean" },
         i = { "<cmd>PackerInstall<cr>", "Install" },
         s = { "<cmd>PackerSync<cr>", "Sync" },
         S = { "<cmd>PackerStatus<cr>", "Status" },
