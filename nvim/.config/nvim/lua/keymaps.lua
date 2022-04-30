@@ -46,22 +46,50 @@ local keymaps = {
     },
 
     n = {
-        ["<A-h>"] = require("smart-splits").resize_left,
-        ["<A-j>"] = require("smart-splits").resize_down,
-        ["<A-k>"] = require("smart-splits").resize_up,
-        ["<A-l>"] = require("smart-splits").resize_right,
-        ["<C-h>"] = require("smart-splits").move_cursor_left,
-        ["<C-j>"] = require("smart-splits").move_cursor_down,
-        ["<C-k>"] = require("smart-splits").move_cursor_up,
-        ["<C-l>"] = require("smart-splits").move_cursor_right,
+        ["<A-h>"] = function()
+            require("smart-splits").resize_left()
+        end,
+        ["<A-j>"] = function()
+            require("smart-splits").resize_down()
+        end,
+        ["<A-k>"] = function()
+            require("smart-splits").resize_up()
+        end,
+        ["<A-l>"] = function()
+            require("smart-splits").resize_right()
+        end,
+        ["<C-h>"] = function()
+            require("smart-splits").move_cursor_left()
+        end,
+        ["<C-j>"] = function()
+            require("smart-splits").move_cursor_down()
+        end,
+        ["<C-k>"] = function()
+            require("smart-splits").move_cursor_up()
+        end,
+        ["<C-l>"] = function()
+            require("smart-splits").move_cursor_right()
+        end,
 
         -- debugger
-        ["<M-k>"] = "<cmd>lua require('dapui').eval()<CR>",
-        ["<M-c>"] = "<cmd>lua require('dap').continue()<CR>",
-        ["<M-n>"] = "<cmd>lua require('dap').step_over()<CR>",
-        ["<M-i>"] = "<cmd>lua require('dap').step_into()<CR>",
-        ["<M-o>"] = "<cmd>lua require('dap').step_out()<CR>",
-        ["<M-b>"] = "<cmd>lua require('dap').toggle_breakpoint()<CR>",
+        ["<M-K>"] = function()
+            require("dapui").eval()
+        end,
+        ["<M-c>"] = function()
+            require("dap").continue()
+        end,
+        ["<M-n>"] = function()
+            require("dap").step_over()
+        end,
+        ["<M-i>"] = function()
+            require("dap").step_into()
+        end,
+        ["<M-o>"] = function()
+            require("dap").step_out()
+        end,
+        ["<M-b>"] = function()
+            require("dap").toggle_breakpoint()
+        end,
 
         ["<M-[>"] = "<cmd>bp<CR>",
         ["<M-]>"] = "<cmd>bn<CR>",
@@ -84,8 +112,12 @@ local keymaps = {
         end,
 
         gb = "<cmd>BufferLinePick<CR>",
+        ["<localleader>bcr"] = "<cmd>BufferLineCloseRight<CR>",
+        ["<localleader>bcl"] = "<cmd>BufferLineCloseLeft<CR>",
         gR = "<cmd>Trouble lsp_references<CR>",
-        gr = "<cmd>lua require('lspsaga.rename').rename()<CR>",
+        gr = function()
+            require("lspsaga.rename").rename()
+        end,
     },
 
     o = {

@@ -103,4 +103,5 @@ return {
     -- { "f3fora/cmp-spell" },
 
     { "ibhagwan/fzf-lua" },
+    { "p00f/nvim-ts-rainbow" },
 }
