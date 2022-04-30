@@ -94,10 +94,6 @@ local keymaps = {
         ["<M-[>"] = "<cmd>bp<CR>",
         ["<M-]>"] = "<cmd>bn<CR>",
 
-        ["<localleader>f"] = function()
-            require("fzf-lua").files()
-        end,
-
         f = function()
             require("hop").hint_char1({
                 direction = require("hop.hint").HintDirection.AFTER_CURSOR,
@@ -117,6 +113,15 @@ local keymaps = {
         gR = "<cmd>Trouble lsp_references<CR>",
         gr = function()
             require("lspsaga.rename").rename()
+        end,
+
+
+        ["<localleader>f"] = function()
+            require("fzf-lua").files()
+        end,
+
+        ["<localleader>*"] = function()
+            require("fzf-lua").grep_cword()
         end,
     },
 
