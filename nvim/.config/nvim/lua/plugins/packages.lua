@@ -37,6 +37,7 @@ return {
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "nvim-treesitter/playground", disable = true }, -- for get the tree sitter parsed tree
+    { "p00f/nvim-ts-rainbow" },
 
     { "RRethy/vim-illuminate" },
 
@@ -81,6 +82,8 @@ return {
 
     -- Git
     { "lewis6991/gitsigns.nvim" },
+    { "APZelos/blamer.nvim" },
+    { "rhysd/git-messenger.vim" },
 
     -- Very powerful plugin
     { "nvim-telescope/telescope.nvim" },
@@ -88,6 +91,8 @@ return {
     { "imzhongqi/telescope-dap.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+
+    { "ibhagwan/fzf-lua" },
 
     -- Terminal
     { "akinsho/toggleterm.nvim" },
@@ -101,7 +106,4 @@ return {
     -- { "github/copilot.vim" },
 
     -- { "f3fora/cmp-spell" },
-
-    { "ibhagwan/fzf-lua" },
-    { "p00f/nvim-ts-rainbow" },
 }

@@ -61,6 +61,8 @@ local modules = {
     "symbols-outline",
 
     "fzf-lua",
+
+    "blamer"
 }
 
 for _, module_name in ipairs(modules) do

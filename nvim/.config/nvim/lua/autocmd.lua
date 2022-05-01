@@ -1,22 +1,3 @@
-vim.cmd([[
-  augroup _git
-    autocmd!
-    autocmd FileType gitcommit setlocal wrap
-    autocmd FileType gitcommit setlocal spell
-  augroup end
-
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-
-  augroup _ssh_config_filetype
-    autocmd!
-    autocmd BufEnter *ssh/**/*.conf set filetype=sshconfig
-  augroup end
-
-]])
-
 local auto_groups = {
     {
         event = { "BufWritePre" },
@@ -38,20 +19,20 @@ local auto_groups = {
     },
 
     -- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-    ["_close_nvim_tree_last_win"] = {
-        groups = {
-            {
-                event = "BufEnter",
-                pattern = "*",
-                callback = function()
-                    if vim.fn.winnr("$") == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
-                        vim.cmd("quit")
-                    end
-                end,
-                opts = { nested = true },
-            },
-        },
-    },
+    -- ["_close_nvim_tree_last_win"] = {
+    --     groups = {
+    --         {
+    --             event = "BufEnter",
+    --             pattern = "*",
+    --             callback = function()
+    --                 if vim.fn.winnr("$") == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
+    --                     vim.cmd("quit")
+    --                 end
+    --             end,
+    --             opts = { nested = true },
+    --         },
+    --     },
+    -- },
 
     -- augroup _general_settings
     --   autocmd!
@@ -61,9 +42,7 @@ local auto_groups = {
     --   autocmd FileType qf set nobuflisted
     -- augroup end
     ["general_settings"] = {
-        opts = {
-            clear = true,
-        },
+        opts = { clear = true },
         groups = {
             {
                 event = "TextYankPost",
@@ -108,6 +87,52 @@ local auto_groups = {
                 event = "FileType",
                 pattern = "markdown",
                 command = "setlocal spell",
+            },
+        },
+    },
+
+    -- augroup _ssh_config_filetype
+    --   autocmd!
+    --   autocmd BufEnter *ssh/**/*.conf set filetype=sshconfig
+    -- augroup end
+    ["_filetypes"] = {
+        opts = { clear = true },
+        groups = {
+            {
+                event = "BufEnter",
+                pattern = { "~/.ssh/config", "~/.ssh/*.conf", "~/.ssh/config.d/*" },
+                command = "set filetype=sshconfig",
+            },
+        },
+    },
+
+    -- augroup _auto_resize
+    --   autocmd!
+    --   autocmd VimResized * tabdo wincmd =
+    -- augroup end
+    ["_auto_resize"] = {
+        opts = { clear = true },
+        groups = {
+            {
+                event = "VimResized",
+                pattern = "*",
+                command = "tabdo wincmd =",
+            },
+        },
+    },
+
+    -- augroup _git
+    --   autocmd!
+    --   autocmd FileType gitcommit setlocal wrap
+    --   autocmd FileType gitcommit setlocal spell
+    -- augroup end
+    ["_git"] = {
+        opts = { clear = true },
+        groups = {
+            {
+                event = "FileType",
+                pattern = "gitcommit",
+                command = "setlocal wrap | setlocal spell",
             },
         },
     },
