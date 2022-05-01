@@ -7,13 +7,13 @@ onedark.setup({
     sidebars = { "qf", "vista_kind", "terminal", "packer", "dapui_scopes" },
 
     colors = {
-        bg0 = "#22272e",
-        bg1 = "#1c2128",
-        bg_highlight = "#1c2128",
+        bg0 = "#1b212a",
+        bg1 = "#161b22",
+        bg_sidebar = "#161b22",
+        bg_linenumber = "#1b212a",
+
         hint = "orange0",
         error = "#ff0000",
-        bg_sidebar = "#1c2128",
-        bg_linenumber = "#22272e",
     },
 
     keyword_style = "bold",
@@ -38,6 +38,18 @@ onedark.setup({
             },
             CursorLineNr = {
                 bg = "NONE",
+            },
+            TabLine = {
+                bg = c.bg1,
+            },
+            TabLineFill = {
+                bg = c.bg1,
+            },
+            NormalFloat = {
+                bg = c.bg1,
+            },
+            FloatBorder = {
+                bg = c.bg0,
             },
             VertSplit = {
                 bg = c.bg1,

@@ -13,9 +13,9 @@ local fd_opts = table.concat(vim.list_extend({ "-H", "-I", "--type", "file", "--
 local actions = require("fzf-lua.actions")
 
 fzflua.setup({
-    height = 0.6, -- window height
-    width = 0.72, -- window width
-    row = 0.35, -- window row position (0=top, 1=bottom)
+    height = 0.60, -- window height
+    width = 0.80, -- window width
+    row = 0.32, -- window row position (0=top, 1=bottom)
     col = 0.50, -- window col position (0=left, 1=right)
     files = {
         prompt = "Search Files  ",
