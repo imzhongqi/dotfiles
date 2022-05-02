@@ -105,26 +105,7 @@ nvim_tree.setup({
             error = "",
         },
     },
-    update_focused_file = {
-        enable = true,
-        update_cwd = false,
-        ignore_list = {},
-    },
-    system_open = {
-        cmd = nil,
-        args = {},
-    },
-    filters = {
-        dotfiles = false,
-        custom = {
-            ".git$",
-        },
-    },
-    git = {
-        enable = true,
-        ignore = true,
-        timeout = 500,
-    },
+
     view = {
         width = 30,
         height = 30,
@@ -155,10 +136,53 @@ nvim_tree.setup({
         number = false,
         relativenumber = false,
     },
+
+    update_focused_file = {
+        enable = false,
+        update_cwd = false,
+        ignore_list = {},
+    },
+
+    filters = {
+        dotfiles = false,
+        custom = {
+            ".git$",
+        },
+    },
+
+    git = {
+        enable = true,
+        ignore = true,
+        timeout = 500,
+    },
+
+    actions = {
+        use_system_clipboard = true,
+        change_dir = {
+            enable = true,
+            global = false,
+            restrict_above_cwd = false,
+        },
+        open_file = {
+            quit_on_open = false,
+            resize_window = true,
+            window_picker = {
+                enable = true,
+                chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+                exclude = {
+                    filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+                    buftype = { "nofile", "terminal", "help" },
+                },
+            },
+        },
+    },
+
+
     trash = {
         cmd = [[() {mv -fv "$@" ~/.Trash/}]],
         require_confirm = true,
     },
+
     log = {
         enable = false,
         truncate = false,

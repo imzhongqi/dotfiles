@@ -25,9 +25,9 @@ local auto_groups = {
     --             event = "BufEnter",
     --             pattern = "*",
     --             callback = function()
-    --                 if vim.fn.winnr("$") == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
-    --                     vim.cmd("quit")
-    --                 end
+    --                 -- if vim.fn.winnr("$") == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
+    --                 --     vim.cmd("quit")
+    --                 -- end
     --             end,
     --             opts = { nested = true },
     --         },

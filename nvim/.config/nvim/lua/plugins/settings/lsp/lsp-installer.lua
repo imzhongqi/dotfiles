@@ -29,13 +29,8 @@ local function load_lsp_settings(server_name)
     return vim.tbl_deep_extend("force", opts, lsp_settings)
 end
 
-local servers = {
-    "gopls",
-    "sumneko_lua",
-    "jsonls",
-}
-
-for _, server_name in pairs(servers) do
-    local settings = load_lsp_settings(server_name)
-    lspconfig[server_name].setup(settings)
+local servers = require("nvim-lsp-installer.servers").get_installed_servers()
+for _, server in pairs(servers) do
+    local settings = load_lsp_settings(server.name)
+    lspconfig[server.name].setup(settings)
 end
