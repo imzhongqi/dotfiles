@@ -85,8 +85,22 @@ local find_command = vim.list_extend({ "fd", "-H", "-I" }, exclude_patterns) -- 
 
 which_key.register({
     ["b"] = {
-        "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-        "Buffers",
+        name = "Buffers",
+        l = {
+            "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+            "List buffers",
+        },
+        c = {
+            name = "Close buffers",
+            r = {
+                "<cmd>BufferLineCloseRight<CR>",
+                "Close right",
+            },
+            l = {
+                "<cmd>BufferLineCloseLeft<CR>",
+                "Close left",
+            },
+        },
     },
     ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
     ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -105,7 +119,6 @@ which_key.register({
         "Find files",
     },
     ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-    -- ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
     ["S"] = { "<cmd>HopChar1<CR>", "Jump To Char" },
 

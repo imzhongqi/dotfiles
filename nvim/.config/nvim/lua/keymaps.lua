@@ -108,8 +108,6 @@ local keymaps = {
         end,
 
         gb = "<cmd>BufferLinePick<CR>",
-        ["<localleader>bcr"] = "<cmd>BufferLineCloseRight<CR>",
-        ["<localleader>bcl"] = "<cmd>BufferLineCloseLeft<CR>",
         gR = "<cmd>Trouble lsp_references<CR>",
         gr = function()
             require("lspsaga.rename").rename()
