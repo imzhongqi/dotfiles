@@ -19,20 +19,31 @@ local auto_groups = {
     },
 
     -- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-    -- ["_close_nvim_tree_last_win"] = {
-    --     groups = {
-    --         {
-    --             event = "BufEnter",
-    --             pattern = "*",
-    --             callback = function()
-    --                 -- if vim.fn.winnr("$") == 1 and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr() then
-    --                 --     vim.cmd("quit")
-    --                 -- end
-    --             end,
-    --             opts = { nested = true },
-    --         },
-    --     },
-    -- },
+    ["_close_nvim_tree_last_win"] = {
+        groups = {
+            {
+                event = "QuitPre",
+                pattern = "*",
+                callback = function()
+                    vim.g.quit = true
+                end,
+            },
+            {
+                event = "BufEnter",
+                pattern = "*",
+                callback = function()
+                    if
+                        vim.g.quit
+                        and vim.fn.winnr("$") == 1
+                        and vim.fn.bufname() == "NvimTree_" .. vim.fn.tabpagenr()
+                    then
+                        vim.cmd("quit")
+                    end
+                    vim.g.quit = false
+                end,
+            },
+        },
+    },
 
     -- augroup _general_settings
     --   autocmd!
@@ -54,7 +65,7 @@ local auto_groups = {
             },
             {
                 event = "FileType",
-                pattern = { "qf", "help", "man", "lspinfo", "toggleterm"},
+                pattern = { "qf", "help", "man", "lspinfo", "toggleterm" },
                 command = "nnoremap <silent> <buffer> q :close<CR>",
             },
             {
