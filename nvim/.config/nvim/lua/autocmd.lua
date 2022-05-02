@@ -39,7 +39,9 @@ local auto_groups = {
                     then
                         vim.cmd("quit")
                     end
-                    vim.g.quit = false
+                    if vim.g.quit then
+                        vim.g.quit = false
+                    end
                 end,
             },
         },
