@@ -54,7 +54,7 @@ local auto_groups = {
             },
             {
                 event = "FileType",
-                pattern = { "qf", "help", "man", "lspinfo" },
+                pattern = { "qf", "help", "man", "lspinfo", "toggleterm"},
                 command = "nnoremap <silent> <buffer> q :close<CR>",
             },
             {
