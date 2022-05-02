@@ -62,7 +62,9 @@ local modules = {
 
     "fzf-lua",
 
-    "blamer"
+    "blamer",
+
+    "surround",
 }
 
 for _, module_name in ipairs(modules) do

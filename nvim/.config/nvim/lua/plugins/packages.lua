@@ -106,4 +106,5 @@ return {
     -- { "github/copilot.vim" },
 
     -- { "f3fora/cmp-spell" },
+    { "ur4ltz/surround.nvim" },
 }

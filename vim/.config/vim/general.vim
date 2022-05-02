@@ -5,6 +5,7 @@ filetype plugin on
 filetype indent on
 
 let mapleader=" "
+let localleader=";"
 
 set clipboard=unnamed
 set nobackup

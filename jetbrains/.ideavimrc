@@ -8,13 +8,10 @@ source ~/.config/vim/key-bindings.vim
 set surround
 set multiple-cursors
 set commentary
-set argtextobj
 set easymotion
 set textobj-entire
 set ReplaceWithRegister
-set exchange
 set highlightedyank
-set NERDTree
 
 """ Ideavim specific settings ------------------------
 set ideajoin
@@ -40,12 +37,10 @@ nnoremap <leader>7 :action GoToTab7<CR>
 nnoremap <leader>8 :action GoToTab8<CR>
 nnoremap <leader>9 :action GoToTab9<CR>
 
-nnoremap <leader>rf :action RenameFile<CR>
 nnoremap <leader>rn :action RenameElement<CR>
 
 nnoremap <leader>s :action SelectInProjectView<CR>
 nnoremap <leader>a :action Annotate<CR>
-"nnoremap <leader>h :action Vcs.ShowTabbedFileHistory<CR>
 
 nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 
