@@ -17,5 +17,7 @@ vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "RejectedB
 vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "LogPoint", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "", linehl = "debugPC", numhl = "" })
 
+require("dap.ext.vscode").load_launchjs()
+
 -- setup dap-go plugin
 require("dap-go").setup()

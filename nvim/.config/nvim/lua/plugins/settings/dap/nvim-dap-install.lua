@@ -10,3 +10,4 @@ dap_installer.setup({
 })
 
 dap_installer.config("go", {})
+dap_installer.config("python", {})
