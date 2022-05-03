@@ -6,6 +6,7 @@ end
 require("plugins.settings.lsp.handlers").setup()
 
 local modules = {
+    "nlsp-settings",
     "lsp-installer",
     "null-ls",
     "status",

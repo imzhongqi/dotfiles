@@ -1,7 +1,4 @@
-local M = {}
-
--- TODO: backfill this to template
-M.setup = function()
+local setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
         { name = "DiagnosticSignWarn", text = "" },
@@ -59,7 +56,7 @@ local function lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
-M.on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
     require("plugins.settings.lsp.status").on_attach(client)
     local ok, illuminate = pcall(require, "illuminate")
     if ok then
@@ -69,11 +66,17 @@ M.on_attach = function(client, bufnr)
     lsp_keymaps(bufnr)
 end
 
--- M.capabilities = vim.lsp.protocol.make_client_capabilities()
---
--- local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
--- if status_ok then
---     M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
--- end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-return M
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if status_ok then
+    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+end
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+
+return {
+    setup = setup,
+    capabilities = capabilities,
+    on_attach = on_attach,
+}

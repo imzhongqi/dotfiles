@@ -3,6 +3,9 @@ local auto_groups = {
         event = { "BufWritePre" },
         pattern = { "*.go" },
         callback = function()
+            if #(vim.lsp.get_active_clients() or {}) == 0 then
+                return
+            end
             local params = vim.lsp.util.make_range_params()
             params.context = { only = { "source.organizeImports" } }
             local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
