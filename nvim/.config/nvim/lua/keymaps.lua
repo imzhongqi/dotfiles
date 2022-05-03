@@ -94,6 +94,9 @@ local keymaps = {
         ["<M-[>"] = "<cmd>bp<CR>",
         ["<M-]>"] = "<cmd>bn<CR>",
 
+        ["<localleader>s"] = function ()
+            require("hop").hint_char1()
+        end,
         f = function()
             require("hop").hint_char1({
                 direction = require("hop.hint").HintDirection.AFTER_CURSOR,
