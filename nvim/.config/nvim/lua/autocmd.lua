@@ -185,9 +185,14 @@ local auto_groups = {
 }
 
 for group_name, group_settings in pairs(auto_groups) do
-    assert(type(group_settings == "table"), "group settings type must be table")
+    assert(type(group_settings) == "table", string.format("the group settings of %s group must be table", group_name))
 
     if type(group_name) == "string" then
+        assert(
+            type(group_settings.groups) == "table",
+            string.format("the groups attribute type of %s group must be table", group_name)
+        )
+
         local group = vim.api.nvim_create_augroup(group_name, group_settings.opts or {})
         for _, g in ipairs(group_settings.groups) do
             local opts = vim.tbl_deep_extend("keep", {
