@@ -59,7 +59,7 @@ local function init()
         return
     end
 
-    require("plugins.settings")
+    require("plugins.settings").setup()
 end
 
 init()
