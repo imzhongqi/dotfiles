@@ -83,7 +83,7 @@ plugins=(
 )
 
 programs=(
-  mv=":cht.sh -> cht.sh" atclone="chmod +x cht.sh" as="program"
+  as="program" id-as="cht.sh" pick"cht.sh" 
     https://cht.sh/:cht.sh
 )
 
