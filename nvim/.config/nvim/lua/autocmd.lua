@@ -137,6 +137,36 @@ local auto_groups = {
         },
     },
 
+    ["dap_ui_sidebar"] = {
+        opts = { clear = true },
+        groups = {
+            {
+                event = "BufWinEnter",
+                pattern = "NvimTree_*",
+                callback = function()
+                    local sidebar = require("dapui.windows").sidebar
+                    if sidebar then
+                        vim.schedule(function()
+                            sidebar:resize()
+                        end)
+                    end
+                end,
+            },
+            {
+                event = "BufWinLeave",
+                pattern = "NvimTree_*",
+                callback = function()
+                    local sidebar = require("dapui.windows").sidebar
+                    if sidebar then
+                        vim.schedule(function()
+                            sidebar:resize()
+                        end)
+                    end
+                end,
+            },
+        },
+    },
+
     -- augroup _git
     --   autocmd!
     --   autocmd FileType gitcommit setlocal wrap
