@@ -1,7 +1,5 @@
 # remove duplicate path
 unique-path() {
-    local paths=(${(s.:.)PATH})
-    paths=(${(u)paths})
-    export PATH=${(j.:.)paths}
+    export PATH=${(j.:.)${(uo)${(s.:.)PATH}}}
 }
 
