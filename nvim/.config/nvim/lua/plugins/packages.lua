@@ -77,7 +77,7 @@ return {
     -- Debugger
     { "mfussenegger/nvim-dap" },
     { "rcarriga/nvim-dap-ui" },
-    { "Pocco81/dap-buddy.nvim", branch = "dev"},
+    { "Pocco81/dap-buddy.nvim", branch = "dev" },
     { "leoluz/nvim-dap-go" },
     -- { "theHamsta/nvim-dap-virtual-text" },
 
