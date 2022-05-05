@@ -1,4 +1,5 @@
 -- https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
+local path = require("util").path
 
 local options = {
     backup = false, -- creates a backup file
@@ -15,6 +16,11 @@ local options = {
     completeopt = { "menuone", "noselect" },
 
     mouse = "a",
+
+    foldmethod = "manual", -- folding, set to "expr" for treesitter based folding
+    foldexpr = "", -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+
+    wrap = false,
 
     smarttab = true,
     smartcase = true, -- smart case
@@ -45,6 +51,8 @@ local options = {
     showtabline = 2, -- always show tabs
 
     conceallevel = 0, -- so that `` is visible in markdown files
+    undodir = path.join(vim.fn.stdpath("cache"), "undo"), -- set an undo directory
+    undofile = true, -- enable persistent undo
 
     shiftwidth = 4, -- the number of spaces inserted for each indentation
     expandtab = true, -- convert tabs to spaces
@@ -56,7 +64,7 @@ local options = {
 
     -- list = true,
     listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←,space:·",
-    fillchars = "eob: ", -- remove `~` symbol
+    fillchars = "eob: ,fold: ", -- remove `~` symbol
 
     scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor.
     sidescrolloff = 8, -- minimal number of screen lines to keep left and right of the cursor.

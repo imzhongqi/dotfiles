@@ -68,11 +68,11 @@ plugins=(
 
   hlissner/zsh-autopair
 
-  #Aloxaf/zsh-histdb
-  #wait"0c"
-    #skywind3000/z.lua
-  #changyuheng/fz
-  agkozak/zsh-z
+  # Aloxaf/zsh-histdb
+  wait"0c"
+    skywind3000/z.lua
+  changyuheng/fz
+  # agkozak/zsh-z
 
   # wait"0c"
   #   wfxr/forgit
