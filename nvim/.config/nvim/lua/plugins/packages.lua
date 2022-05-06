@@ -83,8 +83,6 @@ return {
 
     -- Git
     { "lewis6991/gitsigns.nvim" },
-    { "APZelos/blamer.nvim" },
-    { "rhysd/git-messenger.vim" },
 
     -- Very powerful plugin
     { "nvim-telescope/telescope.nvim" },

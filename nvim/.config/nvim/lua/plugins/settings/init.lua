@@ -62,8 +62,6 @@ local modules = {
 
     "fzf-lua",
 
-    "blamer",
-
     "surround",
 }
 
