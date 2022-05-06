@@ -11,7 +11,7 @@ export GOPATH=$HOME/.local/go
 export GOBIN=$GOPATH/bin
 
 export LESSHISTFILE=/dev/null
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py; [[ ! -e $PYTHONSTARTUP ]] && unset PYTHONSTARTUP
 export SSH_PROXY=127.0.0.1:1081
 export CHTSH=~/.config/cht.sh
 
