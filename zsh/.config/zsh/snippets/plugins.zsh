@@ -18,7 +18,7 @@ snippets=(
     OMZP::docker-compose/docker-compose.plugin.zsh
   nocd wait"0"
     OMZP::sudo/sudo.plugin.zsh
-  nocd wait"0" atload="[[ ! -e $ZSH_CACHE_DIR/completions ]] && mkdir $ZSH_CACHE_DIR/completions"
+  nocd wait"0" atinit="[[ ! -e $ZSH_CACHE_DIR/completions ]] && mkdir $ZSH_CACHE_DIR/completions"
     OMZP::kubectl/kubectl.plugin.zsh
   nocd wait"2" 
     OMZP::extract/extract.plugin.zsh
