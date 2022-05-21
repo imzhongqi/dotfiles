@@ -3,8 +3,10 @@ if not status_ok then
     return
 end
 
+local path = require("util").path
+
 lsp_installer.setup({
-    install_root_dir = require("nvim-lsp-installer.path").concat({ vim.fn.stdpath("data"), "lsp-servers" }),
+    install_root_dir = path.join({ vim.fn.stdpath("data"), "lsp-servers" }),
     ui = {
         icons = {
             server_installed = "✓",

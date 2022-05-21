@@ -47,3 +47,5 @@ nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 map ge <Action>(ShowErrorDescription)
 
 map <leader>tt :action $TranslateTextComponent<CR>
+
+nnoremap gi :action GotoImplementation<CR>

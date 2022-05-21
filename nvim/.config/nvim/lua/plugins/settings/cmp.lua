@@ -8,6 +8,11 @@ if not snip_status_ok then
     return
 end
 
+luasnip.config.set_config({
+    history = true,
+    enable_autosnippets = true,
+})
+
 require("luasnip.loaders.from_vscode").lazy_load()
 
 -- local check_backspace = function()
