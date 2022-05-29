@@ -43,8 +43,9 @@ typeset -A ZINIT=(
 
 source $ZDOTDIR/zinit/bin/zinit.zsh
 
-FPATH=$XDG_CONFIG_HOME/zsh/functions:$FPATH
+FPATH=$XDG_CONFIG_HOME/zsh/functions:"$XDG_CONFIG_HOME/zsh/completions":$FPATH
 autoload -Uz $XDG_CONFIG_HOME/zsh/functions/*(:t)
+
 
 GENCOMP_DIR=$XDG_CONFIG_HOME/zsh/completions
 

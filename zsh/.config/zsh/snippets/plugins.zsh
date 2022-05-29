@@ -58,6 +58,8 @@ plugins=(
   atload="set_fast_theme"
     zdharma-continuum/fast-syntax-highlighting
 
+  zchee/zsh-completions
+
   blockf atpull'zinit creinstall -q .'
     zsh-users/zsh-completions
 

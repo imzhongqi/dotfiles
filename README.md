@@ -8,19 +8,23 @@
 - git
 - unzip
 
+```bash
+./init
+```
+
 ## Init Submodule
-```shell
+```bash
 git submodule init # init the submodule
 git submodule update
 ```
 
 ## Install
-```shell
+```bash
 stow vim zsh # etc...
 ```
 
 ## Uninstall
-```shell
+```bash
 stow -D vim
 ```
 
