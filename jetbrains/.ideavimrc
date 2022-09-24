@@ -23,8 +23,7 @@ set idearefactormode=keep
 set vb
 
 """ Mappings -----------------------------------------
-nnoremap <C-l> <C-w>l
-nnoremap <C-h> <C-w>h
+nnoremap <leader>rn :action RenameElement<CR>
 
 " go to tab
 nnoremap <leader>1 :action GoToTab1<CR>
@@ -36,8 +35,6 @@ nnoremap <leader>6 :action GoToTab6<CR>
 nnoremap <leader>7 :action GoToTab7<CR>
 nnoremap <leader>8 :action GoToTab8<CR>
 nnoremap <leader>9 :action GoToTab9<CR>
-
-nnoremap <leader>rn :action RenameElement<CR>
 
 nnoremap <leader>s :action SelectInProjectView<CR>
 nnoremap <leader>a :action Annotate<CR>

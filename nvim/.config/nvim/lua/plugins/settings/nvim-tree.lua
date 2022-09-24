@@ -80,10 +80,26 @@ nvim_tree.setup({
     },
 
     view = {
+        adaptive_size = false,
+        centralize_selection = false,
         width = 30,
-        height = 30,
         hide_root_folder = false,
         side = "left",
+        preserve_window_proportions = false,
+        number = false,
+        relativenumber = false,
+        signcolumn = "yes",
+        float = {
+          enable = false,
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+            width = 30,
+            height = 30,
+            row = 1,
+            col = 1,
+          },
+        },
         mappings = {
             custom_only = false,
             list = {
@@ -106,8 +122,6 @@ nvim_tree.setup({
                 },
             },
         },
-        number = false,
-        relativenumber = false,
     },
 
     update_focused_file = {
