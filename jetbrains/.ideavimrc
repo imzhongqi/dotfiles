@@ -18,6 +18,7 @@ set ideajoin
 set ideaputdd
 set ideamarks
 set idearefactormode=keep
+set keep-english-in-normal
 
 """ Settings
 set vb

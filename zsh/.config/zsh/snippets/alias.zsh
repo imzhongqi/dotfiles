@@ -2,7 +2,7 @@ command_check() {
 	command -v $1 &>/dev/null
 }
 
-command_check exa && alias ls='exa -bh'
+command_check exa && alias ls='exa -bh --icons'
 command_check bat && alias cat='bat --plain'
 
 # global alias
@@ -14,3 +14,4 @@ alias df='df -h'  du='du -h'  plast="last -20"
 alias cp='cp -v'   mv='mv -v'
 alias ts='date +%s'
 
+command_check kitty && alias s='kitty +kitten ssh'
