@@ -2,7 +2,7 @@ _help() {
     printf "for manage PATH environment variable
 
 COMMAND:
-  ls                  list current PATHs
+  ls                  list PATHs
   rm                  remove current dir from PATHs
   add                 add current dir to PATHs
   tidy [-delete]      check invalid path and delete
