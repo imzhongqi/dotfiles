@@ -15,8 +15,4 @@ export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py; [[ ! -e $PYTHONSTARTUP 
 export SSH_PROXY=127.0.0.1:1081
 export CHTSH=~/.config/cht.sh
 
-export PATH=${(j.:.)$(
-    while { read line } {
-        sh -c "echo $line"
-    } < $ZDOTDIR/.env | grep -v -E "^$"
-)}:$PATH
+export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ZDOTDIR/.env | sh)}:$PATH
