@@ -1,0 +1,34 @@
+_help() {
+    printf "for manage PATH environment variable
+
+COMMAND:
+  ls        list current PATHs
+  rm        remove current dir from PATHs
+  add       add current dir to PATHs
+"
+}
+
+main() {
+  case $1 in
+    rm)
+      cat $ZDOTDIR/.env | sed -e "s#^$(pwd)\$##" -e '/^$/d' | tee $ZDOTDIR/.env >/dev/null
+    ;;
+
+    ls)
+      cat $ZDOTDIR/.env
+    ;;
+
+    add)
+      if [[ ! $(sed 's/#.*//g' $ZDOTDIR/.env | grep "^$(pwd)$" ) ]]; then
+        pwd >> $ZDOTDIR/.env
+        export PATH=$PATH:$(pwd)
+      fi
+    ;;
+
+    help|*)
+      _help
+    ;;
+  esac
+}
+
+main "$@"
