@@ -2,16 +2,36 @@ _help() {
     printf "for manage PATH environment variable
 
 COMMAND:
-  ls        list current PATHs
-  rm        remove current dir from PATHs
-  add       add current dir to PATHs
+  ls                  list current PATHs
+  rm                  remove current dir from PATHs
+  add                 add current dir to PATHs
+  tidy [-delete]      check invalid path and delete
 "
 }
 
+list_paths() {
+  sed -e 's/\(.*\)#.*/\1/g' -e '/^$/d' $ZDOTDIR/.env
+}
+
+remove_path() {
+  cat $ZDOTDIR/.env | sed -e "s|^$1\( ?#.*\)*\$||" -e '/^$/d' | tee $ZDOTDIR/.env >/dev/null
+}
+
 main() {
-  case $1 in
+  cmd=$1
+  if (( $# > 0 )); then
+    shift
+  fi
+
+  # rename HOME path to $HOME variable
+  cwd=$(pwd)
+  if [[ $cwd =~ ^$HOME ]]; then
+    cwd=$(echo $cwd | sed "s#$HOME#\$HOME#")
+  fi 
+
+  case $cmd in
     rm)
-      cat $ZDOTDIR/.env | sed -e "s#^$(pwd)\$##" -e '/^$/d' | tee $ZDOTDIR/.env >/dev/null
+      remove_path "$cwd"
     ;;
 
     ls)
@@ -19,10 +39,33 @@ main() {
     ;;
 
     add)
-      if [[ ! $(sed 's/#.*//g' $ZDOTDIR/.env | grep "^$(pwd)$" ) ]]; then
-        pwd >> $ZDOTDIR/.env
-        export PATH=$PATH:$(pwd)
+      if [[ ! $(list_paths | grep "^${cwd}*\$" ) ]]; then
+        export PATH=$PATH:$cwd
+
+        # add comment for path
+        if [[ "$1" != "" ]]; then
+          echo "$cwd # $@" >> $ZDOTDIR/.env
+        else
+          echo $cwd >> $ZDOTDIR/.env
+        fi
+
       fi
+    ;;
+
+    tidy)
+      while read target; do
+
+        if [[ ! -d $(sh -c "echo $target")  ]]; then
+
+          if [[ "$1" == "-delete" ]]; then
+            remove_path "$target" 
+            echo "removed invalid path \"$target\""
+          else
+            echo "\"$target\" is invalid path"
+          fi
+        fi
+
+      done < <(echo "$(list_paths)")
     ;;
 
     *)
