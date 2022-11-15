@@ -1,9 +1,9 @@
-_help() {
+usage() {
     printf "for manage PATH environment variable
 
 COMMAND:
   ls                  list PATHs
-  rm                  remove current dir from PATHs
+  rm   [path]         remove current dir from PATHs; default: $(pwd)
   add                 add current dir to PATHs
   tidy [-delete]      check invalid path and delete
 "
@@ -17,21 +17,28 @@ remove_path() {
   cat $ZDOTDIR/.env | sed -e "s|^$1\( ?#.*\)*\$||" -e '/^$/d' | tee $ZDOTDIR/.env >/dev/null
 }
 
+filter_path() {
+  local cwd="$1"
+  if [[ "$cwd" == "" ]]; then
+    cwd=$(pwd) 
+  fi
+
+  if [[ "$cwd" =~ "^$HOME" ]]; then
+    cwd=$(echo $cwd | sed "s#^$HOME#\$HOME#")
+  fi
+
+  echo $cwd
+}
+
 main() {
-  cmd=$1
+  local cmd=$1
   if (( $# > 0 )); then
     shift
   fi
 
-  # rename HOME path to $HOME variable
-  cwd=$(pwd)
-  if [[ $cwd =~ ^$HOME ]]; then
-    cwd=$(echo $cwd | sed "s#$HOME#\$HOME#")
-  fi 
-
   case $cmd in
     rm)
-      remove_path "$cwd"
+      remove_path $(filter_path "$1")
     ;;
 
     ls)
@@ -39,12 +46,14 @@ main() {
     ;;
 
     add)
+      local cwd=$(filter_path)
+
       if [[ ! $(list_paths | grep "^${cwd}*\$" ) ]]; then
         export PATH=$PATH:$cwd
 
         # add comment for path
         if [[ "$1" != "" ]]; then
-          echo "$cwd # $@" >> $ZDOTDIR/.env
+          echo "$cwd# $@" >> $ZDOTDIR/.env
         else
           echo $cwd >> $ZDOTDIR/.env
         fi
@@ -69,7 +78,7 @@ main() {
     ;;
 
     *)
-      _help
+     usage 
     ;;
   esac
 }
