@@ -6,21 +6,24 @@ COMMAND:
   rm   [path]         remove current dir from PATHs; default: $(pwd)
   add                 add current dir to PATHs
   tidy [-delete]      check invalid path and delete
+  edit                use \${EDITOR:-vim} editor open the env file; default: $EDITOR
 "
 }
 
+local env_file=${ENV_FILE:-$ZDOTDIR/.env}
+
 list_paths() {
-  sed -e 's/\(.*\)#.*/\1/g' -e '/^$/d' $ZDOTDIR/.env
+  sed -e 's/\(.*\)#.*/\1/g' -e '/^$/d' $env_file
 }
 
 remove_path() {
-  cat $ZDOTDIR/.env | sed -e "s|^$1\( ?#.*\)*\$||" -e '/^$/d' | tee $ZDOTDIR/.env >/dev/null
+  cat $env_file | sed -e "s|^$1\( *#.*\)*\$||" -e '/^$/d' | tee $env_file >/dev/null
 }
 
 filter_path() {
   local cwd="$1"
   if [[ "$cwd" == "" ]]; then
-    cwd=$(pwd) 
+    cwd=$(pwd)
   fi
 
   if [[ "$cwd" =~ "^$HOME" ]]; then
@@ -42,22 +45,24 @@ main() {
     ;;
 
     ls)
-      cat $ZDOTDIR/.env
+      cat $env_file
     ;;
 
     add)
       local cwd=$(filter_path)
 
+      # remove the item
       if [[ ! $(list_paths | grep "^${cwd}*\$" ) ]]; then
-        export PATH=$PATH:$cwd
+        remove_path $cwd
+      fi
 
-        # add comment for path
-        if [[ "$1" != "" ]]; then
-          echo "$cwd# $@" >> $ZDOTDIR/.env
-        else
-          echo $cwd >> $ZDOTDIR/.env
-        fi
+      export PATH=$PATH:$cwd
 
+      # add comment for path
+      if [[ "$1" != "" ]]; then
+        echo "$cwd # $@" >> $env_file
+      else
+        echo $cwd >> $env_file
       fi
     ;;
 
@@ -68,13 +73,17 @@ main() {
 
           if [[ "$1" == "-delete" ]]; then
             remove_path "$target" 
-            echo "removed invalid path \"$target\""
+            echo "Removed invalid path \"$target\""
           else
             echo "\"$target\" is invalid path"
           fi
         fi
 
       done < <(echo "$(list_paths)")
+    ;;
+
+    edit)
+      ${EDITOR:-vim} $env_file
     ;;
 
     *)
