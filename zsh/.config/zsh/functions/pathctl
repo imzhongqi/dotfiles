@@ -1,7 +1,7 @@
 usage() {
-    printf "for manage PATH environment variable
+    printf "\033[0;32mfor manage PATH environment variable\033[0;00m
 
-COMMAND:
+\033[0;33mCOMMAND:\033[0;00m
   ls                  list PATHs
   rm   [path]         remove current dir from PATHs; default: $(pwd)
   add                 add current dir to PATHs
