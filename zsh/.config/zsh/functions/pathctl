@@ -34,7 +34,21 @@ filter_path() {
   echo $cwd
 }
 
+err() {
+  printf "\033[0;31mError:\033[0;00m %s" "$@"
+}
+
 main() {
+  # precheck
+  if [[ ! -e $env_file ]]; then
+    touch $env_file
+  else
+    if [[ ! -f $env_file ]]; then
+      err "env file path \"$env_file\" is not a file." 
+      return -1
+    fi
+  fi
+
   local cmd=$1
   if (( $# > 0 )); then
     shift
@@ -73,6 +87,9 @@ main() {
 
     tidy)
       while read target; do
+        if [[ "$target" == "" ]]; then
+          continue
+        fi
 
         if [[ ! -d $(sh -c "echo $target")  ]]; then
 
