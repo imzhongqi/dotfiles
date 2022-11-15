@@ -18,7 +18,17 @@ list_paths() {
 }
 
 del_path() {
+  # delete target
+  local target=$(sh -c "echo $1")
+
+  # delete env file item
   cat $env_file | sed -e "s|^$1\( *#.*\)*\$||" -e '/^$/d' | tee $env_file >/dev/null
+
+  # from PATH variable delete path
+  local paths=($(echo $PATH | tr ':' '\n' | sed -e "s|^${target}\$||" -e '/^$/d'))
+
+  # reexport PATH
+  export PATH=$(export IFS=":"; echo "${paths[*]}")
 }
 
 filter_path() {
@@ -36,6 +46,12 @@ filter_path() {
 
 err() {
   printf "\033[0;31mError:\033[0;00m %s" "$@"
+}
+
+reload_env() {
+  local paths=$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $env_file 2>/dev/null| sh)
+  paths=($(echo "${(j.:.)paths}:$PATH" | tr ':' '\n' | sort -u))
+  export PATH=$(export IFS=":"; echo "${paths[*]}")
 }
 
 main() {
@@ -75,14 +91,14 @@ main() {
         del_path $cwd
       fi
 
-      export PATH=$PATH:$cwd
-
       # add comment for path
       if [[ "$1" != "" ]]; then
         echo "$cwd # $@" >> $env_file
       else
         echo $cwd >> $env_file
       fi
+
+      reload_env
     ;;
 
     tidy)
@@ -106,10 +122,6 @@ main() {
 
     edit)
       ${EDITOR:-vim} $env_file
-    ;;
-
-    reload)
-      export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $env_file 2>/dev/null| sh)}:$PATH
     ;;
 
     *)
