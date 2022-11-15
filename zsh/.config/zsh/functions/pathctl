@@ -3,9 +3,10 @@ usage() {
 
 \033[0;33mCOMMAND:\033[0;00m
   ls                  list PATHs
-  rm   [path]         remove current dir from PATHs; default: $(pwd)
+        [-p]          show real path
+  rm    [path]        remove current dir from PATHs; default: $(pwd)
   add                 add current dir to PATHs
-  tidy [-delete]      check invalid path and delete
+  tidy  [-delete]     check invalid path and delete
   edit                use \${EDITOR:-vim} editor open the env file; default: $EDITOR
 "
 }
@@ -45,7 +46,11 @@ main() {
     ;;
 
     ls)
-      cat $env_file
+      if [[ "$1" == "-p" ]]; then
+        sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ENV_FILE | sh
+      else
+        cat $env_file
+      fi
     ;;
 
     add)
