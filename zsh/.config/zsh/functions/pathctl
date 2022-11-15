@@ -4,8 +4,8 @@ usage() {
 \033[0;33mCOMMAND:\033[0;00m
   ls                  list PATHs
         [-p]          show real path
-  rm    [path]        remove current dir from PATHs; default: $(pwd)
-  add                 add current dir to PATHs
+  del   [path]        remove current dir from PATHs; default: $(pwd)
+  put                 put current dir into PATHs
   tidy  [-delete]     check invalid path and delete
   edit                use \${EDITOR:-vim} editor open the env file; default: $EDITOR
 "
@@ -17,7 +17,7 @@ list_paths() {
   sed -e 's/\(.*\)#.*/\1/g' -e '/^$/d' $env_file
 }
 
-remove_path() {
+del_path() {
   cat $env_file | sed -e "s|^$1\( *#.*\)*\$||" -e '/^$/d' | tee $env_file >/dev/null
 }
 
@@ -55,8 +55,8 @@ main() {
   fi
 
   case $cmd in
-    rm)
-      remove_path $(filter_path "$1")
+    del)
+      del_path $(filter_path "$1")
     ;;
 
     ls)
@@ -67,12 +67,12 @@ main() {
       fi
     ;;
 
-    add)
+    put)
       local cwd=$(filter_path)
 
       # remove the item
-      if [[ ! $(list_paths | grep "^${cwd}*\$" ) ]]; then
-        remove_path $cwd
+      if [[ $(list_paths | grep "^${cwd}*\$" ) ]]; then
+        del_path $cwd
       fi
 
       export PATH=$PATH:$cwd
@@ -94,7 +94,7 @@ main() {
         if [[ ! -d $(sh -c "echo $target")  ]]; then
 
           if [[ "$1" == "-delete" ]]; then
-            remove_path "$target" 
+            del_path "$target" 
             echo "Removed invalid path \"$target\""
           else
             echo "\"$target\" is invalid path"
@@ -106,6 +106,10 @@ main() {
 
     edit)
       ${EDITOR:-vim} $env_file
+    ;;
+
+    reload)
+      export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $env_file 2>/dev/null| sh)}:$PATH
     ;;
 
     *)
