@@ -45,7 +45,7 @@ filter_path() {
 }
 
 err() {
-  printf "\033[0;31mError:\033[0;00m %s" "$@"
+  printf "\033[0;31mError:\033[0;00m %s" "$*"
 }
 
 reload_env() {
