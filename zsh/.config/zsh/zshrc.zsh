@@ -8,8 +8,10 @@ fi
 # zsh 命令行提示符 % 问题
 PROMPT_EOL_MARK=''
 
-FZF_DEFAULT_COMMAND='fd --type f'
 HIST_STAMPS='yyyy-mm-dd'
+
+FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_OPTS='--prompt="❯ " --pointer="" --marker="" --border=rounded  --layout=reverse --inline-info'
 
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'

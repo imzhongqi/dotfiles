@@ -42,7 +42,7 @@ nnoremap <leader>a :action Annotate<CR>
 
 nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 
-map ge <Action>(ShowErrorDescription)
+map gl <Action>(ShowErrorDescription)
 
 map <leader>tt :action $TranslateTextComponent<CR>
 
