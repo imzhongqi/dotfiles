@@ -5,13 +5,21 @@ source ~/.config/vim/general.vim
 source ~/.config/vim/key-bindings.vim
 
 """ Plugins  ----------------------------------------
-set surround
-set multiple-cursors
-set commentary
-set easymotion
-set textobj-entire
-set ReplaceWithRegister
-set highlightedyank
+" https://betterprogramming.pub/the-essential-ideavim-plugins-f939b4325180
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tommcdo/vim-exchange'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'machakann/vim-highlightedyank'
+Plug 'vim-scripts/argtextobj.vim'
+
+"set sneak
 
 """ Ideavim specific settings ------------------------
 set ideajoin
@@ -23,27 +31,38 @@ set keep-english-in-normal
 """ Settings
 set vb
 
+let g:argtextobj_pairs="(:),{:},<:>"
+let g:argumentobject_force_toplevel = 0
+
 """ Mappings -----------------------------------------
-nnoremap <leader>rn :action RenameElement<CR>
 
-" go to tab
-nnoremap <leader>1 :action GoToTab1<CR>
-nnoremap <leader>2 :action GoToTab2<CR>
-nnoremap <leader>3 :action GoToTab3<CR>
-nnoremap <leader>4 :action GoToTab4<CR>
-nnoremap <leader>5 :action GoToTab5<CR>
-nnoremap <leader>6 :action GoToTab6<CR>
-nnoremap <leader>7 :action GoToTab7<CR>
-nnoremap <leader>8 :action GoToTab8<CR>
-nnoremap <leader>9 :action GoToTab9<CR>
+map Q :q!<CR>
+map <c-t>   :NERDTree<CR>
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
 
-nnoremap <leader>s :action SelectInProjectView<CR>
-nnoremap <leader>a :action Annotate<CR>
-
-nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
-
-map gl <Action>(ShowErrorDescription)
-
-map <leader>tt :action $TranslateTextComponent<CR>
-
+map <Leader>ga :action Annotate<CR>
+map <Leader>tt :action $TranslateTextComponent<CR>
+map gl :action ShowErrorDescription<CR>
+nnoremap <Leader>rn :action RenameElement<CR>
+nnoremap <Leader>ot :action ActivateTerminalToolWindow<CR>
 nnoremap gi :action GotoImplementation<CR>
+
+map <Leader>gf :action GotoFile<CR>
+nnoremap <C-n> gt
+nnoremap <C-p> gT
+
+nnoremap <Leader>d :action Debug<CR>
+nnoremap <Leader>tb :action ToggleLineBreakpoint<CR>
+nnoremap <Leader>vb :action ViewBreakpoints<CR>
+nnoremap <Leader>r :action Run<CR>
+nnoremap <Leader>s :action Stop<CR>
+nnoremap <Leader>rr :action Rerun<CR>
+nnoremap <Leader>cd :action ChooseDebugConfiguration<CR>
+nnoremap <Leader>cr :action ChooseRunConfiguration<CR>
+
+nnoremap <Leader>sw :action SurroundWith<CR>
+nnoremap <Leader>oi :action OptimizeImports<CR>
+nnoremap <Leader>tz :action ToggleZenMode<CR>
+nnoremap <Leader>ns :action NewScratchFile<CR>
+nnoremap <Leader>ic :action InspectCode<CR>
