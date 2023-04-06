@@ -6,40 +6,86 @@ source ~/.config/vim/key-bindings.vim
 
 """ Plugins  ----------------------------------------
 " https://betterprogramming.pub/the-essential-ideavim-plugins-f939b4325180
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
-Plug 'easymotion/vim-easymotion'
-Plug 'preservim/nerdtree'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tommcdo/vim-exchange'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'vim-scripts/argtextobj.vim'
-Plug 'kana/vim-textobj-entire'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'machakann/vim-highlightedyank'
-Plug 'vim-scripts/argtextobj.vim'
 
 "set sneak
 
-""" Ideavim specific settings ------------------------
+Plug 'tpope/vim-commentary'
+let g:WhichKeyDesc_com = "gc"
+Plug 'easymotion/vim-easymotion'
+map , <Plug>(easymotion-prefix)
+let g:WhichKeyDesc_easymotion_leader = ","
+map ,f <Plug>(easymotion-bd-f)
+let g:WhichKeyDesc_easymotion_f = ",f"
+map ,t <Plug>(easymotion-bd-t)
+let g:WhichKeyDesc_easymotion_t = ",t"
+map ,w <Plug>(easymotion-bd-w)
+let g:WhichKeyDesc_easymotion_w = ",w"
+map ,W <Plug>(easymotion-bd-W)
+let g:WhichKeyDesc_easymotion_W = ",W"
+map ,e <Plug>(easymotion-bd-e)
+let g:WhichKeyDesc_easymotion_e = ",e"
+map ,E <Plug>(easymotion-bd-E)
+let g:WhichKeyDesc_easymotion_E = ",E"
+map ,l <Plug>(easymotion-bd-jk)
+let g:WhichKeyDesc_easymotion_l = ",l"
+map ,s <Plug>(easymotion-bd-f2)
+let g:WhichKeyDesc_easymotion_s = ",s"
+map ,S <Plug>(easymotion-bd-t2)
+let g:WhichKeyDesc_easymotion_S = ",S"
+
+Plug 'tpope/vim-surround' " https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
+let g:WhichKeyDesc_surround_ys = "ys"
+let g:WhichKeyDesc_surround_ds = "ds"
+let g:WhichKeyDesc_surround_cs = "cs"
+
+set multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
+let g:WhichKeyDesc_mult = "g<A-n>"
+map ,m <Plug>NextWholeOccurrence
+let g:WhichKeyDesc_multiple_m = ",m"
+map ,M <Plug>SkipOccurrence
+let g:WhichKeyDesc_multiple_M = ",M"
+
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'machakann/vim-highlightedyank'
+Plug 'preservim/nerdtree'
+Plug 'tommcdo/vim-exchange'
+let g:WhichKeyDesc_exchange = "cx"
+Plug 'vim-scripts/ReplaceWithRegister'
+let g:WhichKeyDesc_replace = "gr"
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'dbakker/vim-paragraph-motion'
+Plug 'kana/vim-textobj-entire'
+
+set which-key
+
+""" Settings -----------------------------------------
 set ideajoin
 set ideaputdd
 set ideamarks
 set idearefactormode=keep
 set keep-english-in-normal
 
-""" Settings
 set vb
+
+let g:WhichKey_FontSize = 14
+let g:WhichKey_CommandColor = "#41ad4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_KeyStyle = "bold"
+let g:WhichKey_KeyColor = "red"
+let g:WhichKey_CommandStyle = "bold"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+let g:WhichKey_DefaultDelay = 600
+set timeoutlen=5000
 
 let g:argtextobj_pairs="(:),{:},<:>"
 let g:argumentobject_force_toplevel = 0
 
 """ Mappings -----------------------------------------
-
-map Q :q!<CR>
 map <c-t>   :NERDTree<CR>
-map <leader>F <Plug>(easymotion-s)
-map <leader>f <Plug>(easymotion-f)
+map <Leader>F <Plug>(easymotion-s)
+map <Leader>f <Plug>(easymotion-f)
 
 map <Leader>ga :action Annotate<CR>
 map <Leader>tt :action $TranslateTextComponent<CR>
@@ -66,3 +112,8 @@ nnoremap <Leader>oi :action OptimizeImports<CR>
 nnoremap <Leader>tz :action ToggleZenMode<CR>
 nnoremap <Leader>ns :action NewScratchFile<CR>
 nnoremap <Leader>ic :action InspectCode<CR>
+
+nmap gt <Action>(NextTab)
+
+nmap rc :s/_\(\w\)/\U\1/g<CR>
+vmap rc :'<,'> s/_\(\w\)/\U\1/g<CR>
