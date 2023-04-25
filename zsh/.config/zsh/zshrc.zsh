@@ -23,6 +23,7 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' sort false # disable sort completions
 zstyle ':completion:*:exa' sort false
 zstyle ':completion:files' sort false
 zstyle ':fzf-tab:*:*argument-rest*' popup-pad 100 0
@@ -47,7 +48,6 @@ source $ZDOTDIR/zinit/bin/zinit.zsh
 
 FPATH=$XDG_CONFIG_HOME/zsh/functions:"$XDG_CONFIG_HOME/zsh/completions":$FPATH
 autoload -Uz $XDG_CONFIG_HOME/zsh/functions/*(:t)
-
 
 GENCOMP_DIR=$XDG_CONFIG_HOME/zsh/completions
 
