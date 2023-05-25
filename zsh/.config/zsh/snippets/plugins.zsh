@@ -17,6 +17,8 @@ snippets=(
   nocd wait"0"
     OMZP::docker-compose/docker-compose.plugin.zsh
   nocd wait"0"
+    OMZP::terraform/terraform.plugin.zsh
+  nocd wait"0"
     OMZP::sudo/sudo.plugin.zsh
   nocd wait"0" atinit="[[ ! -e $ZSH_CACHE_DIR/completions ]] && mkdir $ZSH_CACHE_DIR/completions" atload="zicompinit; zicdreplay"
     OMZP::kubectl/kubectl.plugin.zsh
@@ -33,6 +35,9 @@ completions=(
 
   nocd
     OMZP::docker-compose/_docker-compose
+
+  nocd
+    OMZP::terraform/_terraform
 
   nocd
     OMZP::docker/_docker
