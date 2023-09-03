@@ -17,6 +17,8 @@ snippets=(
   nocd wait"0"
     OMZP::docker-compose/docker-compose.plugin.zsh
   nocd wait"0"
+    OMZP::docker/docker.plugin.zsh
+  nocd wait"0"
     OMZP::terraform/terraform.plugin.zsh
   nocd wait"0"
     OMZP::sudo/sudo.plugin.zsh
@@ -40,7 +42,7 @@ completions=(
     OMZP::terraform/_terraform
 
   nocd
-    OMZP::docker/_docker
+    OMZP::docker/completions/_docker
 
   nocd
     OMZP::fd/_fd
