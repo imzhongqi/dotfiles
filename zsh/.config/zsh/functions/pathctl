@@ -11,7 +11,7 @@ usage() {
 "
 }
 
-local env_file=${ENV_FILE:-$ZDOTDIR/.env}
+local env_file=${ENVFILE:-$ZDOTDIR/.env}
 
 list_paths() {
   sed -e 's/\(.*\)#.*/\1/g' -e '/^$/d' $env_file
@@ -77,7 +77,7 @@ main() {
 
     ls)
       if [[ "$1" == "-p" ]]; then
-        sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ENV_FILE | sh
+        sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $env_file | sh
       else
         cat $env_file
       fi
@@ -121,7 +121,16 @@ main() {
     ;;
 
     edit)
-      ${EDITOR:-vim} $env_file
+      temp_file=$(mktemp -t env)
+      cp $env_file $temp_file
+      ${EDITOR:-vim} $temp_file
+      cat $temp_file > $env_file 
+      rm $temp_file
+      reload_env
+    ;;
+
+    reload)
+      reload_env
     ;;
 
     *)

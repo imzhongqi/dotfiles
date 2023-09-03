@@ -11,7 +11,7 @@ PROMPT_EOL_MARK=''
 HIST_STAMPS='yyyy-mm-dd'
 
 FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--prompt="❯ " --pointer=" " --marker=" " --border=rounded  --layout=reverse --info=hidden --color=bg+:24'
+export FZF_DEFAULT_OPTS='--prompt="❯ " --pointer=" " --marker=" " --border=rounded  --layout=reverse --info=hidden --color=bg+:24'
 
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
@@ -19,14 +19,14 @@ zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 #zstyle ":fzf-tab:*" fzf-flags --color=bg+:24
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+#zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' sort false # disable sort completions
 zstyle ':completion:*:exa' sort false
 zstyle ':completion:files' sort false
-zstyle ':fzf-tab:*:*argument-rest*' popup-pad 100 0
+#zstyle ':fzf-tab:*:*argument-rest*' popup-pad 100 0
 
 command -v nvim >/dev/null && export EDITOR=nvim || export EDITOR=vim
 
