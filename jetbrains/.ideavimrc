@@ -7,7 +7,7 @@ source ~/.config/vim/key-bindings.vim
 """ Plugins  ----------------------------------------
 " https://betterprogramming.pub/the-essential-ideavim-plugins-f939b4325180
 
-"set sneak
+set sneak
 
 Plug 'tpope/vim-commentary'
 let g:WhichKeyDesc_com = "gc"
@@ -89,14 +89,17 @@ map <Leader>f <Plug>(easymotion-f)
 
 map <Leader>ga :action Annotate<CR>
 map <Leader>tt :action $TranslateTextComponent<CR>
+map <Leader>gt :action $EditorTranslateAction<CR>
+vmap <Leader>gt :action $EditorTranslateAction<CR>
+
 map gl :action ShowErrorDescription<CR>
-nnoremap <Leader>rn :action RenameElement<CR>
-nnoremap <Leader>ot :action ActivateTerminalToolWindow<CR>
-nnoremap gi :action GotoImplementation<CR>
+nmap <Leader>rn :action RenameElement<CR>
+nmap <Leader>ot :action ActivateTerminalToolWindow<CR>
+nmap gi :action GotoImplementation<CR>
 
 map <Leader>gf :action GotoFile<CR>
-nnoremap <C-n> gt
-nnoremap <C-p> gT
+map <C-n> gt
+map <C-p> gT
 
 nnoremap <Leader>d :action Debug<CR>
 nnoremap <Leader>tb :action ToggleLineBreakpoint<CR>

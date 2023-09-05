@@ -19,5 +19,7 @@ export CHTSH=~/.config/cht.sh
 # default env
 export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ZDOTDIR/.env 2>/dev/null| sh)}:$PATH
 
-export ENV_FILE=$ZDOTDIR/env
-export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ENV_FILE 2>/dev/null| sh)}:$PATH
+export ENVFILE=$ZDOTDIR/env
+export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ENVFILE 2>/dev/null| sh)}:$PATH
+
+

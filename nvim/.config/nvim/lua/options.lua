@@ -85,10 +85,6 @@ vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completi
 vim.opt.shortmess:append("I") -- don't show the default intro message
 vim.opt.whichwrap:append("<,>,[,],h,l") -- help whichwrap learn more
 
--- set the toggle-proxy
--- vim.g.http_proxy = "http://localhost"
--- vim.g.https_proxy = "http://localhost"
-
 -- set the log level for notify
 vim.g.log_level = vim.lsp.log_levels.INFO
 

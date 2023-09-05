@@ -46,54 +46,6 @@ local keymaps = {
     },
 
     n = {
-        ["<A-h>"] = function()
-            require("smart-splits").resize_left()
-        end,
-        ["<A-j>"] = function()
-            require("smart-splits").resize_down()
-        end,
-        ["<A-k>"] = function()
-            require("smart-splits").resize_up()
-        end,
-        ["<A-l>"] = function()
-            require("smart-splits").resize_right()
-        end,
-        ["<C-h>"] = function()
-            require("smart-splits").move_cursor_left()
-        end,
-        ["<C-j>"] = function()
-            require("smart-splits").move_cursor_down()
-        end,
-        ["<C-k>"] = function()
-            require("smart-splits").move_cursor_up()
-        end,
-        ["<C-l>"] = function()
-            require("smart-splits").move_cursor_right()
-        end,
-
-        -- debugger
-        ["<M-K>"] = function()
-            require("dapui").eval()
-        end,
-        ["<M-c>"] = function()
-            require("dap").continue()
-        end,
-        ["<M-n>"] = function()
-            require("dap").step_over()
-        end,
-        ["<M-i>"] = function()
-            require("dap").step_into()
-        end,
-        ["<M-o>"] = function()
-            require("dap").step_out()
-        end,
-        ["<M-b>"] = function()
-            require("dap").toggle_breakpoint()
-        end,
-
-        ["<M-[>"] = "<cmd>bp<CR>",
-        ["<M-]>"] = "<cmd>bn<CR>",
-
         ["<localleader>s"] = function ()
             require("hop").hint_char1()
         end,
@@ -108,21 +60,6 @@ local keymaps = {
                 direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
                 current_line_only = true,
             })
-        end,
-
-        gb = "<cmd>BufferLinePick<CR>",
-        gR = "<cmd>Trouble lsp_references<CR>",
-        gr = function()
-            require("lspsaga.rename").rename()
-        end,
-
-
-        ["<localleader>f"] = function()
-            require("fzf-lua").files()
-        end,
-
-        ["<localleader>*"] = function()
-            require("fzf-lua").grep_cword()
         end,
     },
 
