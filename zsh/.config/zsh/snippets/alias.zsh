@@ -14,4 +14,8 @@ alias df='df -h'  du='du -h'  plast="last -20"
 alias cp='cp -v'   mv='mv -v'
 alias ts='date +%s'
 
+ts2date() {
+	[[ $(uname -s) == Linux ]] && date -d "@$1" || date -r "$1"
+}
+
 command_check kitty && alias s='kitty +kitten ssh'
