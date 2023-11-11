@@ -1,0 +1,161 @@
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" Source
+let mapleader = " "
+
+set timeoutlen=5000
+set clipboard=unnamed
+set number              " Show number
+set relativenumber      " Show relative number
+
+
+" Settings
+set vb
+set ideajoin
+set ideaputdd
+set ideamarks
+set idearefactormode=keep
+" set ideastatusicon=gray
+set scrolloff=5
+set incsearch
+
+
+set keep-english-in-normal-and-restore-in-insert
+set multiple-cursors
+set which-key
+set sneak
+set quickscope
+
+" Plugins
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'preservim/nerdtree'
+Plug 'tommcdo/vim-exchange'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kana/vim-textobj-entire'                                  " e text object == entire buffer
+Plug 'vim-scripts/argtextobj.vim'                               " args text object daa = delete around args, cia change insert args
+Plug 'michaeljsmith/vim-indent-object'                          " ai or ii
+Plug 'dbakker/vim-paragraph-motion'                             " '{' or '}' enhance
+
+
+" Plugins Configuration
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+let g:qs_primary_color = '#ff0000'
+let g:qs_secondary_color = '#ff00ff'
+
+let g:argtextobj_pairs="(:),{:},[:],<:>"
+let g:argumentobject_force_toplevel = 0
+
+let g:WhichKey_FontSize = 14
+let g:WhichKey_CommandColor = "#cba6f7"
+let g:WhichKey_PrefixColor = "#d27e99"
+let g:WhichKey_KeyColor = "#7aa2f7"
+let g:WhichKey_KeyStyle = "bold"
+let g:WhichKey_CommandStyle = "bold"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_DefaultDelay = 600
+let g:WhichKey_Divider = " ➜ "
+let g:WhichKey_ShowVimActions = "true"
+
+let g:WhichKeyDesc_leader = "<leader> leader key"
+let g:WhichKeyDesc_com = "gc"
+
+" map , <Plug>(easymotion-prefix)
+" let g:WhichKeyDesc_easymotion_leader = ","
+" map ,f <Plug>(easymotion-bd-f)
+" let g:WhichKeyDesc_easymotion_f = ",f"
+" map ,t <Plug>(easymotion-bd-t)
+" let g:WhichKeyDesc_easymotion_t = ",t"
+" map ,w <Plug>(easymotion-bd-w)
+" let g:WhichKeyDesc_easymotion_w = ",w"
+" map ,W <Plug>(easymotion-bd-W)
+" let g:WhichKeyDesc_easymotion_W = ",W"
+" map ,e <Plug>(easymotion-bd-e)
+" let g:WhichKeyDesc_easymotion_e = ",e"
+" map ,E <Plug>(easymotion-bd-E)
+" let g:WhichKeyDesc_easymotion_E = ",E"
+" map ,l <Plug>(easymotion-bd-jk)
+" let g:WhichKeyDesc_easymotion_l = ",l"
+" map ,s <Plug>(easymotion-bd-f2)
+" let g:WhichKeyDesc_easymotion_s = ",s"
+" map ,S <Plug>(easymotion-bd-t2)
+" let g:WhichKeyDesc_easymotion_S = ",S"
+
+let g:WhichKeyDesc_surround_ys = "ys"
+let g:WhichKeyDesc_surround_ds = "ds"
+let g:WhichKeyDesc_surround_cs = "cs"
+
+let g:WhichKeyDesc_mult = "g<A-n>"
+map ,m <Plug>NextWholeOccurrence
+let g:WhichKeyDesc_multiple_m = ",m"
+map ,M <Plug>(SkipOccurrence)
+let g:WhichKeyDesc_multiple_M = ",M"
+
+let g:WhichKeyDesc_exchange = "cx"
+let g:WhichKeyDesc_replace = "gr"
+
+
+nnoremap qq :q<cr>
+
+map <C-w>\ <Action>(SplitVertically)
+map <C-w>- <Action>(SplitHorizontally)
+map <C-BS> <Action>(Unsplit)
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+map <C-n> gt
+map <C-p> gT
+
+" Editor Mappings
+map <leader><leader>; <Action>(GotoFile)
+map <leader>ga <Action>(Annotate)
+
+map gl <Action>(ShowErrorDescription)
+
+map <M-k> <Action>(MoveLineUp)
+map <M-j> <Action>(MoveLineDown)
+
+map <leader>xc <Action>(InvalidateCaches)
+map <leader>xn <Action>(CloseAllNotifications)
+map <leader>xw <Action>(HideAllWindows)
+
+nmap <leader>rn <Action>(RenameElement)
+nmap <leader>ot <Action>(ActivateTerminalToolWindow)
+nmap gi <Action>(GotoImplementation)
+
+nmap <leader>d <Action>(Debug)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dvb <Action>(ViewBreakpoints)
+nmap <leader>r <Action>(Run)
+nmap <leader>s <Action>(Stop)
+nmap <leader>rr <Action>(Rerun)
+nmap <leader>cd <Action>(ChooseDebugConfiguration)
+nmap <leader>cr <Action>(ChooseRunConfiguration)
+
+nnoremap <leader>sw :action SurroundWith<cr>
+nnoremap <leader>oi :action OptimizeImports<cr>
+nnoremap <leader>tz :action ToggleZenMode<cr>
+nnoremap <leader>ns :action NewScratchFile<cr>
+nnoremap <leader>ic :action InspectCode<cr>
+
+map <leader>gt <Action>($EditorTranslateAction)
+vmap <leader>gt <Action>($EditorTranslateAction)
+
+
+
+" Plugins Mappings
+map <c-t>   :NERDTree<cr>
+
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+
+nmap cx <Plug>(Exchange)
+xmap X <Plug>(Exchange)
+nmap cxc <Plug>(ExchangeClear)
+nmap cxx <Plug>(ExchangeLine)
