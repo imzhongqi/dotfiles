@@ -16,10 +16,6 @@ export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/startup.py; [[ ! -e $PYTHONSTARTUP 
 export SSH_PROXY=127.0.0.1:1081
 export CHTSH=~/.config/cht.sh
 
-# default env
-export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ZDOTDIR/.env 2>/dev/null| sh)}:$PATH
+export PATH=$ZDOTDIR/bin:$PATH
 
-export ENVFILE=$ZDOTDIR/env
-export PATH=${(j.:.)$(sed -e 's/^[ \t]*//' -e '/^[^#]/ s/^/echo /' $ENVFILE 2>/dev/null| sh)}:$PATH
-
-
+export ENVFILEPATH=$ZDOTDIR/env
