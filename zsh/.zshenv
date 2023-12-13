@@ -19,3 +19,6 @@ export CHTSH=~/.config/cht.sh
 export PATH=$ZDOTDIR/bin:$PATH
 
 export ENVFILEPATH=$ZDOTDIR/env
+
+export LDFLAGS="-L/usr/local/opt/mysql-client/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql-client/include"

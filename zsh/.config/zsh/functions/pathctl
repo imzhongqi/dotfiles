@@ -9,11 +9,13 @@ __join_path() {
 }
 
 __read_env() {
-  sed -e 's/^[[:blank:]]*//' -e 's/^#.*//' -e '/^$/d' -e 's/.*/[ -d "&" ] \&\& echo &/' $ENVFILEPATH | sh
+  local ENVFILEPATH=${1:-$ENVFILEPATH}
+  sed -e 's/#.*//; s/^[[:blank:]]*//; s/[[:blank:]]*$//' -e '/^$/d' -e 's/.*/[ -d "&" ] \&\& echo &/' $ENVFILEPATH | sh
 }
 
 load_paths() {
-  echo "$(__read_env | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
+  local ENVFILEPATH=${1:-$ENVFILEPATH}
+  echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
 pathctl() {
@@ -80,7 +82,10 @@ pathctl() {
     ;;
 
     load)
-      export PATH=$(load_paths)
+      local file_path="${1:-$ENVFILEPATH}"
+      if [[ -e "$file_path"  ]]; then
+        export PATH=$(load_paths $file_path)
+      fi
     ;;
 
     *)
