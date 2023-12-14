@@ -18,6 +18,10 @@ load_paths() {
   echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
+list_paths() {
+  echo "$PATH" | tr ':' '\n'
+}
+
 __precheck() {
   local file_path="${1:-$ENVFILEPATH}"
   if [[ ! -e $ENVFILEPATH ]]; then
@@ -68,7 +72,15 @@ __pathctl() {
 
     ls)
       ! __precheck "$ENVFILEPATH" && return 1
-      cat $ENVFILEPATH
+      if [[ "$1" == "-p" ]]; then
+        __read_env
+      else
+        cat $ENVFILEPATH
+      fi
+    ;;
+
+    ls-paths)
+      list_paths
     ;;
 
     del)
@@ -122,6 +134,9 @@ __pathctl() {
     *)
       printf "\033[0;32mfor manage PATH environment variable\033[0;00m
 
+\033[0;33mUSAGE:\033[0;00m
+  pathctl [COMMAND] [FLAGS]
+
 \033[0;33mCOMMAND:\033[0;00m
   ls                  list PATHs
           [-p]        show real path
@@ -129,6 +144,7 @@ __pathctl() {
   put     [PATH]      put current dir into PATH
   load    [PATH]      load env from PATH
   edit                use editor open the env file; default: ${EDITOR:-vim}
+  help                show this message
 "
     ;;
   esac
