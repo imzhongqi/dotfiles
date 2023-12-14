@@ -1,5 +1,6 @@
 pcall(require, "impatient")
 
-require("options")
-require("plugins")
-require("keymaps")
+require("user.plugins").init()
+
+require("user.options")
+require("user.keymaps")

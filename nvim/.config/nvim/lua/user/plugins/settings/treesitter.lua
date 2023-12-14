@@ -7,24 +7,16 @@ function M.setup()
     end
 
     configs.setup({
+        auto_install = true,
+        sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+        modules = {},
         ensure_installed = {
             "vim",
             "go",
             "python",
             "lua",
         },
-        sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
         ignore_install = {}, -- List of parsers to ignore installing
-
-        autopairs = {
-            enable = true,
-        },
-
-        highlight = {
-            enable = false, -- false will disable the whole extension
-            disable = {}, -- list of language that will be disabled
-            additional_vim_regex_highlighting = true,
-        },
 
         indent = {
             enable = true,

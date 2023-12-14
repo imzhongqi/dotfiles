@@ -1,7 +1,5 @@
 -- https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
-local path = require("util").path
-
-local options = {
+return {
     backup = false, -- creates a backup file
     writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 
@@ -51,7 +49,7 @@ local options = {
     showtabline = 2, -- always show tabs
 
     conceallevel = 0, -- so that `` is visible in markdown files
-    undodir = path.join(vim.fn.stdpath("cache"), "undo"), -- set an undo directory
+    undodir = require("user.utils.path").join(vim.fn.stdpath("cache"), "undo"), -- set an undo directory
     undofile = true, -- enable persistent undo
 
     shiftwidth = 4, -- the number of spaces inserted for each indentation
@@ -76,27 +74,3 @@ local options = {
     -- spell = true,
     -- spelllang = { "en_us" },
 }
-
-for k, v in pairs(options) do
-    vim.opt[k] = v
-end
-
-vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
-vim.opt.shortmess:append("I") -- don't show the default intro message
-vim.opt.whichwrap:append("<,>,[,],h,l") -- help whichwrap learn more
-
--- set the log level for notify
-vim.g.log_level = vim.lsp.log_levels.INFO
-
-vim.g.search_exclude_patterns = {
-    "**/venv",
-    "**/node_modules",
-    ".git",
-    ".idea",
-    ".vscode",
-    "Thumbs.db",
-    ".DS_Store",
-}
-
--- disable the copilot tab map
--- vim.g.copilot_no_tab_map = true

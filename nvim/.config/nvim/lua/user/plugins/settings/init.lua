@@ -1,11 +1,11 @@
 local modules = {
-    "autopairs",
     "comment",
     "impatient",
     "indent-o-matic",
     "nvim-hop",
     "surround",
     "treesitter",
+    "neotree",
 }
 
 local M = {}
@@ -15,7 +15,7 @@ function M.setup()
         local module = "plugins.settings." .. module_name
         local ok, v = pcall(require, module)
         if not ok then
-            vim.notify(string.format("load `%s` module setting failed, error: %s", module, v), "warn")
+            vim.notify(string.format("load `%s` module setting failed, error: %s", module, v), vim.log.levels.WARN)
             goto continue
         end
 

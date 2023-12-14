@@ -14,21 +14,6 @@
 -- 't'                 mapmode-t                Terminal                                                  :tmap
 
 local keymaps = {
-    [""] = {
-        t = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-                current_line_only = true,
-            })
-        end,
-        T = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-                current_line_only = true,
-            })
-        end,
-    },
-
     -- multi-line macro
     x = {
         ["@"] = [[:<C-u>execute "'<,'>normal @".nr2char(getchar())<CR>]],
@@ -39,46 +24,16 @@ local keymaps = {
             callback = "<ESC>",
             opts = { remap = true },
         },
-        -- ["<C-X>"] = {
-        --     callback = [[copilot#Accept("<CR>")]],
-        --     opts = { silent = true, expr = true, script = true }
-        -- },
     },
 
     n = {
-        ["<localleader>s"] = function ()
-            require("hop").hint_char1()
-        end,
-        f = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-                current_line_only = true,
-            })
-        end,
-        F = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-                current_line_only = true,
-            })
+        ["<leader>h"] = "<Cmd>nohl<CR>",
+        ["<localleader>rn"] = function ()
+           require("vscode-neovim").call("editor.action.rename")
         end,
     },
 
-    o = {
-        f = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.AFTER_CURSOR,
-                current_line_only = true,
-                inclusive_jump = true,
-            })
-        end,
-        F = function()
-            require("hop").hint_char1({
-                direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
-                current_line_only = true,
-                inclusive_jump = true,
-            })
-        end,
-    },
+    o = { },
 }
 
 local map = function(mode, lhs, rhs, opts)
@@ -87,24 +42,17 @@ end
 
 -- set the leader key as "<Space>"
 map("", "<Space>", "<Nop>")
-vim.g.mapleader = " "
-
--- set local leader
+vim.g.mapleader = "\\"
 vim.g.maplocalleader = ";"
 
-local opts = { noremap = true, silent = true }
+local default_opts = { noremap = true, silent = true }
 
 for mode, maps in pairs(keymaps) do
     for lhs, rhs in pairs(maps) do
         if type(rhs) == "table" then
             map(mode, lhs, rhs["callback"], rhs["opts"])
         else
-            map(mode, lhs, rhs, opts)
+            map(mode, lhs, rhs, default_opts)
         end
     end
-end
-
--- tab switch 1-9
-for i = 1, 9 do
-    map("n", "<leader>" .. i, "<cmd>BufferLineGoTo " .. i .. "<CR>", opts)
 end
