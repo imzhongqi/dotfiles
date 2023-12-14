@@ -68,7 +68,7 @@ __pathctl() {
           target=$(echo $target | sed "s#$HOME#\$HOME#")
       fi
 
-      awk -v target=$target 'BEGIN{print target} {print}' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+      awk -v target=$target 'BEGIN{ print target } { print }' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
       export PATH=$(load_paths)
       eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join_path)'"
