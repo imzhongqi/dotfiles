@@ -104,15 +104,20 @@ pathctl() {
       pathctl load $ENVFILEPATH
     ;;
 
+    tidy)
+      __read_env | __unique | tee $ENVFILEPATH >/dev/null
+    ;;
+
     *)
       printf "\033[0;32mfor manage PATH environment variable\033[0;00m
 
 \033[0;33mCOMMAND:\033[0;00m
   ls                  list PATHs
-        [-p]          show real path
-  del   [PATH]        remove PATH from PATH environment; default: $(pwd)
-  put   [PATH]        put current dir into PATH
-  edit                use \${EDITOR:-vim} editor open the env file; default: $EDITOR
+          [-p]        show real path
+  del     [PATH]      remove PATH from PATH environment; default: $(pwd)
+  put     [PATH]      put current dir into PATH
+  load    [PATH]      load env from PATH
+  edit                use editor open the env file; default: ${EDITOR:-vim}
 "
     ;;
   esac
