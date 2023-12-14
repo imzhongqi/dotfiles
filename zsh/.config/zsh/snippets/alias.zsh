@@ -11,6 +11,6 @@ alias df='df -h'  	du='du -h'  plast="last -20"
 alias cp='cp -v'   	mv='mv -v'
 alias ts='date +%s'
 
-command_check exa ls='exa -bh --icons'
-command_check bat cat='bat --plain'
-command_check kitty s='kitty +kitten ssh'
+command_check exa 		'ls=exa -bh --icons'
+command_check bat 		'cat=bat --plain'
+command_check kitty 	's=kitty +kitten ssh'

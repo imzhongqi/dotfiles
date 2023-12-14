@@ -15,7 +15,7 @@ __read_env() {
 
 load_paths() {
   local ENVFILEPATH=${1:-$ENVFILEPATH}
-  echo "$(__read_env $ENVFILEPATH | sed -n '1!G;h;$p' | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
+  echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
 list_paths() {
@@ -68,10 +68,10 @@ __pathctl() {
           target=$(echo $target | sed "s#$HOME#\$HOME#")
       fi
 
-      echo "$target" >> $ENVFILEPATH
+      awk -v target=$target 'BEGIN{print target} {print}' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
       export PATH=$(load_paths)
-      eval _PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')=$(__read_env | __unique | __join_path)
+      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join_path)'"
     ;;
 
     ls)
@@ -105,7 +105,7 @@ __pathctl() {
       done < <(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh)
 
       export PATH=$(echo $PATH | tr ':' '\n' | sed -e "s|^$target$||;/^$/d" | __unique | __join_path)
-      eval _PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')="$(__read_env | __unique | __join_path)"
+      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join_path)'"
     ;;
 
     load)
@@ -123,7 +123,7 @@ __pathctl() {
       )
 
       export PATH=$(load_paths $file_path)
-      eval _PATHCTL_ENV_$(echo $file_path | tr './' '_')="$(__read_env | __unique | __join_path)"
+      eval "_PATHCTL_ENV_$(echo $file_path | tr './' '_')='$(__read_env | __unique | __join_path)'"
     ;;
 
     edit)
