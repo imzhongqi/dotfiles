@@ -18,7 +18,7 @@ load_paths() {
   echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
-pathctl() {
+__pathctl() {
   if [[ ! -e $ENVFILEPATH ]]; then
     touch $ENVFILEPATH
   elif [[ ! -f $ENVFILEPATH ]]; then
@@ -124,4 +124,4 @@ pathctl() {
   esac
 }
 
-pathctl "$@"
+__pathctl "$@"
