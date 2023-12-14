@@ -10,3 +10,5 @@
 !zinit/
 !zshrc.zsh
 !.env
+!bin/
+!bin/*
