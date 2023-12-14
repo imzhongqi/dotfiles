@@ -55,8 +55,9 @@ pathctl() {
       fi
 
       echo "$target" >> $ENVFILEPATH
-      
+
       export PATH=$(load_paths)
+      eval _PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')=$(__read_env | __unique | __join_path)
     ;;
 
     ls)
@@ -79,13 +80,28 @@ pathctl() {
       done < <(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh)
 
       export PATH=$(echo $PATH | tr ':' '\n' | sed -e "s|^$target$||;/^$/d" | __unique | __join_path)
+      eval _PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')="$(__read_env | __unique | __join_path)"
     ;;
 
     load)
       local file_path="${1:-$ENVFILEPATH}"
-      if [[ -e "$file_path"  ]]; then
-        export PATH=$(load_paths $file_path)
+      if [[ ! -e "$file_path"  ]]; then
+        return
       fi
+
+      export PATH=$(echo $PATH |
+        tr ':' '\n' |
+        awk -v PATH_ENV="$(eval "echo \$_PATHCTL_ENV_$(echo $file_path | tr './' '_')")" 'BEGIN { n = split(PATH_ENV, paths, ":"); for (i = 1; i <= n; i++) { set[paths[i]]++ } } !set[$0]' |
+        __join_path
+      )
+
+      export PATH=$(load_paths $file_path)
+      eval _PATHCTL_ENV_$(echo $file_path | tr './' '_')="$(__read_env | __unique | __join_path)"
+    ;;
+
+    edit)
+      ${EDITOR:-vim} $ENVFILEPATH
+      pathctl load $ENVFILEPATH
     ;;
 
     *)
