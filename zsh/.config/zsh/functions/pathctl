@@ -18,14 +18,17 @@ load_paths() {
   echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
-__pathctl() {
+__precheck() {
+  local file_path="${1:-$ENVFILEPATH}"
   if [[ ! -e $ENVFILEPATH ]]; then
     touch $ENVFILEPATH
   elif [[ ! -f $ENVFILEPATH ]]; then
-    err "env file path \"$ENVFILEPATH\" is not a file." 
+    echo "Error: \"$ENVFILEPATH\" is not a file." 
     return 1
   fi
-  
+}
+
+__pathctl() {
   local cmd="$1"
   if (( $# > 0 )); then
     shift
@@ -33,6 +36,8 @@ __pathctl() {
 
   case $cmd in
     put)
+      ! __precheck "$ENVFILEPATH" && return 1
+
       local target="${1:-$(pwd)}"
       if [[ ! "$target" =~ "^/" ]]; then
         # target must be a absoulute path
@@ -40,7 +45,7 @@ __pathctl() {
       fi
 
       if [[ ! -e "$target" ]] || [[ ! -d "$target" ]]; then
-        echo "invalid PATH, $target"
+        echo "invalid PATH: $target"
         return 1
       fi
 
@@ -61,10 +66,13 @@ __pathctl() {
     ;;
 
     ls)
+      ! __precheck "$ENVFILEPATH" && return 1
       cat $ENVFILEPATH
     ;;
 
     del)
+      ! __precheck "$ENVFILEPATH" && return 1
+
       local target="${1:-$(pwd)}"
         if [[ ! "$target" =~ "^/" ]]; then
         # target must be a absoulute path
@@ -86,7 +94,7 @@ __pathctl() {
     load)
       local file_path="${1:-$ENVFILEPATH}"
       if [[ ! -e "$file_path"  ]]; then
-        return
+        return 1
       fi
 
       export PATH=$(echo $PATH |

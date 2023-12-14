@@ -3,7 +3,7 @@
 " Source
 let mapleader = " "
 
-set timeoutlen=5000
+set timeoutlen=2000
 set clipboard=unnamed
 set number              " Show number
 set relativenumber      " Show relative number
@@ -24,7 +24,7 @@ set keep-english-in-normal-and-restore-in-insert
 set multiple-cursors
 set which-key
 set sneak
-set quickscope
+" set quickscope
 
 " Plugins
 Plug 'machakann/vim-highlightedyank'
@@ -42,10 +42,18 @@ Plug 'dbakker/vim-paragraph-motion'                             " '{' or '}' enh
 
 
 " Plugins Configuration
+
+" reload ideavim configuration
+let g:WhichKeyDesc_reload_ideavim = "<leader>re reload ideavimrc"
+nmap <leader>re <Action>(IdeaVim.ReloadVimRc.reload)
+
+let g:highlightedyank_highlight_duration = "300"
+let g:highlightedyank_highlight_color = "rgba(0, 238, 185, 56)"
+
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_accepted_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-let g:qs_primary_color = '#ff0000'
-let g:qs_secondary_color = '#ff00ff'
+let g:qs_primary_color = '#ee3799'
+let g:qs_secondary_color = '#00eeb9'
 
 let g:argtextobj_pairs="(:),{:},[:],<:>"
 let g:argumentobject_force_toplevel = 0
@@ -57,15 +65,16 @@ let g:WhichKey_KeyColor = "#7aa2f7"
 let g:WhichKey_KeyStyle = "bold"
 let g:WhichKey_CommandStyle = "bold"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
-let g:WhichKey_DefaultDelay = 600
+let g:WhichKey_DefaultDelay = 300
 let g:WhichKey_Divider = " ➜ "
 let g:WhichKey_ShowVimActions = "true"
+let g:WhichKey_ShowTypedSequence = "false"
 
 let g:WhichKeyDesc_leader = "<leader> leader key"
 let g:WhichKeyDesc_com = "gc"
 
 " map , <Plug>(easymotion-prefix)
-" let g:WhichKeyDesc_easymotion_leader = ","
+" let g:WhichKeyDesc_easymoion_leader = ","
 " map ,f <Plug>(easymotion-bd-f)
 " let g:WhichKeyDesc_easymotion_f = ",f"
 " map ,t <Plug>(easymotion-bd-t)
@@ -101,13 +110,20 @@ let g:WhichKeyDesc_replace = "gr"
 
 nnoremap qq :q<cr>
 
-map <C-w>\ <Action>(SplitVertically)
-map <C-w>- <Action>(SplitHorizontally)
-map <C-BS> <Action>(Unsplit)
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+let g:WhichKeyDesc_window_prefix = "<Space>w window operation"
+let g:WhichKeyDesc_window_split_vertically = "<Space>w\ split vertically"
+nmap <Space>w\ <Action>(SplitVertically)
+let g:WhichKeyDesc_window_split_horizontally = "<Space>w-  split horizontally"
+nmap <Space>w- <Action>(SplitHorizontally)
+nmap <C-BS> <Action>(Unsplit)
+
+let g:WhichKeyDesc_windows_jump_prefix = "<C-W> jump to window"
+let g:WhichKeyDesc_windows_jump_up = "<C-W>k"
+let g:WhichKeyDesc_windows_jump_down = "<C-W>j"
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
 
 map <C-n> gt
 map <C-p> gT
@@ -145,15 +161,14 @@ nnoremap <leader>ns :action NewScratchFile<cr>
 nnoremap <leader>ic :action InspectCode<cr>
 
 map <leader>gt <Action>($EditorTranslateAction)
+map <leader>gtd <Action>($TranslateDocumentationAction)
 vmap <leader>gt <Action>($EditorTranslateAction)
-
-
 
 " Plugins Mappings
 map <c-t>   :NERDTree<cr>
 
-map <leader>F <Plug>(easymotion-s)
-map <leader>f <Plug>(easymotion-f)
+map F <Plug>(easymotion-s)
+map f <Plug>(easymotion-f)
 
 nmap cx <Plug>(Exchange)
 xmap X <Plug>(Exchange)
