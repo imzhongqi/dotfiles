@@ -29,7 +29,7 @@ __precheck() {
 }
 
 __pathctl() {
-  local cmd="$1"
+  local cmd="${1:-put}"
   if (( $# > 0 )); then
     shift
   fi
@@ -45,13 +45,14 @@ __pathctl() {
       fi
 
       if [[ ! -e "$target" ]] || [[ ! -d "$target" ]]; then
-        echo "invalid PATH: $target"
+        echo "\"$target\": Invalid PATH"
         return 1
       fi
 
       for e in $(__read_env); do
         if [[ "$target" == "$e" ]]; then
-          return 1
+          echo "\"$target\": Already exists"
+          return 2
         fi
       done
 
@@ -93,7 +94,8 @@ __pathctl() {
 
     load)
       local file_path="${1:-$ENVFILEPATH}"
-      if [[ ! -e "$file_path"  ]]; then
+      if [[ ! -e "$file_path"  ]] || [[ ! -f $ENVFILEPATH ]]; then
+        echo "\"$file_path\": No such file or not a file"
         return 1
       fi
 
