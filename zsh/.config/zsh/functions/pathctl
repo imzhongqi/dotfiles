@@ -15,11 +15,15 @@ __read_env() {
 
 load_paths() {
   local ENVFILEPATH=${1:-$ENVFILEPATH}
-  echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
+  echo "$(__read_env $ENVFILEPATH | sed -n '1!G;h;$p' | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
 }
 
 list_paths() {
   echo "$PATH" | tr ':' '\n'
+}
+
+__err() {
+  echo "$@" >&2
 }
 
 __precheck() {
@@ -27,7 +31,7 @@ __precheck() {
   if [[ ! -e $ENVFILEPATH ]]; then
     touch $ENVFILEPATH
   elif [[ ! -f $ENVFILEPATH ]]; then
-    echo "Error: \"$ENVFILEPATH\" is not a file." 
+    __err "Error: \"$ENVFILEPATH\" is not a file."
     return 1
   fi
 }
@@ -49,13 +53,13 @@ __pathctl() {
       fi
 
       if [[ ! -e "$target" ]] || [[ ! -d "$target" ]]; then
-        echo "\"$target\": Invalid PATH"
+        __err "\"$target\": Invalid PATH"
         return 1
       fi
 
       for e in $(__read_env); do
         if [[ "$target" == "$e" ]]; then
-          echo "\"$target\": Already exists"
+          __err "\"$target\": Already exists"
           return 2
         fi
       done
@@ -107,7 +111,7 @@ __pathctl() {
     load)
       local file_path="${1:-$ENVFILEPATH}"
       if [[ ! -e "$file_path"  ]] || [[ ! -f $ENVFILEPATH ]]; then
-        echo "\"$file_path\": No such file or not a file"
+        __err "\"$file_path\": No such file or not a file"
         return 1
       fi
 
@@ -145,7 +149,7 @@ __pathctl() {
   load    [PATH]      load env from PATH
   edit                use editor open the env file; default: ${EDITOR:-vim}
   help                show this message
-"
+" >&2
     ;;
   esac
 }

@@ -49,8 +49,7 @@ source $ZDOTDIR/zinit/bin/zinit.zsh
 FPATH=$XDG_CONFIG_HOME/zsh/functions:"$XDG_CONFIG_HOME/zsh/completions":$FPATH
 autoload -Uz $XDG_CONFIG_HOME/zsh/functions/*(:t)
 
-pathctl load $ZDOTDIR/.env
-pathctl load # load paths to PATH variables
+pathctl load $ZDOTDIR/.env 2>/dev/null
 
 GENCOMP_DIR=$XDG_CONFIG_HOME/zsh/completions
 
