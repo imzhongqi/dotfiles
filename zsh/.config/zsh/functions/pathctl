@@ -91,7 +91,8 @@ pathctl() {
 
       export PATH=$(echo $PATH |
         tr ':' '\n' |
-        awk -v PATH_ENV="$(eval "echo \$_PATHCTL_ENV_$(echo $file_path | tr './' '_')")" 'BEGIN { n = split(PATH_ENV, paths, ":"); for (i = 1; i <= n; i++) { set[paths[i]]++ } } !set[$0]' |
+        awk -v PATH_ENV="$(eval "echo \$_PATHCTL_ENV_$(echo $file_path |tr './' '_')")" \
+          'BEGIN { n = split(PATH_ENV, paths, ":"); for (i = 1; i <= n; i++) { set[paths[i]]++ } } !set[$0]' |
         __join_path
       )
 
