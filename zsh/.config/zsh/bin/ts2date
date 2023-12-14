@@ -1,0 +1,2 @@
+ts=${1:-0}
+[[ $(uname -s) == Linux ]] && date -d "@$ts" || date -r "$ts"
