@@ -4,8 +4,9 @@ __unique() {
   awk '!seen[$0]++'
 }
 
-__join_path() {
-  awk '{ output = output ? output ":" $0 : $0 } END { print output }'
+__join() {
+  local sep="${1:-:}"
+  awk -v sep=$sep '{ output = output ? output sep $0 : $0 } END { print output }'
 }
 
 __read_env() {
@@ -15,11 +16,7 @@ __read_env() {
 
 load_paths() {
   local ENVFILEPATH=${1:-$ENVFILEPATH}
-  echo "$(__read_env $ENVFILEPATH | __join_path):$PATH" | tr ':' '\n' | __unique | __join_path
-}
-
-list_paths() {
-  echo "$PATH" | tr ':' '\n'
+  echo "$(__read_env $ENVFILEPATH | __join):$PATH" | tr ':' '\n' | __unique | __join
 }
 
 __err() {
@@ -82,7 +79,7 @@ __pathctl() {
       done
 
       export PATH=$(load_paths)
-      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join_path)'"
+      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
     ;;
 
     ls)
@@ -99,13 +96,16 @@ __pathctl() {
     ;;
 
     ls-paths)
-      list_paths
+      echo "$PATH" | tr ':' '\n'
     ;;
 
     del)
       ! __precheck $ENVFILEPATH && return 1
 
       local _paths=$(echo $PATH | tr ':' '\n')
+      local expr=""
+      local content=$(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh)
+
       for target in ${@:-$(pwd)}; do
         if [[ -e "$target" ]] && [[ -d "$target" ]]; then
           target=$(cd $target; pwd)
@@ -114,15 +114,19 @@ __pathctl() {
         local line_num=0
         while (( line_num++ )); read line; do
           if [[ "$target" == "$line" ]]; then
-            sed "${line_num}d" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+            echo "delete $line_num: $target"
+            expr+="${line_num}d;"
           fi
-        done < <(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh)
+        done < <(echo $content)
 
         _paths=$(echo $_paths | sed -e "s|^$target$||;/^$/d")
       done
 
-      export PATH=$(echo $_paths | __unique | __join_path)
-      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join_path)'"
+      # use sed to delete lines
+      [[ "$expr" != "" ]] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+
+      export PATH=$(echo $_paths | __unique | __join)
+      eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
     ;;
 
     load)
@@ -132,15 +136,14 @@ __pathctl() {
         return 1
       fi
 
-      export PATH=$(echo $PATH |
-        tr ':' '\n' |
-        awk -v PATH_ENV="$(eval "echo \$_PATHCTL_ENV_$(echo $file_path |tr './' '_')")" \
+      export PATH=$(echo $PATH | tr ':' '\n' |
+        awk -v PATH_ENV="$(eval "echo \$_PATHCTL_ENV_$(echo $file_path | tr './' '_')")" \
           'BEGIN { n = split(PATH_ENV, paths, ":"); for (i = 1; i <= n; i++) { set[paths[i]]++ } } !set[$0]' |
-        __join_path
+        __join
       )
 
       export PATH=$(load_paths $file_path)
-      eval "_PATHCTL_ENV_$(echo $file_path | tr './' '_')='$(__read_env | __unique | __join_path)'"
+      eval "_PATHCTL_ENV_$(echo $file_path | tr './' '_')='$(__read_env | __unique | __join)'"
     ;;
 
     edit)
@@ -149,7 +152,9 @@ __pathctl() {
     ;;
 
     tidy)
-      __read_env | __unique | tee $ENVFILEPATH >/dev/null
+      ! __precheck $ENVFILEPATH && return 1
+
+      __read_env | sed "s#$HOME#\$HOME#" | __unique | tee $ENVFILEPATH >/dev/null
     ;;
 
     help|*)
@@ -165,6 +170,7 @@ __pathctl() {
   put     [PATH]...   put current dir into PATH
   load    [PATH]      load env from PATH
   edit                use editor open the env file; default: ${EDITOR:-vim}
+  ls-paths            list the current \$PATH
   help                show this message
 " >&2
     ;;
