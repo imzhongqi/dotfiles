@@ -30,8 +30,16 @@ __precheck() {
   local file_path="${1:-$ENVFILEPATH}"
   if [[ ! -e $ENVFILEPATH ]]; then
     touch $ENVFILEPATH
-  elif [[ ! -f $ENVFILEPATH ]]; then
+    return 0
+  fi
+
+  if [[ ! -f $ENVFILEPATH ]]; then
     __err "Error: \"$ENVFILEPATH\" is not a file."
+    return 1
+  fi
+
+  if [[ ! -w $ENVFILEPATH ]]; then
+    __err "Error: \"$ENVFILEPATH\" is not writable."
     return 1
   fi
 }
@@ -48,16 +56,16 @@ __pathctl() {
 
       for target in ${@:-$(pwd)}; do
         if [[ ! -d "$target" ]]; then
-          __err "\"$target\": not a directory"
+          __err "\"$target\": Not a directory"
           continue
         fi
 
-        target=$(cd $target; pwd)
-
-        if [[ ! -e "$target" ]] || [[ ! -d "$target" ]]; then
+        if [[ ! -e "$target" ]] ; then
           __err "\"$target\": Invalid PATH"
           return 1
         fi
+
+        target=$(cd $target; pwd)
 
         for e in $(__read_env); do
           if [[ "$target" == "$e" ]]; then
@@ -79,7 +87,7 @@ __pathctl() {
 
     ls)
       if [[ ! -e "$ENVFILEPATH" ]]; then
-        __err "\"$ENVFILEPATH\": file not found"
+        __err "\"$ENVFILEPATH\": File not found"
         return 1
       fi
 
