@@ -44,9 +44,14 @@ __pathctl() {
 
   case $cmd in
     put)
-      ! __precheck "$ENVFILEPATH" && return 1
+      ! __precheck $ENVFILEPATH && return 1
 
       for target in ${@:-$(pwd)}; do
+        if [[ ! -d "$target" ]]; then
+          __err "\"$target\": not a directory"
+          continue
+        fi
+
         target=$(cd $target; pwd)
 
         if [[ ! -e "$target" ]] || [[ ! -d "$target" ]]; then
@@ -73,10 +78,13 @@ __pathctl() {
     ;;
 
     ls)
-      ! __precheck "$ENVFILEPATH" && return 1
+      if [[ ! -e "$ENVFILEPATH" ]]; then
+        __err "\"$ENVFILEPATH\": file not found"
+        return 1
+      fi
 
       if [[ "$1" == "-p" ]]; then
-        __read_env
+        __read_env $ENVFILEPATH
       else
         cat $ENVFILEPATH
       fi
@@ -87,11 +95,11 @@ __pathctl() {
     ;;
 
     del)
-      ! __precheck "$ENVFILEPATH" && return 1
+      ! __precheck $ENVFILEPATH && return 1
 
       local _paths=$(echo $PATH | tr ':' '\n')
       for target in ${@:-$(pwd)}; do
-        if [[ -e "$target" ]]; then
+        if [[ -e "$target" ]] && [[ -d "$target" ]]; then
           target=$(cd $target; pwd)
         fi
 
