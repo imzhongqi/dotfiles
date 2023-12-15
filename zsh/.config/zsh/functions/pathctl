@@ -37,7 +37,7 @@ __precheck() {
 }
 
 __pathctl() {
-  local cmd="${1:-put}"
+  local cmd="${1:-help}"
   if (( $# > 0 )); then
     shift
   fi
@@ -96,8 +96,7 @@ __pathctl() {
         fi
 
         local line_num=0
-        while read line; do
-          (( line_num++ ))
+        while (( line_num++ )); read line; do
           if [[ "$target" == "$line" ]]; then
             sed "${line_num}d" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
           fi
@@ -137,7 +136,7 @@ __pathctl() {
       __read_env | __unique | tee $ENVFILEPATH >/dev/null
     ;;
 
-    *)
+    help|*)
       printf "\033[0;32mfor manage PATH environment variable\033[0;00m
 
 \033[0;33mUSAGE:\033[0;00m
