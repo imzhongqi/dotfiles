@@ -1,4 +1,4 @@
-ENVFILEPATH=${ENVFILEPATH:-$ZDOTDIR/.env}
+ENVFILEPATH=${ENVFILEPATH:-${XDG_CONFIG_HOME:-~}/.env}
 
 __unique() {
   awk '!seen[$0]++'
@@ -102,38 +102,51 @@ __pathctl() {
     del)
       ! __precheck $ENVFILEPATH && return 1
 
-      local _paths="$PATH"
-      local _envs="$(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh | __join)"
-      local expr=""
-
+      local targets=""
       for target in ${@:-$(pwd)}; do
-        if [[ -e "$target" ]] && [[ -d "$target" ]]; then
+        if [ -e "$target" ] && [ -d "$target" ]; then
           target=$(cd $target; pwd)
         fi
-
-        expr+=$(awk -v envs=$_envs -v target=$target 'BEGIN {
-          n = split(envs, paths, ":")
-          for (i = 1; i <= n; i++) {
-            if (paths[i] == target)
-              output = output i "d;"
-          }
-          print output
-        }')
-
-        _paths=$(awk -v path=$_paths -v target=$target 'BEGIN {
-          n = split(path, paths, ":")
-          for (i = 1; i <= n; i++) {
-            if (paths[i] != target)
-              output = output ? output ":" paths[i] : paths[i]
-          }
-          print output
-        }')
+        if [ -n "$targets" ]; then
+          targets+=":$target"
+        else
+          targets="$target"
+        fi
       done
 
-      # use sed to delete lines
-      [[ "$expr" != "" ]] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+      local _envs="$(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh | __join)"
+      expr=$(awk -v envs=$_envs -v target=$targets 'BEGIN {
+        targets_n = split(target, targets, ":")
+        paths_n = split(envs, paths, ":")
+        for (i = 1; i <= targets_n; i++) {
+          for (j = 1; j <= paths_n; j++) {
+            if (paths[j] == targets[i])
+              output = output j "d;"
+          }
+        }
+        print output
+      }')
+      [ -n "$expr" ] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
-      export PATH=$_paths
+      _paths=$(awk -v path=$PATH -v target=$targets 'BEGIN {
+        targets_n = split(target, targets, ":")
+        paths_n = split(path, paths, ":")
+        for (i = 1; i <= targets_n; i++) {
+          for (j = 1; j <= paths_n; j++) {
+            if (paths[j] == targets[i])
+                delete paths[j]
+          }
+        }
+
+        for (i = 1; i <= length(paths); i++ ) {
+          if (paths[i] != "")
+            output = output ? output ":" paths[i] : paths[i]
+        }
+
+        print output
+      }')
+      [ -n "$_paths" ] && export PATH=$_paths
+
       eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
     ;;
 
