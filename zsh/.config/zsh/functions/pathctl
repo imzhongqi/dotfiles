@@ -114,7 +114,6 @@ __pathctl() {
         local line_num=0
         while (( line_num++ )); read line; do
           if [[ "$target" == "$line" ]]; then
-            echo "delete $line_num: $target"
             expr+="${line_num}d;"
           fi
         done < <(echo $content)
