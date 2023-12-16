@@ -102,29 +102,38 @@ __pathctl() {
     del)
       ! __precheck $ENVFILEPATH && return 1
 
-      local _paths=$(echo $PATH | tr ':' '\n')
+      local _paths="$PATH"
+      local _envs="$(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh | __join)"
       local expr=""
-      local content=$(cat $ENVFILEPATH | sed -e 's/.*/echo &/' | sh)
 
       for target in ${@:-$(pwd)}; do
         if [[ -e "$target" ]] && [[ -d "$target" ]]; then
           target=$(cd $target; pwd)
         fi
 
-        local line_num=0
-        while (( line_num++ )); read line; do
-          if [[ "$target" == "$line" ]]; then
-            expr+="${line_num}d;"
-          fi
-        done < <(echo $content)
+        expr+=$(awk -v envs=$_envs -v target=$target 'BEGIN {
+          n = split(envs, paths, ":")
+          for (i = 1; i <= n; i++) {
+            if (paths[i] == target)
+              output = output i "d;"
+          }
+          print output
+        }')
 
-        _paths=$(echo $_paths | sed -e "s|^$target$||;/^$/d")
+        _paths=$(awk -v path=$_paths -v target=$target 'BEGIN {
+          n = split(path, paths, ":")
+          for (i = 1; i <= n; i++) {
+            if (paths[i] != target)
+              output = output ? output ":" paths[i] : paths[i]
+          }
+          print output
+        }')
       done
 
       # use sed to delete lines
       [[ "$expr" != "" ]] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
-      export PATH=$(echo $_paths | __unique | __join)
+      export PATH=$_paths
       eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
     ;;
 
