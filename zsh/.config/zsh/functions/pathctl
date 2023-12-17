@@ -51,10 +51,11 @@ __pathctl() {
     put)
       ! __precheck $ENVFILEPATH && return 1
 
+      local targets=""
       for target in ${@:-$(pwd)}; do
         if [[ ! -d "$target" ]]; then
           __err "\"$target\": Not a directory"
-          continue
+          return 1
         fi
 
         if [[ ! -e "$target" ]] ; then
@@ -64,19 +65,32 @@ __pathctl() {
 
         target=$(cd $target; pwd)
 
-        for e in $(__read_env); do
-          if [[ "$target" == "$e" ]]; then
-            __err "\"$target\": Already exists"
-            return 2
-          fi
-        done
-
-        if [[ "$target" =~ "^$HOME" ]]; then
-            target=$(echo $target | sed "s#$HOME#\$HOME#")
+        if [ -n "$targets" ]; then
+          targets+=":$target"
+        else
+          targets="$target"
         fi
-
-        awk -v target=$target 'BEGIN{ print target } { print }' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
       done
+
+      local paths=$(__read_env | __join)
+      awk -v home=$HOME -v _paths=$paths -v _targets=$targets 'BEGIN {
+        paths_n = split(_paths, paths, ":")
+        for (i = 1; i <= paths_n; i++) {
+          seen[paths[i]]++
+        }
+
+        targets_n = split(_targets, targets, ":")
+        for (i = targets_n; i > 0; i--) {
+          if (!seen[targets[i]]) {
+            gsub("^" home, "$HOME", targets[i])
+            print targets[i]
+          }
+        }
+      }
+
+      {
+        print 
+      }' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
       export PATH=$(load_paths)
       eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
@@ -120,27 +134,32 @@ __pathctl() {
         paths_n = split(envs, paths, ":")
         for (i = 1; i <= targets_n; i++) {
           for (j = 1; j <= paths_n; j++) {
-            if (paths[j] == targets[i])
+            if (paths[j] == targets[i]) {
               output = output j "d;"
+            }  
           }
         }
         print output
       }')
       [ -n "$expr" ] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
 
-      _paths=$(awk -v path=$PATH -v target=$targets 'BEGIN {
-        targets_n = split(target, targets, ":")
-        paths_n = split(path, paths, ":")
+      _paths=$(awk -v _paths=$PATH -v _targets=$targets 'BEGIN {
+        targets_n = split(_targets, targets, ":")
         for (i = 1; i <= targets_n; i++) {
-          for (j = 1; j <= paths_n; j++) {
-            if (paths[j] == targets[i])
-                delete paths[j]
+          seen[targets[i]]++
+        }
+
+        paths_n = split(_paths, paths, ":")
+        for (i = 1; i <= paths_n; i++) {
+          if (seen[paths[i]]) {
+            delete paths[i]
           }
         }
 
-        for (i = 1; i <= length(paths); i++ ) {
-          if (paths[i] != "")
+        for (i = 1; i <= length(paths); i++) {
+          if (paths[i] != "") {
             output = output ? output ":" paths[i] : paths[i]
+          } 
         }
 
         print output
