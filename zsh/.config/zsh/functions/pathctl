@@ -73,6 +73,7 @@ __pathctl() {
       done
 
       local paths=$(__read_env | __join)
+      local temp_file=$(mktemp)
       awk -v home=$HOME -v _paths=$paths -v _targets=$targets 'BEGIN {
         paths_n = split(_paths, paths, ":")
         for (i = 1; i <= paths_n; i++) {
@@ -88,7 +89,7 @@ __pathctl() {
         }
       }
 
-      { print }' $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+      { print }' $ENVFILEPATH > $temp_file && mv $temp_file $ENVFILEPATH
 
       export PATH=$(load_paths)
       eval "_PATHCTL_ENV_$(echo $ENVFILEPATH | tr './' '_')='$(__read_env | __unique | __join)'"
@@ -139,7 +140,11 @@ __pathctl() {
         }
         print output
       }')
-      [ -n "$expr" ] && sed "$expr" $ENVFILEPATH | tee $ENVFILEPATH >/dev/null
+      
+      if [ -n "$expr" ]; then
+        local temp_file=$(mktemp)
+        sed "$expr" $ENVFILEPATH > $temp_file && mv $temp_file $ENVFILEPATH
+      fi
 
       _paths=$(awk -v _paths=$PATH -v _targets=$targets 'BEGIN {
         targets_n = split(_targets, targets, ":")
