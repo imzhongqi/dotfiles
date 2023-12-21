@@ -191,7 +191,7 @@ __pathctl() {
 
     edit)
       ${EDITOR:-vim} $ENVFILEPATH
-      pathctl load $ENVFILEPATH
+      __pathctl load $ENVFILEPATH
     ;;
 
     tidy)
