@@ -63,7 +63,7 @@ __pathctl() {
           return 1
         fi
 
-        target=$(cd $target; pwd)
+        target=$(realpath $target)
 
         if [ -n "$targets" ]; then
           targets+=":$target"
@@ -118,7 +118,7 @@ __pathctl() {
       local targets=""
       for target in ${@:-$(pwd)}; do
         if [ -e "$target" ] && [ -d "$target" ]; then
-          target=$(cd $target; pwd)
+          target=$(realpath $target)
         fi
         if [ -n "$targets" ]; then
           targets+=":$target"
