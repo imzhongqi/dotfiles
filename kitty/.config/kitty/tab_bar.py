@@ -19,7 +19,7 @@ from kitty.utils import color_as_int
 
 timer_id = None
 
-ICON = " "
+ICON = "  "
 RIGHT_MARGIN = 1
 REFRESH_TIME = 15
 
