@@ -11,7 +11,7 @@ PROMPT_EOL_MARK=''
 HIST_STAMPS='yyyy-mm-dd'
 
 FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--prompt="❯ " --pointer=" " --marker=" " --border=rounded  --layout=reverse --info=hidden --color=bg+:24'
+export FZF_DEFAULT_OPTS='--prompt="❯ " --pointer="➜ " --marker=" " --border=rounded  --layout=reverse --info=hidden --color=bg+:24'
 
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
