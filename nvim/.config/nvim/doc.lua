@@ -1,3 +1,0 @@
--- https://neovim.io/doc/user/motion.html
--- https://github.com/nanotee/nvim-lua-guide
--- https://github.com/nvim-lua/plenary.nvim
