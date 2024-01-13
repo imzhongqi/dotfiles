@@ -164,6 +164,8 @@ map <leader>gt <Action>($EditorTranslateAction)
 map <leader>gtd <Action>($TranslateDocumentationAction)
 vmap <leader>gt <Action>($EditorTranslateAction)
 
+nnoremap gD :action GotoTypeDeclaration<cr>
+
 " Plugins Mappings
 map <c-t>   :NERDTree<cr>
 

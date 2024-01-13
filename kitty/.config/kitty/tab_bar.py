@@ -114,16 +114,16 @@ def _draw_right_status(screen: Screen, is_last: bool) -> int:
 
     draw_attributed_string(Formatter.reset, screen)
 
-    clock = datetime.now().strftime("%H:%M")
-    utc = datetime.now(timezone.utc).strftime(" (UTC %H:%M)")
+    # clock = datetime.now().strftime("%H:%M")
+    # utc = datetime.now(timezone.utc).strftime(" (UTC %H:%M)")
 
     cells = []
     # if dnd != "":
     #     cells.append((dnd_color, dnd))
     #     cells.append((sep_color, " ⋮ "))
 
-    cells.append((clock_color, clock))
-    cells.append((utc_color, utc))
+    # cells.append((clock_color, clock))
+    # cells.append((utc_color, utc))
 
     # right_status_length = calc_draw_spaces(dnd + " " + clock + " " + utc)
 
