@@ -55,7 +55,8 @@ function M.merge(...)
 end
 
 --- safe load modules and return the wezterm config
----@param configs table[]
+---@param modules string[]
+---@param ... table[]
 ---@return WeztermConfig
 function M.load(modules, ...)
   local config = {}
