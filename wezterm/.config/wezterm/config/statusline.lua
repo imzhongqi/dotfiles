@@ -4,7 +4,13 @@ wezterm.on("update-right-status", function(window, pane)
   local cells = {}
 
   if window:leader_is_active() then
-    table.insert(cells, "Leader")
+    table.insert(
+      cells,
+      wezterm.format({
+        { Foreground = { AnsiColor = "Red" } },
+        { Text = "" },
+      })
+    )
   end
 
   table.insert(cells, window:active_workspace())

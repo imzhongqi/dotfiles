@@ -53,6 +53,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
+  enable_tab_bar = true,
   use_fancy_tab_bar = false,
   tab_max_width = 16,
+  tab_bar_at_bottom = false,
 }

@@ -31,11 +31,6 @@ local function can_merge(v)
   return type(v) == "table" and (M.tbl_isempty(v) or not M.is_list(v))
 end
 
---- Merges the values similar to vim.tbl_deep_extend with the **force** behavior,
---- but the values can be any type, in which case they override the values on the left.
---- Values will me merged in-place in the first left-most table. If you want the result to be in
---- a new table, then simply pass an empty table as the first argument `vim.merge({}, ...)`
---- Supports clearing values by setting a key to `vim.NIL`
 ---@generic T
 ---@param ... T
 ---@return T
@@ -54,15 +49,31 @@ function M.merge(...)
   return ret
 end
 
+function M.extend(list1, ...)
+  assert(type(list1) == "table", string.format("Expected table, got %s", type(list1)))
+
+  for _, v in pairs({ ... }) do
+    table.insert(list1, v)
+  end
+end
+
+function M.once(func)
+  local called = false
+  return function(...)
+    if not called then
+      called = true
+      return func(...)
+    end
+  end
+end
+
 --- safe load modules and return the wezterm config
 ---@param modules string[]
+---@param config table
 ---@param ... table[]
 ---@return WeztermConfig
-function M.load(modules, ...)
-  local config = {}
-  if wezterm.config_builder then
-    config = wezterm.config_builder()
-  end
+function M.load(modules, config, ...)
+  config = config or {}
 
   for _, modname in ipairs(modules) do
     local ok, mod = pcall(require, modname)
@@ -74,7 +85,11 @@ function M.load(modules, ...)
       if type(mod) == "function" then
         mod(config)
       elseif type(mod) == "table" then
-        M.merge(config, mod)
+        if mod.apply and type(mod.apply) == "function" then
+          mod.apply(config)
+        else
+          M.merge(config, mod)
+        end
       end
     end
   end

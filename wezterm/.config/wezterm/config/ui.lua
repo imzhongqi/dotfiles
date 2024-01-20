@@ -1,8 +1,6 @@
+---@type WeztermConfig
 return {
   color_scheme = "Tokyo Night Moon",
-
-  initial_rows = 24,
-  initial_cols = 120,
 
   window_decorations = "RESIZE|INTEGRATED_BUTTONS",
   integrated_title_button_style = "Windows",
@@ -18,14 +16,6 @@ return {
     right = 0,
     top = 20,
     bottom = 0,
-  },
-
-  colors = {
-    tab_bar = {
-      background = "#222436",
-      new_tab = { bg_color = "#222436", fg_color = "#434C5E" },
-      new_tab_hover = { bg_color = "#222436", fg_color = "#8494C4" },
-    },
   },
 
   tab_bar_style = {
