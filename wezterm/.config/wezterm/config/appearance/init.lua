@@ -17,7 +17,7 @@ local config = {
   integrated_title_button_alignment = "Left",
   integrated_title_buttons = { "Close", "Hide", "Maximize" },
 
-  underline_position = -4,
+  underline_position = -8,
   underline_thickness = 3,
 
   window_padding = {

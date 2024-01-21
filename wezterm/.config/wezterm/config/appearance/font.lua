@@ -1,6 +1,6 @@
 return {
-  font_size = 15,
-  line_height = 1.4,
+  font_size = 14,
+  line_height = 1.6,
 
   font = wezterm.font_with_fallback({
     { family = "Comic Code Ligatures", weight = "DemiBold" },
