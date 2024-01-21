@@ -1,5 +1,3 @@
-local wezterm = require("wezterm")
-
 local M = {}
 
 -- Fast implementation to check if a table is a list
@@ -31,6 +29,30 @@ local function can_merge(v)
   return type(v) == "table" and (M.tbl_isempty(v) or not M.is_list(v))
 end
 
+function string.explode(s, pattern, plain, maxTokens)
+  if pattern == "" then
+    return false
+  end
+  local pos = 0
+  local arr = {}
+  for st, sp in
+    function()
+      return s:find(pattern, pos, plain)
+    end
+  do
+    table.insert(arr, s:sub(pos, st - 1))
+    pos = sp + 1
+    if maxTokens ~= nil and maxTokens > 0 then
+      maxTokens = maxTokens - 1
+      if maxTokens == 0 then
+        break
+      end
+    end
+  end
+  table.insert(arr, s:sub(pos))
+  return arr
+end
+
 ---@generic T
 ---@param ... T
 ---@return T
@@ -52,9 +74,13 @@ end
 function M.extend(list1, ...)
   assert(type(list1) == "table", string.format("Expected table, got %s", type(list1)))
 
-  for _, v in pairs({ ... }) do
-    table.insert(list1, v)
+  for _, list in ipairs({ ... }) do
+    for _, v in ipairs(list) do
+      table.insert(list1, v)
+    end
   end
+
+  return list1
 end
 
 function M.once(func)
@@ -68,22 +94,24 @@ function M.once(func)
 end
 
 --- safe load modules and return the wezterm config
----@param modules string[]
+---@param modules string|string[]
 ---@param config table
 ---@param ... table[]
 ---@return WeztermConfig
 function M.load(modules, config, ...)
+  modules = type(modules) == "table" and modules or { modules }
   config = config or {}
 
   for _, modname in ipairs(modules) do
     local ok, mod = pcall(require, modname)
     if not ok then
-      wezterm.log_error(string.format("load: failed to load modules, error: %s", mod))
-    end
-
-    if ok and mod then
+      wezterm.log_error(string.format("load: failed to load modules `%s`, error: %s", modname, mod))
+    else
       if type(mod) == "function" then
-        mod(config)
+        local ret = mod(config)
+        if ret then
+          M.merge(config, ret)
+        end
       elseif type(mod) == "table" then
         if mod.apply and type(mod.apply) == "function" then
           mod.apply(config)

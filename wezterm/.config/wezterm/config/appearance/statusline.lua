@@ -1,6 +1,5 @@
 local SOLID_LEFT_ARROW = ""
-
-wezterm.on("update-right-status", function(window, pane)
+local function on_updatae_right_status(window, pane)
   local cells = {}
 
   if window:leader_is_active() then
@@ -54,4 +53,8 @@ wezterm.on("update-right-status", function(window, pane)
   end
 
   window:set_right_status(wezterm.format(elements))
-end)
+end
+
+return function()
+  wezterm.on("update-right-status", on_updatae_right_status)
+end
