@@ -3,8 +3,8 @@ local config = {
   cursor_thickness = "2.5px",
 
   command_palette_font_size = 16,
-  command_palette_bg_color = "#465779",
-  command_palette_fg_color = "#99b3c6",
+  command_palette_bg_color = "rgba(55,57,95, 0.9)",
+  command_palette_fg_color = "rgb(200, 190, 180)",
 
   default_cursor_style = "BlinkingBlock",
   cursor_blink_rate = 800,

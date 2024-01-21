@@ -1,5 +1,5 @@
 return {
-  font_size = 14,
+  font_size = 16,
   line_height = 1.6,
 
   font = wezterm.font_with_fallback({

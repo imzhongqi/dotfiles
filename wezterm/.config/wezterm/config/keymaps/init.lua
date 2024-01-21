@@ -2,8 +2,8 @@ local util = require("util")
 
 local keys = {}
 
-local function load_keymaps(...)
-  for _, modname in ipairs({ ... }) do
+local function load_keymaps(modnames)
+  for _, modname in ipairs(modnames) do
     local keymaps = require(modname)
     if util.is_list(keymaps) then
       util.extend(keys, keymaps)
@@ -27,12 +27,11 @@ local init = util.once(function()
 end)
 
 return function()
-  -- init()
-  load_keymaps("config.keymaps.default")
+  init()
 
   return {
+    -- disable_default_key_bindings = true,
     leader = { key = "z", mods = "CTRL", timeout_milliseconds = 2000 },
     keys = keys,
-    -- disable_default_key_bindings = true,
   }
 end
