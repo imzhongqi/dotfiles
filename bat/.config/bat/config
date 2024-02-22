@@ -1,5 +1,2 @@
---theme='gruvbox-dark'
+--theme=Catppuccin-mocha
 
---style='numbers,header,grid'
-
---paging='never'

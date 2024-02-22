@@ -1,4 +1,4 @@
-ENVFILEPATH=${ENVFILEPATH:-${XDG_CONFIG_HOME:-~}/.env}
+ENVFILEPATH=${ENVFILEPATH:-${XDG_CONFIG_HOME:-$HOME/.config/zsh}/.env}
 
 __unique() {
   awk '!seen[$0]++'

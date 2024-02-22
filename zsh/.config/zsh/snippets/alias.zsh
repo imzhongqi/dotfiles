@@ -10,6 +10,7 @@ alias reload="exec $SHELL -l -i"  		grep="command grep --colour=auto --binary-fi
 alias df='df -h'  	du='du -h'  plast="last -20"
 alias cp='cp -v'   	mv='mv -v'
 alias ts='date +%s'
+alias v='nvim'
 
 command_check exa 		'ls=exa -bh --icons'
 command_check bat 		'cat=bat --plain'
