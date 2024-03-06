@@ -15,3 +15,35 @@ alias v='nvim'
 command_check exa 		'ls=exa -bh --icons'
 command_check bat 		'cat=bat --plain'
 command_check kitty 	's=kitty +kitten ssh'
+
+
+alias Sudo='command sudo '
+
+alias sudo='_sudo'
+_sudo() {
+    local cmd=$1
+    local type=$(which -w $cmd | cut -d\  -f2)
+
+    if [[ $type == function ]]; then
+        shift
+        # TODO issue with calling nested function
+        command sudo -E zsh -c "$(typeset -f $cmd);$cmd $*"
+    elif [[ $type == alias ]]; then
+        functions[_t_expand_alias]=$@ 2>/dev/null
+        if (( $+functions[_t_expand_alias] )); then
+            set -- ${(z)functions[_t_expand_alias]#$'\t'}
+            unset -f _t_expand_alias
+
+            local cmd=$1
+            type=$(which -w $1 | cut -d\  -f2)
+            if [[ $type == function ]]; then
+                shift
+                command sudo -E zsh -c "$(typeset -f $cmd);$cmd $*"
+            else
+                eval "command sudo -E $@"
+            fi
+        fi
+    else
+        command sudo -E $@
+    fi
+}
