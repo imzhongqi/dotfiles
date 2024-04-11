@@ -23,3 +23,4 @@ export ENVFILEPATH=$ZDOTDIR/env
 
 export LDFLAGS="-L/usr/local/opt/mysql-client/lib"
 export CPPFLAGS="-I/usr/local/opt/mysql-client/include"
+export OPENAI_ENDPOINT="https://burn.hair/v1/chat/completions"

@@ -33,7 +33,7 @@ completions=(
   mv"*.zsh -> _fzf" atload'source _fzf'
     'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
 
-  'https://github.com/ogham/exa/blob/master/completions/zsh/_exa'
+  'https://github.com/eza-community/eza/blob/main/completions/zsh/_eza'
 
   nocd
     OMZP::docker-compose/_docker-compose

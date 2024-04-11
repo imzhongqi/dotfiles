@@ -2,6 +2,11 @@ command_check() {
 	command -v "$1" &>/dev/null && alias "$2"
 }
 
+command_check eza 		'ls=eza -bh --icons'
+command_check bat 		'cat=bat --plain'
+command_check kitty 	        's=kitty +kitten ssh'
+
+alias lh='ls --hyperlink'
 # global alias
 alias rm='rm -i'   	rd='rmdir'   		md='mkdir -p'
 alias la='ls -la'  	lt='ls --tree'  	ll='ls -l'  l='ls'
@@ -11,11 +16,6 @@ alias df='df -h'  	du='du -h'  plast="last -20"
 alias cp='cp -v'   	mv='mv -v'
 alias ts='date +%s'
 alias v='nvim'
-
-command_check exa 		'ls=exa -bh --icons'
-command_check bat 		'cat=bat --plain'
-command_check kitty 	's=kitty +kitten ssh'
-
 
 alias Sudo='command sudo '
 
