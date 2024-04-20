@@ -25,7 +25,7 @@ zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps -p $word -o command -w -w | sed -e 1d'
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
 zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 80 0
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:*' switch-group ',' '.'
