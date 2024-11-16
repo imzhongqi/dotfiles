@@ -44,9 +44,6 @@ completions=(
   nocd
     OMZP::docker/completions/_docker
 
-  nocd
-    OMZP::fd/_fd
-
   nocd mv=":zsh -> _cht" 
     https://cheat.sh/:zsh
 )
